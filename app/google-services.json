@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "92021108070",
+    "project_id": "bibliotech-e93c4",
+    "storage_bucket": "bibliotech-e93c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92021108070:android:8d3ec2e34ffbecdbd12ca7",
+        "android_client_info": {
+          "package_name": "com.example.bibliotech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92021108070-7f6sfrjqsr553632c6iqh5mq59j29heb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bibliotech",
+            "certificate_hash": "2a8dbcdb0bbfb210417066ac23ebb66369e2a564"
+          }
+        },
+        {
+          "client_id": "92021108070-o38qkvb463362i6hpuimna25slbq795d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQbSrCajDY0fFvbuIV5ZfwjCw6oNupR5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92021108070-o38qkvb463362i6hpuimna25slbq795d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
