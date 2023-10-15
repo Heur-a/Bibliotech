@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.firebase.ui.auth.AuthUI;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public void cerrarSesion(View view) {
+    /*public void cerrarSesion(View view) {
         AuthUI.getInstance().signOut(getApplicationContext())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -31,6 +31,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     }
-                });
-    }
+                });*/
+
 }
