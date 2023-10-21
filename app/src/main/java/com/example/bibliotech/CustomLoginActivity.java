@@ -1,15 +1,16 @@
 package com.example.bibliotech;
 
-import android.annotation.SuppressLint;
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -17,13 +18,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Objects;
@@ -38,76 +38,91 @@ public class CustomLoginActivity extends AppCompatActivity {
     private EditText editTextMail, editTextPassword;
     private TextInputLayout TextInMail, TextInPassword;
     private ProgressDialog dialog;
-    private Button googleButton;
 
     private GoogleSignInClient googleSignInClient;
+
     private static final int RC_GOOGLE_SIGN_IN = 123;
 
 
     protected void onCreate(Bundle savedInstanceState) {
-        verificaSiUsuarioValidado();
         super.onCreate(savedInstanceState);
 
-        //Asign variables their respective values
+        verificaSiUsuarioValidado();
+
+        // Configura Google Sign-In
+        configureGoogle();
+
+
 
         setContentView(R.layout.activity_custom_login);
-        editTextMail = (EditText) findViewById(R.id.correo);
-        editTextPassword = (EditText) findViewById(R.id.contraseña);
-        TextInMail = (TextInputLayout) findViewById(R.id.til_correo);
-        TextInPassword = (TextInputLayout) findViewById(R.id.til_contraseña);
-        container = (ViewGroup) findViewById(R.id.contenedor);
-        googleButton =  findViewById(R.id.buttonGoogle);
-        configureGoogle();
-        googleButton.setOnClickListener( View   -> {
-
-                Intent i = googleSignInClient.getSignInIntent();
-                startActivityForResult(i, RC_GOOGLE_SIGN_IN);
-            }
-        );
+        editTextMail = findViewById(R.id.correo);
+        editTextPassword = findViewById(R.id.contraseña);
+        TextInMail = findViewById(R.id.til_correo);
+        TextInPassword = findViewById(R.id.til_contraseña);
+        container = findViewById(R.id.contenedor);
+        Button googleButton = findViewById(R.id.buttonGoogle);
+        googleButton.setOnClickListener(action -> {
+            Intent signInIntent = googleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
+        });
         dialog = new ProgressDialog(this);
         dialog.setTitle("Verificando usuario");
         dialog.setMessage("Por favor espere...");
     }
-    @Override public void onActivityResult(int requestCode, int resultCode,
-                                           Intent data) {
+
+
+
+    protected void configureGoogle() {
+        // Configure sign-in to request the user's ID, email address, and basic
+// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("92021108070-o38qkvb463362i6hpuimna25slbq795d.apps.googleusercontent.com")
+                .requestEmail()
+                .build();
+        // Build a GoogleSignInClient with the options specified by gso.
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_GOOGLE_SIGN_IN) {
-            Task<GoogleSignInAccount> task =
-                    GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                googleAuth(account.getIdToken());
-            } catch (ApiException e) {
-                mensaje("Error de autentificación con Google");
-            }
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
         }
     }
 
-    private void googleAuth(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken,
-                null);
-        auth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+            AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+            auth.signInWithCredential(credential)
+                    .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
+                            // L'usuari s'ha autenticat amb èxit
+                            FirebaseUser firebaseUser = auth.getCurrentUser();
+                            if (firebaseUser != null) {
+                                // Imprimeix el nom de l'usuari
+                                String displayName = firebaseUser.getDisplayName();
+                                Log.d(TAG, "Nom de l'usuari de Firebase: " + displayName);
+                            }
                             verificaSiUsuarioValidado();
-                        }else{
-                            mensaje(task.getException().getLocalizedMessage());
                         }
-                    }
-                });
+                    });
+        } catch (ApiException e) {
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            verificaSiUsuarioValidado();
+        }
     }
 
-    private void configureGoogle() {
-        //Google
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
-                GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("92021108070-7f6sfrjqsr553632c6iqh5mq59j29heb.apps.googleusercontent.com")
-                .requestEmail()
-                .build();
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
-    }
+
 
     private void verificaSiUsuarioValidado() {
         //IF signed in continue, if not return
@@ -216,7 +231,6 @@ public class CustomLoginActivity extends AppCompatActivity {
             super(message);
         }
     }
-
 
 
 }
