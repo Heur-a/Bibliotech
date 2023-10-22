@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +19,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,7 +34,6 @@ public class CustomLoginActivity extends AppCompatActivity {
     private String mail, password = "";
     private ViewGroup container;
     private EditText editTextMail, editTextPassword;
-    private TextInputLayout TextInMail, TextInPassword;
     private ProgressDialog dialog;
 
     private GoogleSignInClient googleSignInClient;
@@ -54,17 +51,18 @@ public class CustomLoginActivity extends AppCompatActivity {
 
 
 
-        setContentView(R.layout.activity_custom_login);
-        editTextMail = findViewById(R.id.correo);
-        editTextPassword = findViewById(R.id.contraseña);
-        TextInMail = findViewById(R.id.til_correo);
-        TextInPassword = findViewById(R.id.til_contraseña);
+        setContentView(R.layout.inicio_sesion);
+        editTextMail = findViewById(R.id.editTextTextEmailAddress);
+        editTextPassword = findViewById(R.id.editTextPassword);
         container = findViewById(R.id.contenedor);
-        Button googleButton = findViewById(R.id.buttonGoogle);
+        Button googleButton = findViewById(R.id.buttonGooglee);
+        Button logIn = findViewById(R.id.buttonLogIn);
         googleButton.setOnClickListener(action -> {
             Intent signInIntent = googleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
         });
+
+        logIn.setOnClickListener(action -> inicioSesiónCorreo());
         dialog = new ProgressDialog(this);
         dialog.setTitle("Verificando usuario");
         dialog.setMessage("Por favor espere...");
@@ -136,7 +134,7 @@ public class CustomLoginActivity extends AppCompatActivity {
         }
     }
 
-    public void inicioSesiónCorreo(View v) {
+    public void inicioSesiónCorreo() {
         if (verificaCampos()) {
             dialog.show();
             auth.signInWithEmailAndPassword(mail, password)
@@ -145,7 +143,7 @@ public class CustomLoginActivity extends AppCompatActivity {
                             verificaSiUsuarioValidado();
                         } else {
                             dialog.dismiss();
-                            mensaje(Objects.requireNonNull(task.getException()).getLocalizedMessage());
+                            mensaje("El correo implementado no existe");
                         }
                     });
         }
@@ -153,7 +151,7 @@ public class CustomLoginActivity extends AppCompatActivity {
 
 
     //TODO: Move this function to a separete SignIn activity :D
-    public void registroCorreo(View v) {
+    public void registroCorreo() {
         if (verificaCampos()) {
             dialog.show();
             auth.createUserWithEmailAndPassword(mail, password)
@@ -176,26 +174,26 @@ public class CustomLoginActivity extends AppCompatActivity {
     private boolean verificaCampos() {
         mail = editTextMail.getText().toString();
         password = editTextPassword.getText().toString();
-        TextInMail.setError("");
-        TextInPassword.setError("");
+        editTextMail.setError(null);
+        editTextPassword.setError(null);
 
-        try {
-            if (mail.isEmpty()) {
-                throw new ValidationException("Introduce un correo");
-            }
+        boolean isValid = true;
 
-            if (!mail.contains("@") || !mail.contains(".")) {
-                throw new ValidationException("Correo no válido");
-            }
+        if (mail.isEmpty()) {
+            editTextMail.setError("Introduce un correo");
+            isValid = false;
+        } else if (!mail.contains("@") || !mail.contains(".")) {
+            editTextMail.setError("Correo no válido");
+            isValid = false;
+        }
 
-            if (password.isEmpty()) {
-                throw new ValidationException("Introduce una contraseña");
-            }
-
-            if (password.length() < 6) {
-                throw new ValidationException("Ha de contener al menos 6 caracteres");
-            }
-
+        if (password.isEmpty()) {
+            editTextPassword.setError("Introduce una contraseña");
+            isValid = false;
+        } else if (password.length() < 6) {
+            editTextPassword.setError("La contraseña debe tener al menos 6 caracteres");
+            isValid = false;
+        } else {
             boolean hasDigit = false;
             boolean hasUppercase = false;
 
@@ -209,27 +207,17 @@ public class CustomLoginActivity extends AppCompatActivity {
             }
 
             if (!hasDigit) {
-                throw new ValidationException("Ha de contener un número");
+                editTextPassword.setError("La contraseña debe contener al menos un número");
+                isValid = false;
             }
 
             if (!hasUppercase) {
-                throw new ValidationException("Ha de contener una letra mayúscula");
+                editTextPassword.setError("La contraseña debe contener al menos una letra mayúscula");
+                isValid = false;
             }
-
-            return true;
-
-        } catch (ValidationException e) {
-            TextInMail.setError(e.getMessage());
-            TextInPassword.setError(e.getMessage());
-            return false;
         }
-    }
 
-    // Custom ValidationException class
-    static class ValidationException extends Exception {
-        public ValidationException(String message) {
-            super(message);
-        }
+        return isValid;
     }
 
 
