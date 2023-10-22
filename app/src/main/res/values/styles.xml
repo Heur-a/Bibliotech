@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Toolbar">
+        <item name="tabIconTint">@color/white</item>
+        <item name="tabIndicatorColor">@color/white</item>
+    </style>
+    <style name="txtst">
+        <item name="color">@color/claro_txt</item>
+        <item name="android:height">48px</item>
+        <item name="android:width">411px</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">36dp</item>
+    </style>
+    <style name="fhsele">
+        <item name="background">@color/black</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/claro_txt</item>
+    </style>
+    <style name="btn_buscar_sala">
+        <item name="backgroundTint">@color/claroG4</item>
+        <item name="android:textColor">#bfcde2</item>
+    </style>
+    <style name="bk_carrusel">
+        <item name="background">@color/white</item>
+    </style>
+    <style name="Circular">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="RoundedSquare">
+        <item name="cornerSize">10%</item>
+    </style>
+
+    <style name="CornerCut">
+        <item name="cornerSize">15dp</item>
+        <item name="cornerFamily">cut</item>
+    </style>
+
+    <style name="DiamondCut">
+        <item name="cornerSize">75dp</item>
+        <item name="cornerFamily">cut</item>
+    </style>
+
+    <style name="SpecificCornerCut">
+        <item name="cornerSizeTopRight">75dp</item>
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerSizeBottomLeft">75dp</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
+    </style>
+
+    <style name="SpecificCornerRounded">
+        <item name="cornerSizeTopRight">75dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeBottomLeft">75dp</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+    </style>
+
+    <style name="btn_sala">
+        <item name="android:layout_width">69dp</item>
+        <item name="android:layout_height">21dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="backgroundTint">@color/oscuroG4</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:padding">0px</item>
+    </style>
+
+    <style name="txt_sala_cardA">
+        <item name="android:textColor">@color/claroG4</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+    <style name="txt_sala_cardB">
+        <item name="android:textColor">@color/claroG3</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+    <style name="Txt_tit_home">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/claro_txt</item>
+    </style>
+</resources>

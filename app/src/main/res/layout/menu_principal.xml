@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView18"
+        style="@style/Txt_tit_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="83dp"
+        android:text="Acreditación"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView25"
+        style="@style/Txt_tit_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="23dp"
+        android:text="Notificaciones"
+        app:layout_constraintEnd_toEndOf="@+id/card_est"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_est" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_est"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/paginalogin"
+        android:backgroundTint="@color/oscuroG2"
+        android:backgroundTintMode="multiply"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="310dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/paginalogin"
+            android:rotation="180"
+            android:scaleType="centerInside"
+            app:srcCompat="@android:drawable/list_selector_background" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="79dp"
+            android:layout_marginRight="308dp"
+            android:layout_marginBottom="82dp"
+            android:rotation="230"
+            app:srcCompat="@drawable/ondas" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="91dp"
+            android:layout_height="129dp"
+            android:layout_marginLeft="39dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="210dp"
+            android:layout_marginBottom="31dp"
+            android:src="@drawable/img" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="68dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="144dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginRight="129dp"
+            android:layout_marginBottom="130dp"
+            android:text="Estudiante"
+            android:textColor="@color/claro_txt" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="144dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginRight="129dp"
+            android:layout_marginBottom="108dp"
+            android:text="Sofía Torres García"
+            android:textColor="@color/oscuroFondo"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="144dp"
+            android:layout_marginTop="87dp"
+            android:layout_marginRight="129dp"
+            android:layout_marginBottom="84dp"
+            android:text="Número De Estudiante"
+            android:textColor="@color/claro_txt" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="144dp"
+            android:layout_marginTop="132dp"
+            android:layout_marginRight="129dp"
+            android:layout_marginBottom="40dp"
+            android:text="645465778999477"
+            android:textColor="@color/oscuroFondo"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="144dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginRight="75dp"
+            android:layout_marginBottom="60dp"
+            app:srcCompat="@drawable/codebar" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="64dp"
+            android:layout_height="62dp"
+            android:layout_gravity="bottom|right"
+            app:srcCompat="@drawable/logomodoclaro" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="257dp"
+        android:layout_marginTop="23dp"
+        app:cardBackgroundColor="#c2d0e4"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/card_est"
+        app:layout_constraintStart_toStartOf="@+id/card_est"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+</androidx.constraintlayout.widget.ConstraintLayout>

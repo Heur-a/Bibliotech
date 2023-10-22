@@ -2,4 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="claroFondo">#FFFFFFFF</color>
+    <color name="claroFondo.toolbar">#486f99</color>
+    <color name="claroG1">#7398c4</color>
+    <color name="claroG2">#688db9</color>
+    <color name="claroG3">#5d83ae</color>
+    <color name="claroG4">#5379a4</color>
+    <color name="claro_txt">#486f99</color>
+
+    <color name="oscuroFondo">#486f99</color>
+    <color name="oscuroFondo.toolbar">#ffffff</color>
+    <color name="oscuroG1">#e2e8f3</color>
+    <color name="oscuroG2">#c4d2e7</color>
+    <color name="oscuroG3">#a6bddc</color>
+    <color name="oscuroG4">#88a7d0</color>
 </resources>
