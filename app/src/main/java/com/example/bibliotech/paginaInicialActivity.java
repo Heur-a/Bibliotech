@@ -15,7 +15,8 @@ public class paginaInicialActivity extends AppCompatActivity {
         logIn = findViewById(R.id.buttonlogInInit);
         SignIn = findViewById(R.id.buttonSignInInit);
         setClickListener(logIn, CustomLoginActivity.class);
-        //TODO: put signIn click listener, create signIn activity
+        setClickListener(SignIn, RegisterActivity.class);
+
 
 
 

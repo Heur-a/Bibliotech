@@ -1,12 +1,12 @@
 package com.example.bibliotech;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+import static android.content.ContentValues.TAG;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ViewGroup;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -24,72 +24,54 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import java.util.Objects;
-
 public class CustomLoginActivity extends AppCompatActivity {
 
-    //Object for making all authoritazion objects
-    private final FirebaseAuth auth = FirebaseAuth.getInstance();
-    //strings wich contain mail and password
-    private String mail, password = "";
-    private ViewGroup container;
-    private EditText editTextMail, editTextPassword;
+    private static final int RC_GOOGLE_SIGN_IN = 123;
+    private FirebaseAuth auth;
+    private GoogleSignInClient googleSignInClient;
     private ProgressDialog dialog;
 
-    private GoogleSignInClient googleSignInClient;
+    private EditText editTextMail;
+    private EditText editTextPassword;
 
-    private static final int RC_GOOGLE_SIGN_IN = 123;
-
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.inicio_sesion);
 
-        verificaSiUsuarioValidado();
-
-        // Configura Google Sign-In
+        // Initialize Firebase Authentication
+        auth = FirebaseAuth.getInstance();
         configureGoogle();
 
-
-
-        setContentView(R.layout.inicio_sesion);
         editTextMail = findViewById(R.id.editTextTextEmailAddress);
         editTextPassword = findViewById(R.id.editTextPassword);
-        container = findViewById(R.id.contenedor);
+
         Button googleButton = findViewById(R.id.buttonGooglee);
         Button logIn = findViewById(R.id.buttonLogIn);
-        googleButton.setOnClickListener(action -> {
-            Intent signInIntent = googleSignInClient.getSignInIntent();
-            startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
-        });
 
-        logIn.setOnClickListener(action -> inicioSesiónCorreo());
+        // Set click listeners for buttons
+        googleButton.setOnClickListener(this::signInWithGoogle);
+        logIn.setOnClickListener(this::inicioSesionCorreo);
+
+        // Initialize ProgressDialog
         dialog = new ProgressDialog(this);
-        dialog.setTitle("Verificando usuario");
-        dialog.setMessage("Por favor espere...");
+        dialog.setTitle("Verifying User");
+        dialog.setMessage("Please wait...");
     }
 
-
-
-    protected void configureGoogle() {
-        // Configure sign-in to request the user's ID, email address, and basic
-// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+    private void configureGoogle() {
+        // Configure Google Sign-In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("92021108070-o38qkvb463362i6hpuimna25slbq795d.apps.googleusercontent.com")
+                .requestIdToken("92021108070-o38qkvb463362i6hpuimna25slbq795d.apps.googleusercontent.com")  // Replace with your web client ID
                 .requestEmail()
                 .build();
-        // Build a GoogleSignInClient with the options specified by gso.
         googleSignInClient = GoogleSignIn.getClient(this, gso);
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_GOOGLE_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
@@ -98,34 +80,28 @@ public class CustomLoginActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            // Signed in successfully, show authenticated UI.
             AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
             auth.signInWithCredential(credential)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            // L'usuari s'ha autenticat amb èxit
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             if (firebaseUser != null) {
-                                // Imprimeix el nom de l'usuari
                                 String displayName = firebaseUser.getDisplayName();
-                                Log.d(TAG, "Nom de l'usuari de Firebase: " + displayName);
+                                Log.d(TAG, "Firebase User Name: " + displayName);
                             }
-                            verificaSiUsuarioValidado();
+                            verificaSiUsuarioValidado(MainActivity.class);
                         }
                     });
         } catch (ApiException e) {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            verificaSiUsuarioValidado();
+            verificaSiUsuarioValidado(MainActivity.class);
         }
     }
 
-
-
-    private void verificaSiUsuarioValidado() {
-        //IF signed in continue, if not return
+    public void verificaSiUsuarioValidado(Class Class) {
         if (auth.getCurrentUser() != null) {
-            Intent i = new Intent(this, MainActivity.class);
+            // User is signed in, navigate to the main activity
+            Intent i = new Intent(this, Class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                     | Intent.FLAG_ACTIVITY_NEW_TASK
                     | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -134,69 +110,56 @@ public class CustomLoginActivity extends AppCompatActivity {
         }
     }
 
-    public void inicioSesiónCorreo() {
+    private void inicioSesionCorreo(View view) {
         if (verificaCampos()) {
             dialog.show();
-            auth.signInWithEmailAndPassword(mail, password)
+            auth.signInWithEmailAndPassword(editTextMail.getText().toString(), editTextPassword.getText().toString())
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            verificaSiUsuarioValidado();
+                            verificaSiUsuarioValidado(MainActivity.class);
                         } else {
                             dialog.dismiss();
-                            mensaje("El correo implementado no existe");
+                            mensaje("The provided email does not exist");
                         }
                     });
         }
     }
 
-
-    //TODO: Move this function to a separete SignIn activity :D
-    public void registroCorreo() {
-        if (verificaCampos()) {
-            dialog.show();
-            auth.createUserWithEmailAndPassword(mail, password)
-                    .addOnCompleteListener(this, task -> {
-                        if (task.isSuccessful()) {
-                            verificaSiUsuarioValidado();
-                        } else {
-                            dialog.dismiss();
-                            mensaje(Objects.requireNonNull(task.getException()).getLocalizedMessage());
-                        }
-                    });
-        }
+    private void signInWithGoogle(View view) {
+        // Start Google Sign-In process
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
     }
 
     private void mensaje(String mensaje) {
-        Snackbar.make(container, mensaje, Snackbar.LENGTH_LONG).show();
+        // Show a Snackbar message
+        Snackbar.make(findViewById(android.R.id.content), mensaje, Snackbar.LENGTH_LONG).show();
     }
 
-    //Verfiy each input is in an operable state
     private boolean verificaCampos() {
-        mail = editTextMail.getText().toString();
-        password = editTextPassword.getText().toString();
+        String mail = editTextMail.getText().toString();
+        String password = editTextPassword.getText().toString();
         editTextMail.setError(null);
         editTextPassword.setError(null);
-
         boolean isValid = true;
 
         if (mail.isEmpty()) {
-            editTextMail.setError("Introduce un correo");
+            editTextMail.setError("Enter an email");
             isValid = false;
         } else if (!mail.contains("@") || !mail.contains(".")) {
-            editTextMail.setError("Correo no válido");
+            editTextMail.setError("Invalid email format");
             isValid = false;
         }
 
         if (password.isEmpty()) {
-            editTextPassword.setError("Introduce una contraseña");
+            editTextPassword.setError("Enter a password");
             isValid = false;
         } else if (password.length() < 6) {
-            editTextPassword.setError("La contraseña debe tener al menos 6 caracteres");
+            editTextPassword.setError("Password must be at least 6 characters");
             isValid = false;
         } else {
             boolean hasDigit = false;
             boolean hasUppercase = false;
-
             for (char c : password.toCharArray()) {
                 if (Character.isDigit(c)) {
                     hasDigit = true;
@@ -205,21 +168,15 @@ public class CustomLoginActivity extends AppCompatActivity {
                     hasUppercase = true;
                 }
             }
-
             if (!hasDigit) {
-                editTextPassword.setError("La contraseña debe contener al menos un número");
+                editTextPassword.setError("Password must contain at least one number");
                 isValid = false;
             }
-
             if (!hasUppercase) {
-                editTextPassword.setError("La contraseña debe contener al menos una letra mayúscula");
+                editTextPassword.setError("Password must contain at least one uppercase letter");
                 isValid = false;
             }
         }
-
         return isValid;
     }
-
-
 }
-
