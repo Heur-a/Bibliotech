@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Objects;
@@ -30,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String textSurnames;
     private UserCredentials Credentials;
 
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crear_cuenta);
@@ -49,18 +51,25 @@ public class RegisterActivity extends AppCompatActivity {
         textSurnames = surnames.getText().toString();
         Credentials = new UserCredentials(textEmail, textPassword, textName, textSurnames);
 
+        //Initialize buttons
         Button createAccountButton = findViewById(R.id.buttonCrearCuenta);
         ImageButton togglePassword = findViewById(R.id.imageButton2);
         ImageButton toggleRepeatPassword = findViewById(R.id.imageButton);
+
+
+        //Add listeners to buttons
         createAccountButton.setOnClickListener(task -> {
+            //Refresh String variables
             textPassword = password.getText().toString();
             textEmail = email.getText().toString();
             textName = name.getText().toString();
             textSurnames = surnames.getText().toString();
             Credentials = new UserCredentials(textEmail, textPassword, textName, textSurnames);
+            //Begin createUser process
             createUser();
         });
 
+        //Buttons for toggling password and repeat password visibility
         togglePassword.setOnClickListener(task -> {
             if (password != null) {
                 togglePasswordVisibility(password);
@@ -95,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    static public void togglePasswordVisibility(EditText passwordField) {
+    static public void togglePasswordVisibility(@NonNull EditText passwordField) {
         Log.d("RegisterActivity", "togglePasswordVisibility: Function called");
         // Obtenir el tipus actual d'entrada del text (password o text normal)
         int inputType = passwordField.getInputType();
