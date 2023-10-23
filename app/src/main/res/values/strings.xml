@@ -12,5 +12,17 @@
         <item>2ºPlanta</item>
         <item>3ºPlanta</item>
     </string-array>
+
+    <!--Crear Cuenta-->
     <string name="recpassword"><u>¿Has olvidado tu contraseña?</u></string>
+    <string name="Nombre">Nombre</string>
+    <string name="Apellidos">Apellidos</string>
+    <string name="Correo">Correo electrónico</string>
+    <string name="ConfiCorreo">Confirmar correo electrónico</string>
+    <string name="Contrasena">Contraseña</string>
+    <string name="conficontra">Confirmar Contraseña</string>
+    <string name="CrearUnaCuanta">Crea una cuenta</string>
+    <string name="navigation_drawer_open">open naviegasjdn dreas</string>
+    <string name="navigation_drawer_close">cloce naviegasjdn dreas</string>
+    <string name="Busca_el_libro_que_deseas">Busca el libro que deseas...</string>
 </resources>

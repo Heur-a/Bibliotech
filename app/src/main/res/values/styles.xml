@@ -73,8 +73,45 @@
         <item name="android:textColor">@color/claroG3</item>
         <item name="android:textSize">12dp</item>
     </style>
-    <style name="Txt_tit_home">
+
+
+
+    <!--Estilos Home-->
+    <style name="Home_txt_titulo">
+        <item name="android:textColor">@color/claro_txt</item>
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Home_card_tar">
+        <item name="android:backgroundTint">@color/G2</item>
+    </style>
+
+    <style name="Home_card_notis">
+        <item name="android:backgroundTint">@color/G2</item>
+    </style>
+
+    <style name="Home_card_txtA">
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/claro_txt</item>
     </style>
+
+    <style name="Home_card_txtb">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/claro_txt</item>
+    </style>
+    <!--Fin estilos Home-->
+
+    <!--Libros page-->
+
+    <style name="buscar_lib">
+        <item name="android:background">@drawable/bk_buscar</item>
+        <item name="android:queryHint">@string/Busca_el_libro_que_deseas</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:buttonCornerRadius">10dp</item>
+    </style>
+
+
+
+
 </resources>

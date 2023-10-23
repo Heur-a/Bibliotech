@@ -1,22 +1,34 @@
 package com.example.bibliotech;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
+
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.auth.FirebaseAuth;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private Toolbar supportActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +37,20 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabs);
         ViewPager2 viewPager = findViewById(R.id.viewpager);
         viewPager.setAdapter(new MiPagerAdapter(this));
+        DrawerLayout drawableLayout = findViewById(R.id.drawable_layout);
+        //NavigationView navigationView = findViewById(R.id.nav_view);
+        ImageButton menuButton = findViewById(R.id.btn_menu_desplegable);
+
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawableLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawableLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    drawableLayout.openDrawer(GravityCompat.START);
+                }
+            }
+        });
 
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {
@@ -108,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setCurrentItem(2);
     }
 
+    public void setSupportActionBar(Toolbar supportActionBar) {
+        this.supportActionBar = supportActionBar;
+    }
+
     public class MiPagerAdapter extends FragmentStateAdapter {
         public MiPagerAdapter(FragmentActivity activity) {
             super(activity);
@@ -147,3 +177,4 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 }
+
