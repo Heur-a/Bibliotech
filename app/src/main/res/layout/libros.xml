@@ -20,7 +20,6 @@
         app:circularflow_angles="10dp"
         app:circularflow_defaultRadius="10dp"
         app:circularflow_radiusInDP="10dp"
-        app:circularflow_viewCenter="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -140,7 +139,6 @@
                 android:layout_width="144dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@tools:sample/avatars"
                 app:srcCompat="@drawable/uncuentoperfecto" />
 
             <ImageView
@@ -148,7 +146,6 @@
                 android:layout_width="144dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@tools:sample/avatars"
                 app:srcCompat="@drawable/elproblemafinal" />
 
             <ImageView
@@ -156,7 +153,6 @@
                 android:layout_width="144dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@tools:sample/avatars"
                 app:srcCompat="@drawable/dondetodobrilla" />
         </LinearLayout>
     </HorizontalScrollView>
