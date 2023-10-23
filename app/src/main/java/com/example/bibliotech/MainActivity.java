@@ -1,5 +1,6 @@
 package com.example.bibliotech;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         });
         viewPager.setCurrentItem(2);
 
-        updateInfo(imageHeader,headerText,idText);
+        updateInfo(imageHeader,headerText,idText,this);
 
 
     }
@@ -194,10 +195,10 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private void updateInfo (ImageView pfp, TextView username, TextView id) {
+    public static void updateInfo (ImageView pfp, TextView username, TextView id, Context Context) {
         if (FireBaseActions.getCurrentUser() != null) {
-            UserCredentials credentials = FireBaseActions.getCredentials(this);
-            Glide.with(this)
+            UserCredentials credentials = FireBaseActions.getCredentials(Context);
+            Glide.with(Context)
                     .load(credentials.photoUri)
                     .into(pfp);
             username.setText(credentials.username);

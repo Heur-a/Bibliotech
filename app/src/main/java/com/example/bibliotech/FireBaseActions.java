@@ -119,7 +119,7 @@ public class FireBaseActions {
             String id = user.getUid();
 
 
-            return new UserCredentials(name, email,photoUrl,id);
+            return new UserCredentials(email, name ,photoUrl,id);
 
         }
         Toast.makeText(Context,"La toma de datos ha fallado",Toast.LENGTH_SHORT);

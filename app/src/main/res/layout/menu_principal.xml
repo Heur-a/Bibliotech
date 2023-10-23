@@ -66,7 +66,7 @@
             app:srcCompat="@drawable/ondas" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageViewMenuPrincipal"
             style="@style/Home_txt_titulo"
             android:layout_width="91dp"
             android:layout_height="129dp"
@@ -77,7 +77,7 @@
             android:src="@drawable/img" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/textViewUserType"
             style="@style/Home_card_txtA"
             android:layout_width="68dp"
             android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
             android:textColor="@color/claro_txt" />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/textViewUserMenuPrincipal"
             style="@style/Home_card_txtb"
             android:layout_width="174dp"
             android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
             android:textColor="@color/claro_txt" />
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/textViewIdMenuPrincipal"
             style="@style/Home_card_txtb"
             android:layout_width="174dp"
             android:layout_height="wrap_content"
