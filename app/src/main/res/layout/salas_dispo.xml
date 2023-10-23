@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="372dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="9dp"
+        android:backgroundTint="@color/gris"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/cardView3"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3">
+
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="214dp"
+            android:layout_height="37dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="104dp"
+            android:backgroundTint=" #486f99 "
+            android:text="Saber más"
+            app:cornerRadius="7dp" />
+
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="13dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="76dp"
+            android:layout_marginRight="207dp"
+            app:srcCompat="@drawable/computer" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="13dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginRight="207dp"
+            app:srcCompat="@drawable/pin" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="19dp"
+            android:text="Sala para dos personas"
+            android:textColor="#5379a4"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="172dp"
+            android:layout_marginTop="49dp"
+            android:text="Primera Planta H110"
+            android:textColor="#5d83ae"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="172dp"
+            android:layout_marginTop="74dp"
+            android:text="Con accesorios"
+            android:textColor="#5d83ae"
+            android:textSize="13sp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="107dp"
+            android:layout_height="114dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="19dp"
+            app:cardCornerRadius="12dp">
+
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/salatres" />
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="372dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="9dp"
+        android:backgroundTint="@color/gris"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView2"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toStartOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="214dp"
+            android:layout_height="37dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="104dp"
+            android:backgroundTint=" #486f99 "
+            android:text="Saber más"
+            app:cornerRadius="7dp" />
+
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="13dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="76dp"
+            android:layout_marginRight="207dp"
+            app:srcCompat="@drawable/computer" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="13dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginRight="207dp"
+            app:srcCompat="@drawable/pin" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="19dp"
+            android:text="Sala para dos personas"
+            android:textColor="#5379a4"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="172dp"
+            android:layout_marginTop="49dp"
+            android:text="Primera Planta H110"
+            android:textColor="#5d83ae"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="172dp"
+            android:layout_marginTop="74dp"
+            android:text="Con accesorios"
+            android:textColor="#5d83ae"
+            android:textSize="13sp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="107dp"
+            android:layout_height="114dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="19dp"
+            app:cardCornerRadius="12dp">
+
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/salauno" />
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:tint="@color/G8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="61dp"
+        android:text="Las salas disponibles son:"
+        android:textAlignment="center"
+        android:textColor="#486f99"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="372dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="@color/gris"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32">
+
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="214dp"
+            android:layout_height="37dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="104dp"
+            android:backgroundTint=" #486f99 "
+            android:text="Saber más"
+            app:cornerRadius="7dp" />
+
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="13dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="76dp"
+            android:layout_marginRight="207dp"
+            app:srcCompat="@drawable/computer" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="13dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginRight="207dp"
+            app:srcCompat="@drawable/pin" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="19dp"
+            android:text="Sala para dos personas"
+            android:textColor="#5379a4"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="172dp"
+            android:layout_marginTop="49dp"
+            android:text="Primera Planta H110"
+            android:textColor="#5d83ae"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="172dp"
+            android:layout_marginTop="74dp"
+            android:text="Con accesorios"
+            android:textColor="#5d83ae"
+            android:textSize="13sp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="107dp"
+            android:layout_height="114dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="19dp"
+            app:cardCornerRadius="12dp">
+
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/salados" />
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

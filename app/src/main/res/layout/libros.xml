@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:backgroundTint="#c4d2e7"
+    android:backgroundTintMode="src_over">
 
     <SearchView
         android:id="@+id/bar_buscar"
@@ -87,7 +89,7 @@
                 android:scrollbarThumbVertical="@android:color/transparent"
                 android:scrollbars="none"
                 android:verticalScrollbarPosition="left"
-                app:headerLayout="@layout/book_card_viewa" />
+                app:headerLayout="@layout/book_card_viewb" />
 
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/nav_view3"
@@ -98,7 +100,7 @@
                 android:scrollbarThumbVertical="@android:color/transparent"
                 android:scrollbars="none"
                 android:verticalScrollbarPosition="left"
-                app:headerLayout="@layout/book_card_viewa" />
+                app:headerLayout="@layout/book_card_viewc" />
 
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/nav_view4"
@@ -109,7 +111,7 @@
                 android:scrollbarThumbVertical="@android:color/transparent"
                 android:scrollbars="none"
                 android:verticalScrollbarPosition="left"
-                app:headerLayout="@layout/book_card_viewa" />
+                app:headerLayout="@layout/book_card_viewd" />
 
 
         </LinearLayout>
@@ -156,4 +158,17 @@
                 app:srcCompat="@drawable/dondetodobrilla" />
         </LinearLayout>
     </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:backgroundTint="#c4d2e7"
+        android:text="Filtrar"
+        android:textColor=" #7d899f"
+        android:textSize="16sp"
+        app:cornerRadius="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/bar_buscar"
+        app:layout_constraintTop_toBottomOf="@+id/bar_buscar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
