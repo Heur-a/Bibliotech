@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/mapaseleccionado"
+            android:title="Perfil"/>
+        <item
+            android:icon="@android:drawable/ic_dialog_email"
+            android:title="Notificaciones" />
+        <item
+            android:icon="@drawable/salaseleccionada"
+            android:title="Salas Reservadas" />
+        <item
+            android:icon="@drawable/libroseleccionado"
+            android:title="Libros seleccionados" />
+
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="Ajustes">
+            <menu>
+
+                <item
+                    android:icon="@drawable/tuerca"
+                    android:title="Configuración y privacidad" />
+                <item
+                    android:icon="@drawable/moon"
+                    android:title="Modo Oscuro" />
+                <item
+                    android:icon="@android:drawable/ic_menu_info_details"
+                    android:title="Reportar Error" />
+
+            </menu>
+        </item>
+
+    </group>
+    <item android:title="Sesion">
+        <menu>
+            <item
+                android:title="home"
+                android:icon="@drawable/casaseleccionada" />
+            <item
+                android:title="home"
+                android:icon="@drawable/casaseleccionada"/>
+        </menu>
+    </item>
+
+</menu>

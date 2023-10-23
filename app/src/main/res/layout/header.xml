@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/paginacarga"
+    android:gravity="bottom"
+    android:padding="20dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:cardCornerRadius="15dp">
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/img"
+            android:layout_gravity="right"/>
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sofía Torres García"
+        android:textSize="24sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="645465778999477"
+        android:textSize="14sp"/>
+</LinearLayout>

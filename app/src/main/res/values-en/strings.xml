@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="recpassword"><u>Have you forgotten your password?</u></string>
+    <string name="Nombre">Name</string>
+    <string name="Apellidos">Last Name</string>
+    <string name="Correo">Email</string>
+    <string name="ConfiCorreo">Confirm email</string>
+    <string name="Contrasena">Password</string>
+    <string name="conficontra">Confirm password</string>
+    <string name="CrearUnaCuanta">Create an account</string>
+    <string name="Busca_el_libro_que_deseas">Find the book you want...</string>
+</resources>
