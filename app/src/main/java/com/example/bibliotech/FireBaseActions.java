@@ -6,8 +6,11 @@ import static androidx.core.content.ContextCompat.startActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,22 +21,28 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+import org.jetbrains.annotations.Contract;
+
 public class FireBaseActions {
 
     static public FirebaseAuth auth;
+    static public FirebaseUser user;
 
     
     public FireBaseActions() {
         // Inicialitza l'instància d'autenticació de Firebase
         auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
     }
 
+    @NonNull
+    @Contract(" -> new")
     public static FireBaseActions getInstance() {
         return new FireBaseActions();
     }
 
     public static FirebaseUser getCurrentUser() {
-        return auth.getCurrentUser();
+        return user = auth.getCurrentUser();
     }
 
     public static void signOut() {
@@ -56,7 +65,7 @@ public class FireBaseActions {
 
     }
 
-    public  static void createUser(UserCredentials UserCredentials, Context Context, Activity Activity,Class Class) {
+    public  static void createUser(@NonNull UserCredentials UserCredentials, Context Context, Activity Activity, Class Class) {
 
         auth.createUserWithEmailAndPassword(UserCredentials.email, UserCredentials.password)
                 .addOnCompleteListener(Activity, (OnCompleteListener<AuthResult>) task -> {
@@ -99,6 +108,22 @@ public class FireBaseActions {
             startActivity(Context,i,null);
             Activity.finish();
         }
+    }
+
+    public static UserCredentials getCredentials (Context Context) {
+        if (getCurrentUser() != null) {
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
+            String id = user.getUid();
+
+
+            return new UserCredentials(name, email,photoUrl,id);
+
+        }
+        Toast.makeText(Context,"La toma de datos ha fallado",Toast.LENGTH_SHORT);
+        return null;
     }
 }
 

@@ -16,9 +16,8 @@ public class paginaInicialActivity extends AppCompatActivity {
         SignIn = findViewById(R.id.buttonSignInInit);
         setClickListener(logIn, CustomLoginActivity.class);
         setClickListener(SignIn, RegisterActivity.class);
-
-
-
+        FireBaseActions.getInstance();
+        FireBaseActions.verificaSiUsuarioValidado(this, MainActivity.class,this);
 
     }
 
