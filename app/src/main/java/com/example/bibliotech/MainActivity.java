@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     return new libros();
                 case 4:
-                    return new salas();
+                    return new mapa();
             }
             return null;
         }
