@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -48,10 +49,12 @@ public class CustomLoginActivity extends AppCompatActivity {
 
         Button googleButton = findViewById(R.id.buttonGooglee);
         Button logIn = findViewById(R.id.buttonLogIn);
+        ImageButton togglePassword = findViewById(R.id.imageButton3);
 
         // Set click listeners for buttons
         googleButton.setOnClickListener(this::signInWithGoogle);
         logIn.setOnClickListener(this::inicioSesionCorreo);
+        togglePassword.setOnClickListener(task -> RegisterActivity.togglePasswordVisibility(editTextPassword));
 
         // Initialize ProgressDialog
         dialog = new ProgressDialog(this);

@@ -7,18 +7,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/bk_ini">
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="24dp"
-        android:layout_height="14dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
-        app:layout_constraintTop_toTopOf="@+id/editTextPassword"
-        app:layout_constraintVertical_bias="0.50"
-        app:srcCompat="@drawable/ojopassword" />
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
@@ -134,5 +122,17 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/checkBox"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogIn" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="24dp"
+        android:layout_height="14dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextPassword"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
+        app:layout_constraintTop_toTopOf="@+id/editTextPassword"
+        app:layout_constraintVertical_bias="0.50"
+        app:srcCompat="@drawable/ojopassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,13 @@
 package com.example.bibliotech;
 
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
         Credentials = new UserCredentials(textEmail, textPassword, textName, textSurnames);
 
         Button createAccountButton = findViewById(R.id.buttonCrearCuenta);
+        ImageButton togglePassword = findViewById(R.id.imageButton2);
+        ImageButton toggleRepeatPassword = findViewById(R.id.imageButton);
         createAccountButton.setOnClickListener(task -> {
             textPassword = password.getText().toString();
             textEmail = email.getText().toString();
@@ -53,6 +60,19 @@ public class RegisterActivity extends AppCompatActivity {
             Credentials = new UserCredentials(textEmail, textPassword, textName, textSurnames);
             createUser();
         });
+
+        togglePassword.setOnClickListener(task -> {
+            if (password != null) {
+                togglePasswordVisibility(password);
+            }
+        });
+
+        toggleRepeatPassword.setOnClickListener(task -> {
+            if(repeatPassword != null) {
+                togglePasswordVisibility(repeatPassword);
+            }
+        });
+
     }
 
     // Methods for checking if the textPrompts are good
@@ -70,10 +90,35 @@ public class RegisterActivity extends AppCompatActivity {
 
     protected void createUser() {
         if (validateFields()) {
-            new FireBaseActions();
+            FireBaseActions.getInstance();
             FireBaseActions.createUser(Credentials, this, this, MainActivity.class);
         }
     }
+
+    static public void togglePasswordVisibility(EditText passwordField) {
+        Log.d("RegisterActivity", "togglePasswordVisibility: Function called");
+        // Obtenir el tipus actual d'entrada del text (password o text normal)
+        int inputType = passwordField.getInputType();
+
+        // Comprovar si el tipus actual és de contrasenya
+        boolean isPassword = (inputType & InputType.TYPE_TEXT_VARIATION_PASSWORD) > 0;
+
+        // Canviar el tipus d'entrada segons l'estat actual
+        if (isPassword) {
+            // Si és una contrasenya, canviar-lo a text normal (visible)
+            passwordField.setInputType(inputType & ~InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            passwordField.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        } else {
+            // Si és text normal (visible), canviar-lo a contrasenya (ocult)
+            passwordField.setInputType(inputType | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            passwordField.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
+
+        // Mover el cursor al final del text per a garantir que siga visible
+        passwordField.setSelection(passwordField.getText().length());
+    }
+
+
 
     private boolean validateFields() {
         boolean isValid = true;
