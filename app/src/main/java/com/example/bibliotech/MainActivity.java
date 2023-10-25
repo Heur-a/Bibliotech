@@ -1,12 +1,18 @@
 package com.example.bibliotech;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -19,6 +25,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -40,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawableLayout = findViewById(R.id.drawable_layout);
         //NavigationView navigationView = findViewById(R.id.nav_view);
         ImageButton menuButton = findViewById(R.id.btn_menu_desplegable);
+
+        //Define header Views
+        NavigationView Nav= findViewById(R.id.nav_view);
+        View headerView = Nav.getHeaderView(0);
+        ImageView imageHeader = headerView.findViewById(R.id.imageHeader);
+        TextView headerText = headerView.findViewById(R.id.headerText);
+        TextView idText = headerView.findViewById(R.id.headerId);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +146,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         viewPager.setCurrentItem(2);
+
+        updateInfo(imageHeader,headerText,idText,this);
+
+
     }
 
     public void setSupportActionBar(Toolbar supportActionBar) {
@@ -168,13 +186,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cerrarSesion(View view) {
-        FirebaseAuth.getInstance().signOut();
-        Intent i = new Intent(getApplicationContext(), CustomLoginActivity.class);
+        FireBaseActions.signOut();
+        Intent i = new Intent(getApplicationContext(), paginaInicialActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                 | Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
         finish();
     }
+
+    public static void updateInfo (ImageView pfp, TextView username, TextView id, Context Context) {
+        if (FireBaseActions.getCurrentUser() != null) {
+            UserCredentials credentials = FireBaseActions.getCredentials(Context);
+            Glide.with(Context)
+                    .load(credentials.photoUri)
+                    .into(pfp);
+            username.setText(credentials.username);
+            id.setText(credentials.id);
+        }
+    }
+
+
+
+
 }
 
