@@ -6,15 +6,16 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/atras"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:onClick="atras"
         android:tint="@color/G8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable"/>
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <ImageView
         android:id="@+id/imageView22"

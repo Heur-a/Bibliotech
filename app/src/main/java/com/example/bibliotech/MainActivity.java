@@ -161,9 +161,9 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.btn_notis) {
                     //switchToNotificationsPage();
                 } else if (id == R.id.btn_reservas) {
-                    //switchToReservedRoomsPage();
+                    salas();
                 } else if (id == R.id.btn_libros) {
-                    //switchToSelectedBooksPage();
+                    libros();
                 } else if (id == R.id.btn_config) {
                     //switchToSettingsPage();
                 } else if (id == R.id.btn_modo) {
@@ -245,6 +245,18 @@ public class MainActivity extends AppCompatActivity {
         // For example, you can start a new activity or replace the current fragment.
         // Replace "YourProfileActivity.class" with your actual profile activity.
         Intent intent = new Intent(this, perfilActivity.class);
+        startActivity(intent);
+    }
+
+    public void salas() {
+        // Open the EditProfileActivity when the "editar" ImageView is clicked
+        Intent intent = new Intent(MainActivity.this, reservasalaactivity.class);
+        startActivity(intent);
+    }
+
+    public void libros() {
+        // Open the EditProfileActivity when the "editar" ImageView is clicked
+        Intent intent = new Intent(MainActivity.this, reservalibrosActivity.class);
         startActivity(intent);
     }
 

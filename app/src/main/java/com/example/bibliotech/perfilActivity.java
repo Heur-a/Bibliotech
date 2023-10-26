@@ -25,4 +25,9 @@ public class perfilActivity extends AppCompatActivity {
             }
         });
     }
+    public void atras(View view) {
+        // Open the EditProfileActivity when the "editar" ImageView is clicked
+        Intent intent = new Intent(perfilActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 }
