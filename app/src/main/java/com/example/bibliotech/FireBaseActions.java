@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -109,8 +110,8 @@ public class FireBaseActions {
             Activity.finish();
         }
     }
-
-    public static UserCredentials getCredentials (Context Context) {
+    @Nullable
+    public static UserCredentials getCredentials (@NonNull Context Context) {
         if (getCurrentUser() != null) {
             // Name, email address, and profile photo Url
             String name = user.getDisplayName();
@@ -127,7 +128,7 @@ public class FireBaseActions {
     }
 
     public static void updateUsername (String username) {
-
+            getInstance();
             UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(username)
                     .build();
         assert user != null;
