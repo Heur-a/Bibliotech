@@ -25,6 +25,8 @@
             android:exported="true"/>
         <activity android:name=".RegisterActivity"
             android:exported="true"/>
+        <activity android:name=".perfil" android:exported="true"/>
+        <activity android:name="perfilActivity" android:exported="true"/>
     </application>
 
 </manifest>

@@ -33,7 +33,7 @@
                     android:icon="@drawable/moon"
                     android:title="Modo Oscuro" />
                 <item
-                    android:id="btn_reporterr"
+                    android:id="@+id/btn_reporterr"
                     android:icon="@android:drawable/ic_menu_info_details"
                     android:title="Reportar Error" />
 
