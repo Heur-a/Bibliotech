@@ -3,16 +3,19 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/home"
+            android:id="@+id/btn_perfil"
             android:icon="@drawable/mapaseleccionado"
             android:title="Perfil"/>
         <item
+            android:id="@+id/btn_notis"
             android:icon="@android:drawable/ic_dialog_email"
             android:title="Notificaciones" />
         <item
+            android:id="@+id/btn_reservas"
             android:icon="@drawable/salaseleccionada"
             android:title="Salas Reservadas" />
         <item
+            android:id="@+id/btn_libros"
             android:icon="@drawable/libroseleccionado"
             android:title="Libros seleccionados" />
 
@@ -22,12 +25,15 @@
             <menu>
 
                 <item
+                    android:id="@+id/btn_config"
                     android:icon="@drawable/tuerca"
                     android:title="Configuración y privacidad" />
                 <item
+                    android:id="@+id/btn_modo"
                     android:icon="@drawable/moon"
                     android:title="Modo Oscuro" />
                 <item
+                    android:id="btn_reporterr"
                     android:icon="@android:drawable/ic_menu_info_details"
                     android:title="Reportar Error" />
 
@@ -38,11 +44,9 @@
     <item android:title="Sesion">
         <menu>
             <item
-                android:title="home"
-                android:icon="@drawable/casaseleccionada" />
-            <item
-                android:title="home"
-                android:icon="@drawable/casaseleccionada"/>
+                android:id="@+id/btn_cerrarsesion"
+                android:title="Cerrar Sesion"
+                android:icon="@android:drawable/ic_menu_revert"/>
         </menu>
     </item>
 
