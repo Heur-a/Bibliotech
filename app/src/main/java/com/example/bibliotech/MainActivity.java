@@ -24,8 +24,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
-
-import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -149,6 +147,40 @@ public class MainActivity extends AppCompatActivity {
 
         updateInfo(imageHeader,headerText,idText,this);
 
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId(); // Get the selected item's ID
+
+                if (id == R.id.btn_perfil) {
+                    switchToProfilePage();
+                } else if (id == R.id.btn_notis) {
+                    //switchToNotificationsPage();
+                } else if (id == R.id.btn_reservas) {
+                    //switchToReservedRoomsPage();
+                } else if (id == R.id.btn_libros) {
+                    //switchToSelectedBooksPage();
+                } else if (id == R.id.btn_config) {
+                    //switchToSettingsPage();
+                } else if (id == R.id.btn_modo) {
+                    // Implement the dark mode toggle logic here
+                } else if (id == R.id.btn_reporterr) {
+                    // Implement error reporting logic here
+                } else if (id == R.id.btn_cerrarsesion) {
+                    cerrarSesion(navigationView); // Call your existing logout method
+                }
+
+                // Close the navigation drawer after handling the item click
+                drawableLayout.closeDrawer(GravityCompat.START);
+
+                return true;
+            }
+        });
+
+
+
 
     }
 
@@ -205,6 +237,15 @@ public class MainActivity extends AppCompatActivity {
             id.setText(credentials.id);
         }
     }
+
+    private void switchToProfilePage() {
+        // Implement the logic to navigate to the profile page here
+        // For example, you can start a new activity or replace the current fragment.
+        // Replace "YourProfileActivity.class" with your actual profile activity.
+        Intent intent = new Intent(this, perfilActivity.class);
+        startActivity(intent);
+    }
+
 
 
 
