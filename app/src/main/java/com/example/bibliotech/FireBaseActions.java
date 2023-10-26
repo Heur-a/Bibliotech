@@ -125,5 +125,33 @@ public class FireBaseActions {
         Toast.makeText(Context,"La toma de datos ha fallado",Toast.LENGTH_SHORT);
         return null;
     }
+
+    public static void updateUsername (String username) {
+
+            UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(username)
+                    .build();
+        assert user != null;
+        user.updateProfile(userProfileChangeRequest)
+                .addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        Log.d(TAG, "User profile updated.");
+                    }
+                });
+    }
+
+    public static void updateEmail(String email,Context context) {
+
+        user.updateEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "User email address updated.");
+                        } else {
+                            Toast.makeText(context,"Ha habido un error interno. Inténtelo más tarde",Toast.LENGTH_SHORT);
+                        }
+                    }
+                });
+    }
 }
 
