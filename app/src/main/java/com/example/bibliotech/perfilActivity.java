@@ -60,4 +60,9 @@ import java.lang.reflect.Field;
                  .load(credentials.photoUri)
                  .into(image);
     }
+    public void atras(View view) {
+        // Open the EditProfileActivity when the "editar" ImageView is clicked
+        Intent intent = new Intent(perfilActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 }

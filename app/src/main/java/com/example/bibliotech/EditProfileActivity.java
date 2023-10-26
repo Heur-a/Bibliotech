@@ -1,6 +1,9 @@
 package com.example.bibliotech;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,5 +39,10 @@ public class EditProfileActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(credentials.photoUri)
                 .into(image);
+    }
+    public void onClick(View view) {
+        // Open the EditProfileActivity when the "editar" ImageView is clicked
+        Intent intent = new Intent(EditProfileActivity.this, perfilActivity.class);
+        startActivity(intent);
     }
 }
