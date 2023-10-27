@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.btn_reservas) {
                     salas();
                 } else if (id == R.id.btn_libros) {
-                    libros();
+                    librossss();
                 } else if (id == R.id.btn_config) {
                     //switchToSettingsPage();
                 } else if (id == R.id.btn_modo) {
@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void libros() {
+    public void librossss() {
         // Open the EditProfileActivity when the "editar" ImageView is clicked
         Intent intent = new Intent(MainActivity.this, reservalibrosActivity.class);
         startActivity(intent);
