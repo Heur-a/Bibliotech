@@ -17,11 +17,21 @@ public class reservasview extends Fragment {
         View rootView = inflater.inflate(R.layout.reservas, container, false);
 
         Button buttonSalasReservadas = rootView.findViewById(R.id.button9);
+        Button buttonlibrosReservadas = rootView.findViewById(R.id.button8);
         buttonSalasReservadas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Define the activity you want to start when the button is clicked
                 Intent intent = new Intent(getActivity(), reservasalaactivity.class); // Replace NewActivity with the desired activity
+                startActivity(intent);
+            }
+        });
+
+        buttonlibrosReservadas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Define the activity you want to start when the button is clicked
+                Intent intent = new Intent(getActivity(), reservalibrosActivity.class); // Replace NewActivity with the desired activity
                 startActivity(intent);
             }
         });
