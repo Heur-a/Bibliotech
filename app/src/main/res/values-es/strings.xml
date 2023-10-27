@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">BiblioTech</string>
     <string name="recpassword"><u>¿Has olvidado tu contraseña?</u></string>
     <string name="Nombre">Nombre</string>
     <string name="Apellidos">Aplliodos</string>
