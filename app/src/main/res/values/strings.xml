@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">BiblioTech</string>
     <string-array name="personas">
         <item>2 Personas</item>
         <item>4 Personas</item>
