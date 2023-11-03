@@ -10,4 +10,14 @@
     <string name="conficontra">Confirm password</string>
     <string name="CrearUnaCuanta">Create an account</string>
     <string name="Busca_el_libro_que_deseas">Find the book you want...</string>
+    <string name="Notificaciones">Notifications</string>
+    <string name="Perfil">Profile</string>
+    <string name="Salas_reservadas">Reserved Rooms</string>
+    <string name="Libros_Reservados">Reserved Books</string>
+    <string name="Config_privacity">Configuration and Privacy</string>
+    <string name="Ajustes">Settins</string>
+    <string name="Modo_Oscuro">Dark Mode</string>
+    <string name="Reportar_error">Report Error</string>
+    <string name="Sesion">Session</string>
+    <string name="Cerrar_sesion">"Log out "</string>
 </resources>

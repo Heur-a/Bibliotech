@@ -25,4 +25,14 @@
     <string name="navigation_drawer_open">open naviegasjdn dreas</string>
     <string name="navigation_drawer_close">cloce naviegasjdn dreas</string>
     <string name="Busca_el_libro_que_deseas">Busca el libro que deseas...</string>
+    <string name="Perfil">Perfil</string>
+    <string name="Notificaciones">Notificaciones</string>
+    <string name="Salas_reservadas">Salas Reservadas</string>
+    <string name="Libros_Reservados">Libros Reservados</string>
+    <string name="Config_privacity">Configuración y Privacidad</string>
+    <string name="Ajustes">Ajustes</string>
+    <string name="Modo_Oscuro">Modo Oscuro</string>
+    <string name="Reportar_error">Reportar Error</string>
+    <string name="Sesion">Sesión</string>
+    <string name="Cerrar_sesion">Cerrar Sesión</string>
 </resources>
