@@ -47,4 +47,14 @@
     <string name="Diez_Personas">ten people</string>
     <string name="Buscar_Salas_Disponibles">Search for available rooms</string>
     <string name="Las_Salas_Disponibles_Son">The available rooms are:</string>
+    <string name="De">Of</string>
+    <string name="Aire_acondicionado">Air conditioner</string>
+    <string name="descripcion_aire">for a fresh and pleasant environment</string>
+    <string name="pizarra_rotuladores">Whiteboard and markers</string>
+    <string name="Descripcion_pizarra">to facilitate communication and collaboration</string>
+    <string name="Television">Television</string>
+    <string name="Descripcion_television">for entertainment or presentations</string>
+    <string name="Regletas">Power Strip</string>
+    <string name="Descripcion_regletas">to connect multiple electronic devices</string>
+    <string name="Reservala_ya">Book It Now</string>
 </resources>

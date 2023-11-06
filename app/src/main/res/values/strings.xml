@@ -62,4 +62,14 @@
     <string name="Diez_Personas">diez personas</string>
     <string name="Buscar_Salas_Disponibles">Buscar Salas Disponibles</string>
     <string name="Las_Salas_Disponibles_Son">Las salas disponibles son:</string>
+    <string name="De">De</string>
+    <string name="Aire_acondicionado">Aire acondicionado</string>
+    <string name="descripcion_aire">para un ambiente fresco y agradable</string>
+    <string name="pizarra_rotuladores">Pizarra y rotuladores</string>
+    <string name="Descripcion_pizarra">para facilitar la comunicación y colaboración</string>
+    <string name="Television">Televisión</string>
+    <string name="Descripcion_television">para entretenimiento o presentaciones</string>
+    <string name="Regletas">Regletas</string>
+    <string name="Descripcion_regletas">para conectar múltiples dispositivos electrónicos</string>
+    <string name="Reservala_ya">Resérvala Ya</string>
 </resources>
