@@ -3,7 +3,7 @@
     <string name="app_name">BiblioTech</string>
     <string name="recpassword"><u>¿Has olvidado tu contraseña?</u></string>
     <string name="Nombre">Nombre</string>
-    <string name="Apellidos">Aplliodos</string>
+    <string name="Apellidos">Apellidos</string>
     <string name="Correo">Correo electrónico</string>
     <string name="ConfiCorreo">Confirmar correo electrónico</string>
     <string name="Contrasena">Contraseña</string>
