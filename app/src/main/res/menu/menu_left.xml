@@ -43,6 +43,11 @@
     </group>
     <item android:title="Sesion">
         <menu>
+
+            <item
+                android:id="@+id/btn_acreditacion"
+                android:title="Acceso Admin"
+                android:icon="@android:drawable/ic_menu_myplaces"/>
             <item
                 android:id="@+id/btn_cerrarsesion"
                 android:title="Cerrar Sesion"
