@@ -207,11 +207,11 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return new reservasview();
                 case 1:
-                    return new salas();
+                    return new libros();
                 case 2:
                     return new home();
                 case 3:
-                    return new libros();
+                    return new salas();
                 case 4:
                     return new mapa();
             }
