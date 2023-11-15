@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String textEmail;
     private String textName;
     private String textSurnames;
-    private UserCredentials Credentials;
+    private User Credentials;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         textEmail = email.getText().toString();
         textName = name.getText().toString();
         textSurnames = surnames.getText().toString();
-        Credentials = new UserCredentials(textEmail, textPassword, textName, textSurnames);
+        Credentials = new User(textEmail, textPassword, textName, textSurnames);
 
         //Initialize buttons
         Button createAccountButton = findViewById(R.id.buttonCrearCuenta);
@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
             textEmail = email.getText().toString();
             textName = name.getText().toString();
             textSurnames = surnames.getText().toString();
-            Credentials = new UserCredentials(textEmail, textPassword, textName, textSurnames);
+            Credentials = new User(textEmail, textPassword, textName, textSurnames);
             //Begin createUser process
             createUser();
         });

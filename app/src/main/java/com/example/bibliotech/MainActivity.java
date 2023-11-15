@@ -2,21 +2,15 @@ package com.example.bibliotech;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -29,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.firebase.auth.FirebaseAuth;
+
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
@@ -231,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void updateInfo (ImageView pfp, TextView username, TextView id, Context Context) {
         if (FireBaseActions.getCurrentUser() != null) {
-            UserCredentials credentials = FireBaseActions.getCredentials(Context);
+            User credentials = FireBaseActions.getCredentials(Context);
             Glide.with(Context)
                     .load(credentials.photoUri)
                     .into(pfp);
