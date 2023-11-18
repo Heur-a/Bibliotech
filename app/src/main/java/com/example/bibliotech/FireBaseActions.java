@@ -43,7 +43,9 @@ public class FireBaseActions {
     }
 
     public static FirebaseUser getCurrentUser() {
-        return user = auth.getCurrentUser();
+        if(user == null){
+            return null;
+        }else return user = auth.getCurrentUser();
     }
 
     public static void signOut() {
