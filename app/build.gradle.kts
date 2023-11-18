@@ -53,4 +53,7 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0");
     implementation("com.google.firebase:firebase-firestore:24.9.1")
 
+    //QR utility implementation
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+
 }
