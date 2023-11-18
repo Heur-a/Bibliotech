@@ -154,5 +154,13 @@ public class FireBaseActions {
                     }
                 });
     }
+    public static String getUserId() {
+        if (user != null) {
+            return user.getUid();
+        } else {
+            return null;
+        }
+    }
+
 }
 
