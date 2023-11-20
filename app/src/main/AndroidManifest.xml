@@ -29,6 +29,8 @@
         <activity android:name="perfilActivity" android:exported="true"/>
         <activity android:name=".reservasalaactivity" android:exported="true"/>
         <activity android:name=".reservalibrosActivity" android:exported="true"/>
+        <activity android:name=".libroresActivity" android:exported="true"/>
+        <activity android:name=".LibrosDescActivity" android:exported="true"/>
     </application>
 
 </manifest>

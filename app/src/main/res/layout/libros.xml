@@ -137,7 +137,7 @@
             android:scrollbarTrackVertical="@android:color/transparent">
 
             <ImageView
-                android:id="@+id/imageView10"
+                android:id="@+id/libroa"
                 android:layout_width="144dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

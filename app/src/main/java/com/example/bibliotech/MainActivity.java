@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    return new reservasview();
+                    return new reservasviewnew();
                 case 1:
                     return new libros();
                 case 2:
