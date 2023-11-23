@@ -50,6 +50,12 @@ dependencies {
     // Also add the dependency for the Google Play services library and specify its version
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0");
+    implementation("com.google.firebase:firebase-firestore:24.9.1")
+
+    //QR utility implementation
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+
     implementation ("com.airbnb.android:lottie:4.2.0") // libreria para la animacion de carga
     implementation ("com.google.android.material:material:1.0.0") // libreria para el diseño de la app
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")

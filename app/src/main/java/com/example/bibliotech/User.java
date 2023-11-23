@@ -2,7 +2,7 @@ package com.example.bibliotech;
 
 import android.net.Uri;
 
-public class UserCredentials{
+public class User {
 
     public String email,password,name,surnames,username,id;
 
@@ -10,7 +10,7 @@ public class UserCredentials{
     public Uri photoUri;
 
 
-    public UserCredentials() {
+    public User() {
         email = "";
         password = "";
         name = "";
@@ -18,7 +18,7 @@ public class UserCredentials{
         setCompleteName();
     }
 
-    public UserCredentials(String email, String password, String name, String surnames) {
+    public User(String email, String password, String name, String surnames) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -26,12 +26,12 @@ public class UserCredentials{
         setCompleteName();
     }
 
-    public UserCredentials(String email, String password, String name, String surnames, Uri photoUri){
-      new UserCredentials(email,password,name,surnames);
+    public User(String email, String password, String name, String surnames, Uri photoUri){
+      new User(email,password,name,surnames);
       this.photoUri = photoUri;
     }
 
-    public UserCredentials(String email,String username,Uri photoUri,String id){
+    public User(String email, String username, Uri photoUri, String id){
         this.email = email;
         this.username =username;
         this.photoUri = photoUri;
