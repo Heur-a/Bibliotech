@@ -9,6 +9,8 @@
     <string name="Contrasena">Password</string>
     <string name="conficontra">Confirm password</string>
     <string name="CrearUnaCuanta">Create an account</string>
+    <string name="navigation_drawer_open">open naviegasjdn dreas</string>
+    <string name="navigation_drawer_close">cloce naviegasjdn dreas</string>
     <string name="Busca_el_libro_que_deseas">Find the book you want...</string>
     <string name="Notificaciones">Notifications</string>
     <string name="Perfil">Profile</string>
@@ -57,4 +59,11 @@
     <string name="Regletas">Power Strip</string>
     <string name="Descripcion_regletas">to connect multiple electronic devices</string>
     <string name="Reservala_ya">Book It Now</string>
+    <string name="Numero_paginas">Number of pages</string>
+    <string name="Editorial">Publishing house</string>
+    <string name="Paginas">pages</string>
+    <string name="Autor">Author</string>
+    <string name="Genero">Genre</string>
+    <string name="Sinopsis">Synopsis</string>
+    <string name="Romance">Romance</string>
 </resources>

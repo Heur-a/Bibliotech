@@ -1,3 +1,4 @@
+
 <resources>
     <string name="app_name">BiblioTech</string>
     <string-array name="personas">
@@ -72,4 +73,11 @@
     <string name="Regletas">Regletas</string>
     <string name="Descripcion_regletas">para conectar múltiples dispositivos electrónicos</string>
     <string name="Reservala_ya">Resérvala Ya</string>
+    <string name="Numero_paginas">Número de páginas</string>
+    <string name="Paginas">páginas</string>
+    <string name="Autor">Autor</string>
+    <string name="Editorial">Editorial</string>
+    <string name="Genero">Género</string>
+    <string name="Sinopsis">Sinopsis</string>
+    <string name="Romance">Romance</string>
 </resources>

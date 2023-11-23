@@ -9,6 +9,8 @@
     <string name="Contrasena">Contraseña</string>
     <string name="conficontra">Confirmar Contraseña</string>
     <string name="CrearUnaCuanta">Crea una cuenta</string>
+    <string name="navigation_drawer_open">open naviegasjdn dreas</string>
+    <string name="navigation_drawer_close">cloce naviegasjdn dreas</string>
     <string name="Busca_el_libro_que_deseas">"   Busca el libro que deseas..."</string>
     <string name="Notificaciones">Notificaciones</string>
     <string name="Perfil">Perfil</string>
@@ -57,4 +59,11 @@
     <string name="Regletas">Regletas</string>
     <string name="Descripcion_regletas">para conectar múltiples dispositivos electrónicos</string>
     <string name="Reservala_ya">Resérvala Ya</string>
+    <string name="Numero_paginas">Número de páginas</string>
+    <string name="Editorial">Editorial</string>
+    <string name="Paginas">Páginas</string>
+    <string name="Autor">Autor</string>
+    <string name="Genero">Género</string>
+    <string name="Sinopsis">Sinopsis</string>
+    <string name="Romance">Romance</string>
 </resources>

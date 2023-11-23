@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/G3"
+    android:backgroundTint="@color/G1">
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:background="@drawable/paginacarga"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView5"
+        android:layout_width="93dp"
+        android:layout_height="89dp"
+        app:cardCornerRadius="200dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView24"
+        app:layout_constraintEnd_toEndOf="@+id/imageView24"
+        app:layout_constraintStart_toStartOf="@+id/imageView24"
+        app:layout_constraintTop_toTopOf="@+id/imageView24"
+        app:layout_constraintVertical_bias="0.25">
+
+        <ImageView
+            android:id="@+id/img_user"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/img"
+            android:elevation="2dp" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Sofía Torres García"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView24"
+        app:layout_constraintStart_toStartOf="@+id/imageView24"
+        app:layout_constraintTop_toBottomOf="@+id/cardView5" />
+
+    <TextView
+        android:id="@+id/user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="645465778999477"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
+    <Button
+        android:id="@+id/btn_prf_hist"
+        android:layout_width="320dp"
+        android:layout_height="69dp"
+        android:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:text="Historial"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gris2"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:icon="?attr/actionModePasteDrawable"
+        app:iconPadding="16dp"
+        app:iconTint="@color/gris2"
+        app:layout_constraintEnd_toEndOf="@+id/btn_prf_contrasena"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="@+id/btn_prf_contrasena"
+        app:layout_constraintTop_toBottomOf="@+id/btn_prf_contrasena" />
+
+    <Button
+        android:id="@+id/btn_prf_idioma"
+        android:layout_width="320dp"
+        android:layout_height="69dp"
+        android:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:text="idioma"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gris2"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:icon="@android:drawable/stat_notify_chat"
+        app:iconPadding="16dp"
+        app:iconTint="@color/gris2"
+        app:layout_constraintEnd_toEndOf="@+id/btn_prf_contrasena"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_prf_contrasena"
+        app:layout_constraintTop_toBottomOf="@+id/btn_prf_hist" />
+
+    <Button
+        android:id="@+id/btn_prf_cerrarsesi"
+        android:layout_width="320dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/gris2"
+        android:elevation="10dp"
+        android:text="Cerrar Sesion"
+        android:textAlignment="viewStart"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:icon="@android:drawable/ic_menu_revert"
+        app:iconPadding="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_prf_contrasena"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_prf_contrasena"
+        app:layout_constraintTop_toBottomOf="@+id/btn_prf_idioma" />
+
+    <Button
+        android:id="@+id/btn_prf_priv"
+        android:layout_width="320dp"
+        android:layout_height="69dp"
+        android:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:text="Privacidad"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gris2"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:icon="@android:drawable/ic_menu_view"
+        app:iconPadding="16dp"
+        app:iconSize="18dp"
+        app:iconTint="@color/gris2"
+        app:iconTintMode="src_in"
+        app:layout_constraintEnd_toEndOf="@+id/btn_prf_notis"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/btn_prf_notis"
+        tools:layout_editor_absoluteY="290dp" />
+
+    <Button
+        android:id="@+id/btn_prf_contrasena"
+        android:layout_width="320dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="68dp"
+        android:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:text="@string/Contrasena"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gris2"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:icon="@android:drawable/ic_lock_idle_lock"
+        app:iconPadding="16dp"
+        app:iconTint="@color/gris2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_prf_priv" />
+
+    <Button
+        android:id="@+id/btn_prf_notis"
+        android:layout_width="320dp"
+        android:layout_height="69dp"
+        android:backgroundTint="@color/white"
+        android:backgroundTintMode="src_atop"
+        android:elegantTextHeight="false"
+        android:elevation="2dp"
+        android:text="Notificaciones"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gris2"
+        android:textColorHint="@color/gris"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:icon="@android:drawable/ic_popup_reminder"
+        app:iconPadding="16dp"
+        app:iconTint="@color/gris2"
+        app:layout_constraintBottom_toTopOf="@+id/btn_prf_priv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_id"
+        app:layout_constraintVertical_bias="0.84000003" />
+
+    <ImageView
+        android:id="@+id/atras3"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:onClick="atras"
+        android:tint="@color/G8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <ImageView
+        android:id="@+id/editar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="355dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/editar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
