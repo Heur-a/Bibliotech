@@ -4,7 +4,23 @@ import android.net.Uri;
 
 public class User {
 
-    public String email,password,name,surnames,username,id;
+    public String email;
+    public String password;
+    public String name;
+    public String surnames;
+    public String username;
+    public String id;
+
+    public User(String email, String password, String name, String surnames, String id, String rol) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.surnames = surnames;
+        this.id = id;
+        this.rol = rol;
+    }
+
+    public String rol;
 
     public String completeName,role;
     public Uri photoUri;
