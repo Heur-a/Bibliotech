@@ -163,7 +163,11 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.btn_modo) {
                     // Implement the dark mode toggle logic here
                 } else if (id == R.id.btn_reporterr) {
-                    // Implement error reporting logic here
+
+                } else if (id == R.id.btn_acercade) {
+                    switchAcercade();
+                } else if (id == R.id.btn_acreditacion) {
+                    switchToAdminPage();
                 } else if (id == R.id.btn_cerrarsesion) {
                     cerrarSesion(navigationView); // Call your existing logout method
                 }
@@ -239,6 +243,21 @@ public class MainActivity extends AppCompatActivity {
         // For example, you can start a new activity or replace the current fragment.
         // Replace "YourProfileActivity.class" with your actual profile activity.
         Intent intent = new Intent(this, perfilActivity.class);
+        startActivity(intent);
+    }
+    private void switchAcercade() {
+        // Implement the logic to navigate to the profile page here
+        // For example, you can start a new activity or replace the current fragment.
+        // Replace "YourProfileActivity.class" with your actual profile activity.
+        Intent i = new Intent(this, AcercaDeActivity.class);
+        startActivity(i);
+    }
+
+    private void switchToAdminPage() {
+        // Implement the logic to navigate to the profile page here
+        // For example, you can start a new activity or replace the current fragment.
+        // Replace "YourProfileActivity.class" with your actual profile activity.
+        Intent intent = new Intent(this, AdminActivity.class);
         startActivity(intent);
     }
 
