@@ -56,5 +56,12 @@
     <string name="Descripcion_television">for entertainment or presentations</string>
     <string name="Regletas">Power Strip</string>
     <string name="Descripcion_regletas">to connect multiple electronic devices</string>
-    <string name="Reservala_ya">Object It Now</string>
+    <string name="Reservala_ya">Book It Now</string>
+    <string name="Numero_paginas">Number of pages</string>
+    <string name="Editorial">Publishing house</string>
+    <string name="Paginas">pages</string>
+    <string name="Autor">Author</string>
+    <string name="Genero">Genre</string>
+    <string name="Sinopsis">Synopsis</string>
+    <string name="Romance">Romance</string>
 </resources>

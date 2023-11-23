@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,7 +27,17 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    ExpandableListViewAdapter listViewAdapter;
+    ExpandableListView expandableListView;
+    List<String> chapterList;
+    HashMap<String, List<String>> topicList;
+
 
 
     private Toolbar supportActionBar;
@@ -41,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawableLayout = findViewById(R.id.drawable_layout);
         //NavigationView navigationView = findViewById(R.id.nav_view);
         ImageButton menuButton = findViewById(R.id.btn_menu_desplegable);
+        expandableListView = findViewById(R.id.eListView);
+        showList();
+        listViewAdapter = new ExpandableListViewAdapter(this, chapterList,topicList);
+        expandableListView.setAdapter(listViewAdapter);
 
         //Define header Views
         NavigationView Nav= findViewById(R.id.nav_view);
@@ -272,10 +287,49 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, reservalibrosActivity.class);
         startActivity(intent);
     }
+    private void showList(){
+
+        chapterList = new ArrayList<String>();
+        topicList = new HashMap<String, List<String>>();
+
+        chapterList.add("Chapter 1");
+        chapterList.add("Chapter 2");
+        chapterList.add("Chapter 3");
+        chapterList.add("Chapter 4");
+        chapterList.add("Chapter 5");
+
+        List<String> topic1 = new ArrayList<>();
+        topic1.add("Topic 1");
+        topic1.add("Topic 2");
+        topic1.add("Topic 3");
+
+        List<String> topic2 = new ArrayList<>();
+        topic2.add("Topic 1");
+        topic2.add("Topic 2");
+        topic2.add("Topic 3");
+
+        List<String> topic3 = new ArrayList<>();
+        topic3.add("Topic 1");
+        topic3.add("Topic 2");
+        topic3.add("Topic 3");
+
+        List<String> topic4 = new ArrayList<>();
+        topic4.add("Topic 1");
+        topic4.add("Topic 2");
+        topic4.add("Topic 3");
+
+        List<String> topic5 = new ArrayList<>();
+        topic5.add("Topic 1");
+        topic5.add("Topic 2");
+        topic5.add("Topic 3");
+
+        topicList.put(chapterList.get(0), topic1);
+        topicList.put(chapterList.get(1), topic2);
+        topicList.put(chapterList.get(2), topic3);
+        topicList.put(chapterList.get(3), topic4);
+        topicList.put(chapterList.get(4), topic5);
 
 
-
-
-
+    }
 }
 

@@ -15,22 +15,36 @@
         <activity android:name=".paginaInicialActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomLoginActivity"
-            android:exported="true"/>
-        <activity android:name=".MainActivity"
-            android:exported="true"/>
-        <activity android:name=".RegisterActivity"
-            android:exported="true"/>
-        <activity android:name=".EditProfileActivity" android:exported="true"/>
-        <activity android:name="perfilActivity" android:exported="true"/>
-        <activity android:name=".reservasalaactivity" android:exported="true"/>
-        <activity android:name=".reservalibrosActivity" android:exported="true"/>
-        <activity android:name=".libroresActivity" android:exported="true"/>
-        <activity android:name=".LibrosDescActivity" android:exported="true"/>
+
+        <activity
+            android:name=".CustomLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" >
+
+
+        </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".perfilActivity"
+            android:exported="true" />
+        <activity
+            android:name=".reservasalaactivity"
+            android:exported="true" />
+        <activity
+            android:name=".reservalibrosActivity"
+            android:exported="true" />
         <activity android:name=".AdminActivity" android:exported="true"/>
         <activity android:name=".AcercaDeActivity" android:label="Acerca de ..." android:theme="@style/Theme.AppCompat.Light.Dialog"/>
     </application>
