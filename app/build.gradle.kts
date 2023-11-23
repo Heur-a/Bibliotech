@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    //FIREBASE
+    // FIREBASE
     id("com.google.gms.google-services")
 }
 
@@ -27,6 +27,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -54,7 +55,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore:24.9.1")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
-    // QR utility implementation
+    //QR utility implementation
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
 
     // Graph implement
