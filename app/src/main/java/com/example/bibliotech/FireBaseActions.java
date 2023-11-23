@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.Contract;
 
@@ -29,11 +30,14 @@ public class FireBaseActions {
     static public FirebaseAuth auth;
     static public FirebaseUser user;
 
+    static public FirebaseFirestore db;
+
     
     public FireBaseActions() {
         // Inicialitza l'instància d'autenticació de Firebase
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
     }
 
     @NonNull

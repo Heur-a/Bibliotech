@@ -8,9 +8,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.concurrent.atomic.AtomicReference;
-
-public class BookFireStore implements BookAsync{
+public class BookFireStore implements ObjectAsync {
 
     private CollectionReference books;
 
@@ -20,20 +18,20 @@ public class BookFireStore implements BookAsync{
         books = db.collection("book");
     }
     @Override
-    public void add(Book Book) {
-        books.document(Book.getISBN()).set(Book);
+    public void add(Book Object) {
+        books.document(Object.getISBN()).set(Object);
     }
 
 
     @Override
-    public void delete(String ISBN) {
-        books.document(ISBN).delete();
+    public void delete(String id) {
+        books.document(id).delete();
     }
 
     @Override
-    public Book get(String ISBN) {
+    public Book get(String id) {
         try {
-            Task<DocumentSnapshot> task = books.document(ISBN).get();
+            Task<DocumentSnapshot> task = books.document(id).get();
             Tasks.await(task); // Espera fins que la tasca estigui completada
 
             if (task.isSuccessful()) {

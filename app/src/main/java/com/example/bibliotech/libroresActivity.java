@@ -30,7 +30,7 @@ public class libroresActivity extends AppCompatActivity {
         setContentView(R.layout.sala_page_reservabook);  // Reemplaza con el nombre correcto de tu layout
 
         // Obtén datos de la intención
-        UserCredentials credentials = FireBaseActions.getCredentials(this);
+        User credentials = FireBaseActions.getCredentials(this);
         String username = credentials.username;
 
         String nombreLibro = getIntent().getStringExtra("nombreLibro");
