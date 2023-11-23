@@ -6,25 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/paginalogin">
 
-    <Button
-        android:id="@+id/buttonGooglee2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:backgroundTint="#d7d7d7"
-        android:text="Iniciar Sesión Con Google"
-        android:textColor="#486f99"
-        android:textSize="16sp"
-        app:icon="@drawable/googlelogo"
-        app:iconGravity="start"
-        app:iconTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/buttonSignInInit"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/buttonSignInInit"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931" />
-
     <TextView
         android:id="@+id/textView9"
         android:layout_width="0dp"
@@ -56,36 +37,29 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
-        android:id="@+id/buttonSignInInit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="32dp"
-        android:backgroundTint="#88a7d0"
-        android:text="Crear Cuenta"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809" />
-
-    <Button
         android:id="@+id/buttonlogInInit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="602dp"
         android:layout_marginEnd="47dp"
-        android:layout_marginBottom="100dp"
         android:backgroundTint="#486f99"
         android:text="Iniciar Sesión"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSignInInit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="47dp"
+        android:backgroundTint="#88a7d0"
+        android:text="Crear Cuenta"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.821" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonlogInInit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

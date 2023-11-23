@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--MODO CLARO-->
 <resources>
     <style name="Toolbar">
         <item name="tabIconTint">@color/white</item>
@@ -108,10 +110,9 @@
         <item name="android:queryHint">@string/Busca_el_libro_que_deseas</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:buttonCornerRadius">10dp</item>
     </style>
 
-
+<!--MODO OSCURO-->
 
 
 </resources>
