@@ -29,7 +29,7 @@ public class CustomLoginActivity extends AppCompatActivity {
 
     private static final int RC_GOOGLE_SIGN_IN = 123;
 
-    private User user;
+    private Book user;
     private FirebaseAuth auth;
     private GoogleSignInClient googleSignInClient;
     private ProgressDialog dialog;

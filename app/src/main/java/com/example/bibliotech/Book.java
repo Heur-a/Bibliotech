@@ -1,7 +1,5 @@
 package com.example.bibliotech;
 
-import android.media.Image;
-
 public class Book {
 
     //book
@@ -31,6 +29,10 @@ public class Book {
         this.reserved = true;
         this.section = section;
         this.sinopsis = sinopsis;
+    }
+
+    public Book() {
+
     }
 
     public String getISBN() {
