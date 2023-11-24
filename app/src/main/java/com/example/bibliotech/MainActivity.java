@@ -26,6 +26,9 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import androidx.appcompat.widget.Toolbar;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageHeader = headerView.findViewById(R.id.imageHeader);
         TextView headerText = headerView.findViewById(R.id.headerText);
         TextView idText = headerView.findViewById(R.id.headerId);
+        ponerDatosMockup();
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -276,6 +280,24 @@ public class MainActivity extends AppCompatActivity {
         // Open the EditProfileActivity when the "editar" ImageView is clicked
         Intent intent = new Intent(MainActivity.this, reservalibrosActivity.class);
         startActivity(intent);
+    }
+
+    public void ponerDatosMockup() {
+        BookFireStore bookdb = new BookFireStore();
+        Book book = new Book("12345","CACA","EDITIORAL CHACHI PIRULI","LO QUE EL VIENTO SE DEJÓ","55","CIENCIA","RESUMEN BUENO BUENO BUENO");
+        bookdb.add(book);
+        LocalDateTime specificDateTime = LocalDateTime.of(2023, 11, 24, 12, 30, 45);
+
+        // Converteix LocalDateTime a Date
+        Date date1 = Date.from(specificDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        LocalDateTime specificDateTime2 = LocalDateTime.of(2023, 11, 30, 12, 30, 45);
+
+        // Converteix LocalDateTime a Date
+        Date date2 = Date.from(specificDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        reserva reservaLibro = new reserva(date1,date2,"31");
+        reservaLibro.addToBook(book);
+
     }
 }
 
