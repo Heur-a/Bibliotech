@@ -67,6 +67,21 @@ public class User {
         this.photoUri = photoUri;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", surnames='" + surnames + '\'' +
+                ", username='" + username + '\'' +
+                ", id='" + id + '\'' +
+                ", completeName='" + completeName + '\'' +
+                ", role='" + role + '\'' +
+                ", photoUri=" + photoUri +
+                '}';
+    }
+
     private void setCompleteName() {
         completeName = name + surnames;
     }

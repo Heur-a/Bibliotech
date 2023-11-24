@@ -8,37 +8,35 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class BookFireStore implements BookAsync {
+public class UserFirestore {
+    private CollectionReference users;
 
-    private CollectionReference books;
 
-
-    public BookFireStore () {
+    public UserFirestore () {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        books = db.collection("book");
+        users = db.collection("users");
     }
-    @Override
-    public void add(Book Object) {
-        books.document(Object.getISBN()).set(Object);
+
+    public void add(User Object) {
+        users.document(Object.id).set(Object);
     }
 
 
-    @Override
+
     public void delete(String id) {
-        books.document(id).delete();
+        users.document(id).delete();
     }
 
-    @Override
-    public Book get(String id) {
+    public User get(String id) {
         try {
-            Task<DocumentSnapshot> task = books.document(id).get();
+            Task<DocumentSnapshot> task = users.document(id).get();
             Tasks.await(task); // Espera fins que la tasca estigui completada
 
             if (task.isSuccessful()) {
-                return task.getResult().toObject(Book.class);
+                return task.getResult().toObject(User.class);
             } else {
                 // Potser voldràs gestionar l'error d'alguna manera aquí
-                Log.d("FireBase GET", "Error usuari null");
+                Log.d("FireBase GET", "Error user null");
                 return null;
             }
         } catch (Exception e) {
@@ -48,4 +46,6 @@ public class BookFireStore implements BookAsync {
         }
     }
 
+
 }
+

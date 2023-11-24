@@ -1,8 +1,9 @@
 package com.example.bibliotech;
 
-public interface ObjectAsync {
+public interface BookAsync {
 
     void add(Book Object);
+
     void delete(String id);
     Book get(String id);
 
