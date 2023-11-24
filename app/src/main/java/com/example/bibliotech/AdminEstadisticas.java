@@ -2,8 +2,13 @@ package com.example.bibliotech;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -18,13 +23,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminActivity extends AppCompatActivity {
+public class AdminEstadisticas extends Fragment {
     private Map<Float, String> valueToNameMap;
+    int[] progressBarIds = {R.id.progressBar1, R.id.progressBar2, R.id.progressBar3, R.id.progressBar4};
+    int[] porcIds = {R.id.porc1, R.id.porc2, R.id.porc3, R.id.porc4};
 
+    int[] progressValues = new int[4];
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.estadisticaspage);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.estadisticaspage, container, false);
+
+        for (int i = 0; i < 4; i++) {
+            ProgressBar progressBar = rootView.findViewById(progressBarIds[i]);
+            TextView porcTextView = rootView.findViewById(porcIds[i]);
+
+            progressValues[i] = randfun();
+
+            progressBar.setProgress(progressValues[i]);
+            porcTextView.setText(progressValues[i] + "%");
+        }
+
+
+
 
         // Inicializa el Map con los nombres correspondientes a los valores
         valueToNameMap = new HashMap<>();
@@ -33,7 +55,7 @@ public class AdminActivity extends AppCompatActivity {
         valueToNameMap.put(3f, "asdassadasdasddasd");
         valueToNameMap.put(4f, "asdasdasd");
 
-        PieChart pieChart = findViewById(R.id.PieChart);
+        PieChart pieChart = rootView.findViewById(R.id.PieChart);
 
         ArrayList<PieEntry> visitors = new ArrayList<>();
         visitors.add(new PieEntry(500, 1f));
@@ -81,9 +103,15 @@ public class AdminActivity extends AppCompatActivity {
                 // Maneja cuando no se selecciona nada (opcional)
             }
         });
+        return rootView;
     }
 
     private String getSelectedText(float value) {
         return valueToNameMap.getOrDefault(value, "Nombre no encontrado");
     }
+
+    private int randfun(){
+        return  (int)Math.floor(Math.random()*100);
+    }
+
 }
