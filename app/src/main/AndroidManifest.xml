@@ -31,7 +31,8 @@
         <activity android:name=".reservalibrosActivity" android:exported="true"/>
         <activity android:name=".libroresActivity" android:exported="true"/>
         <activity android:name=".LibrosDescActivity" android:exported="true"/>
-        <activity android:name=".AdminActivity" android:exported="true"/>
+        <activity android:name=".desplegableActivity" android:exported="true"/>
+        <activity android:name=".AdminMainActivity" android:exported="true"/>
         <activity android:name=".AcercaDeActivity" android:label="Acerca de ..." android:theme="@style/Theme.AppCompat.Light.Dialog"/>
     </application>
 

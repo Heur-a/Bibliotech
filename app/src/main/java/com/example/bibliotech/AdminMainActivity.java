@@ -9,9 +9,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -24,12 +24,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import androidx.appcompat.widget.Toolbar;
-
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class AdminMainActivity extends AppCompatActivity {
 
     HashMap<String, List<String>> topicList;
 
@@ -40,49 +38,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_final);
+        setContentView(R.layout.activity_main_admin);
         TabLayout tabLayout = findViewById(R.id.tabs);
         ViewPager2 viewPager = findViewById(R.id.viewpager);
-        viewPager.setAdapter(new MiPagerAdapter(this));
+        viewPager.setAdapter(new AdminMainActivity.MiPagerAdapter(this));
         DrawerLayout drawableLayout = findViewById(R.id.drawable_layout);
-        //NavigationView navigationView = findViewById(R.id.nav_view);
-        ImageButton menuButton = findViewById(R.id.btn_menu_desplegable);
-        //Define header Views
-        NavigationView Nav= findViewById(R.id.nav_view);
-        View headerView = Nav.getHeaderView(0);
-        ImageView imageHeader = headerView.findViewById(R.id.imageHeader);
-        TextView headerText = headerView.findViewById(R.id.headerText);
-        TextView idText = headerView.findViewById(R.id.headerId);
 
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (drawableLayout.isDrawerOpen(GravityCompat.START)) {
-                    drawableLayout.closeDrawer(GravityCompat.START);
-                } else {
-                    drawableLayout.openDrawer(GravityCompat.START);
-                }
-            }
-        });
 
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {
                     // Configura los íconos y el texto de las pestañas en base a la posición
                     switch (position) {
                         case 0:
-                            tab.setIcon(R.drawable.reservassinseleccionar);
+                            tab.setIcon(R.drawable.administrarusuariosseleccionado);
                             break;
                         case 1:
-                            tab.setIcon(R.drawable.librosinseleccionar);
+                            tab.setIcon(R.drawable.administrarlibrosseleccionado);
                             break;
                         case 2:
                             tab.setIcon(R.drawable.casaseleccionada);
                             break;
                         case 3:
-                            tab.setIcon(R.drawable.salasinseleccionar);
+                            tab.setIcon(R.drawable.verestadisticasseleccionado);
                             break;
                         case 4:
-                            tab.setIcon(R.drawable.mapasinseleccionar);
+                            tab.setIcon(R.drawable.administrarespaciosseleccionado);
                             break;
                         // Agrega más casos para otras pestañas si es necesario
                     }
@@ -97,19 +77,19 @@ public class MainActivity extends AppCompatActivity {
                 int position = tab.getPosition();
                 switch (position) {
                     case 0:
-                        tab.setIcon(R.drawable.reservasseleccionado);
+                        tab.setIcon(R.drawable.administrarusuarios);
                         break;
                     case 1:
-                        tab.setIcon(R.drawable.libroseleccionado);
+                        tab.setIcon(R.drawable.administrarlibros);
                         break;
                     case 2:
                         tab.setIcon(R.drawable.casaseleccionada);
                         break;
                     case 3:
-                        tab.setIcon(R.drawable.salaseleccionada);
+                        tab.setIcon(R.drawable.verestadisticas);
                         break;
                     case 4:
-                        tab.setIcon(R.drawable.mapaseleccionado);
+                        tab.setIcon(R.drawable.adminisitrarespacios);
                         break;
                     // Agrega más casos para otras pestañas si es necesario
                 }
@@ -121,19 +101,19 @@ public class MainActivity extends AppCompatActivity {
                 int position = tab.getPosition();
                 switch (position) {
                     case 0:
-                        tab.setIcon(R.drawable.reservassinseleccionar);
+                        tab.setIcon(R.drawable.administrarusuariosseleccionado);
                         break;
                     case 1:
-                        tab.setIcon(R.drawable.librosinseleccionar);
+                        tab.setIcon(R.drawable.administrarlibrosseleccionado);
                         break;
                     case 2:
-                        tab.setIcon(R.drawable.casasinseleccionar);
+                        tab.setIcon(R.drawable.casaseleccionada);
                         break;
                     case 3:
-                        tab.setIcon(R.drawable.salasinseleccionar);
+                        tab.setIcon(R.drawable.verestadisticasseleccionado);
                         break;
                     case 4:
-                        tab.setIcon(R.drawable.mapasinseleccionar);
+                        tab.setIcon(R.drawable.administrarespaciosseleccionado);
                         break;
                     // Agrega más casos para otras pestañas si es necesario
                 }
@@ -145,48 +125,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         viewPager.setCurrentItem(2);
-
-        updateInfo(imageHeader,headerText,idText,this);
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId(); // Get the selected item's ID
-
-                if (id == R.id.btn_perfil) {
-                    switchToProfilePage();
-                } else if (id == R.id.btn_notis) {
-                    //switchToNotificationsPage();
-                } else if (id == R.id.btn_reservas) {
-                    salas();
-                } else if (id == R.id.btn_libros) {
-                    librossss();
-                } else if (id == R.id.btn_config) {
-                    //switchToSettingsPage();
-                } else if (id == R.id.btn_modo) {
-                    // Implement the dark mode toggle logic here
-                } else if (id == R.id.btn_reporterr) {
-
-                } else if (id == R.id.btn_acercade) {
-                    switchAcercade();
-                } else if (id == R.id.btn_acreditacion) {
-                    switchToAdminPage();
-                } else if (id == R.id.btn_cerrarsesion) {
-                    cerrarSesion(navigationView); // Call your existing logout method
-                }
-
-                // Close the navigation drawer after handling the item click
-                drawableLayout.closeDrawer(GravityCompat.START);
-
-                return true;
-            }
-        });
-
-
-
-
     }
 
     public void setSupportActionBar(Toolbar supportActionBar) {
@@ -214,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 case 2:
                     return new home();
                 case 3:
-                    return new salas();
+                    return new AdminEstadisticas();
                 case 4:
                     return new mapa();
             }
@@ -243,39 +181,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void switchToProfilePage() {
-        // Implement the logic to navigate to the profile page here
-        // For example, you can start a new activity or replace the current fragment.
-        // Replace "YourProfileActivity.class" with your actual profile activity.
-        Intent intent = new Intent(this, perfilActivity.class);
-        startActivity(intent);
-    }
-    private void switchAcercade() {
-        // Implement the logic to navigate to the profile page here
-        // For example, you can start a new activity or replace the current fragment.
-        // Replace "YourProfileActivity.class" with your actual profile activity.
-        Intent i = new Intent(this, AcercaDeActivity.class);
-        startActivity(i);
-    }
-
-    private void switchToAdminPage() {
-        // Implement the logic to navigate to the profile page here
-        // For example, you can start a new activity or replace the current fragment.
-        // Replace "YourProfileActivity.class" with your actual profile activity.
-        Intent intent = new Intent(this, AdminMainActivity.class);
-        startActivity(intent);
-    }
-
-    public void salas() {
-        // Open the EditProfileActivity when the "editar" ImageView is clicked
-        Intent intent = new Intent(MainActivity.this, reservasalaactivity.class);
-        startActivity(intent);
-    }
-
-    public void librossss() {
-        // Open the EditProfileActivity when the "editar" ImageView is clicked
-        Intent intent = new Intent(MainActivity.this, reservalibrosActivity.class);
-        startActivity(intent);
-    }
 }
-

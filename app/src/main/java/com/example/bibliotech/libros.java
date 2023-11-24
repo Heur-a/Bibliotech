@@ -23,7 +23,7 @@ public class libros extends Fragment {
             @Override
             public void onClick(View view) {
                 // Define the activity you want to start when the button is clicked
-                Intent intent = new Intent(getActivity(),LibrosDescActivity.class); // Replace NewActivity with the desired activity
+                Intent intent = new Intent(getActivity(),desplegableActivity.class); // Replace NewActivity with the desired activity
                 startActivity(intent);
             }
         });
