@@ -17,32 +17,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-public class UserFirestore {
-    private CollectionReference users;
+public class RoomFireStore {
+
+    private CollectionReference rooms;
 
 
-    public UserFirestore () {
+    public RoomFireStore () {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        users = db.collection("users");
+        rooms = db.collection("users");
     }
 
-    public void add(User Object) {
-        users.document(Object.id).set(Object);
+    public void add(Room Object) {
+        rooms.document(Object.getNombreSala()).set(Object);
     }
 
 
 
     public void delete(String id) {
-        users.document(id).delete();
+        rooms.document(id).delete();
     }
 
-    public Book get(String id) {
+    public Room get(String id) {
         try {
-            Task<DocumentSnapshot> task = users.document(id).get();
+            Task<DocumentSnapshot> task = rooms.document(id).get();
             Tasks.await(task); // Espera fins que la tasca estigui completada
 
             if (task.isSuccessful()) {
-                return task.getResult().toObject(Book.class);
+                return task.getResult().toObject(Room.class);
             } else {
                 // Potser voldràs gestionar l'error d'alguna manera aquí
                 Log.d("FireBase GET", "Error user null");
@@ -55,16 +56,16 @@ public class UserFirestore {
         }
     }
 
-    public List<User> getBooksSynchronously() {
-        final List<User> UserList = new ArrayList<>();
+    public List<Room> getBooksSynchronously() {
+        final List<Room> UserList = new ArrayList<>();
         final CountDownLatch latch = new CountDownLatch(1);
 
-        users.get()
+        rooms.get()
                 .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            User user = document.toObject(User.class);
-                            UserList.add(user);
+                            Room room = document.toObject(Room.class);
+                            UserList.add(room);
                         }
                     } else {
                         Log.w(TAG, "Error getting documents.", task.getException());
@@ -82,6 +83,4 @@ public class UserFirestore {
         return UserList;
     }
 
-
 }
-
