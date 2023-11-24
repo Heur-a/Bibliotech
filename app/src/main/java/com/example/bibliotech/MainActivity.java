@@ -297,6 +297,11 @@ public class MainActivity extends AppCompatActivity {
 
         reserva reservaLibro = new reserva(date1,date2,"31");
         reservaLibro.addToBook(book);
+        UserFirestore userdb = new UserFirestore();
+        User user = new User(FireBaseActions.user.getEmail(),null,FireBaseActions.user.getDisplayName(),FireBaseActions.user.getDisplayName(),FireBaseActions.user.getUid(),"user");
+        userdb.add(user);
+        reservaLibro reservaLibro1 = new reservaLibro(date1,date2,user.id,book.getISBN());
+        reservaLibro1.anyadirAUser(user.id);
 
     }
 }
