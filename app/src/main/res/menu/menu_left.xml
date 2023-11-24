@@ -34,8 +34,8 @@
                     android:title="Modo Oscuro" />
                 <item
                     android:id="@+id/btn_reporterr"
-                    android:icon="@android:drawable/ic_dialog_alert"
-                    android:title="Reportar Error" />
+                    android:icon="@android:drawable/ic_menu_call"
+                    android:title="Atencion Biblioteca" />
                 <item
                     android:id="@+id/btn_acercade"
                     android:icon="@android:drawable/ic_dialog_info"

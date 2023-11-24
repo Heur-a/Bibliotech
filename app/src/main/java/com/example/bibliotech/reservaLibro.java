@@ -1,7 +1,5 @@
 package com.example.bibliotech;
 
-import static android.content.ContentValues.TAG;
-
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -25,6 +23,11 @@ public class reservaLibro extends reserva{
     public reservaLibro(Date fechaIni, Date fechaFin, String userId, String bookId) {
         super(fechaIni, fechaFin, userId);
         this.bookId = bookId;
+    }
+    public reservaLibro() {
+        super(null,null,null);
+        this.bookId = null;
+
     }
 
     public String getBookId() {
@@ -64,10 +67,10 @@ public class reservaLibro extends reserva{
                 });
     }
 
-    public List<reservaLibro> getReservasBook(User user) {
+    static public List<reservaLibro> getReservasBook(String user) {
         List<reservaLibro> reservaList = new ArrayList<>();
-
-        CollectionReference reservaCollectionRef = db.collection("user").document(user.id).collection("reservaLibro");
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference reservaCollectionRef = db.collection("users").document(user).collection("reservaLibro");
 
         reservaCollectionRef.get()
                 .addOnCompleteListener(task -> {

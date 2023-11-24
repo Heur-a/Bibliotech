@@ -56,9 +56,9 @@ public class reserva {
         doc.set(this);
     }
 
-    public List<reserva> getReservasFromBook(Book book) {
+    static public List<reserva> getReservasFromBook(Book book) {
         List<reserva> reservaList = new ArrayList<>();
-
+         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference reservaCollectionRef = db.collection("books").document(book.getISBN()).collection("reserva");
 
         reservaCollectionRef.get()
@@ -76,8 +76,9 @@ public class reserva {
         return reservaList;
     }
 
-    public List<reserva> getReservasFromRoom(Room room) {
+    static public List<reserva> getReservasFromRoom(Room room) {
         List<reserva> reservaList = new ArrayList<>();
+         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         CollectionReference reservaCollectionRef = db.collection("rooms").document(room.getNombreSala()).collection("reserva");
 

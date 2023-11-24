@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import com.google.android.material.tabs.TabLayout;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class reservasviewnew extends Fragment {
     private RecyclerView recyclerView;
@@ -25,14 +30,21 @@ public class reservasviewnew extends Fragment {
         View rootView = inflater.inflate(R.layout.newreservasmain, container, false);
         Calendar c = Calendar.getInstance();
         tabLayout = rootView.findViewById(R.id.tabLayout);
+        List<reservaLibro> resrvlib = reservaLibro.getReservasBook(FireBaseActions.user.getUid());
         String dia = Integer.toString(c.get(Calendar.DATE));
+        resrvlib.forEach(t -> {
+            Log.d("HOLA", t.toString());
+        });
 
         String mes = obtenerNombreMesAbreviado(c.get(Calendar.MONTH));
 
         String annio = Integer.toString(c.get(Calendar.YEAR));
         ArrayList<StaticRvModel> libros = new ArrayList<>();
         ArrayList<StaticRvModel> salas = new ArrayList<>();
-
+        resrvlib.forEach(reservaLibro -> {
+            LocalDate localDate = reservaLibro.getFechaIni().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            libros.add(new StaticRvModel(reservaLibro.getBookId().toString(), reservaLibro.getFechaFin().toString(), localDate.getMonth().toString(), String.valueOf(localDate.getDayOfMonth()),  String.valueOf(localDate.getDayOfYear()), false));
+        });
         libros.add(new StaticRvModel("lib A", "11/11/2025", mes, dia, annio, false));
         libros.add(new StaticRvModel("lib B", "12/11/2025", mes, dia, annio, false));
         libros.add(new StaticRvModel("lib C", "13/11/2025", mes, dia, annio, false));

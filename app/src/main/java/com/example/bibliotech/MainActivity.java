@@ -1,7 +1,11 @@
 package com.example.bibliotech;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +15,9 @@ import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -36,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     HashMap<String, List<String>> topicList;
 
-
+    private static final int SOLICITUD_PERMISO_WRITE_CALL= 0;
 
     private Toolbar supportActionBar;
 
@@ -172,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.btn_modo) {
                     // Implement the dark mode toggle logic here
                 } else if (id == R.id.btn_reporterr) {
-
+                    irtlf();
                 } else if (id == R.id.btn_acercade) {
                     switchAcercade();
                 } else if (id == R.id.btn_acreditacion) {
@@ -303,6 +309,28 @@ public class MainActivity extends AppCompatActivity {
         reservaLibro reservaLibro1 = new reservaLibro(date1,date2,user.id,book.getISBN());
         reservaLibro1.anyadirAUser(user.id);
 
+    }
+
+    public void irtlf() {
+        // Verifica si tienes el permiso CALL_PHONE
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            // Si tienes el permiso, realiza la llamada
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:962849304"));
+            startActivity(intent);
+        } else {
+            // Si no tienes el permiso, solicita permisos
+            solicitarPermisoLlamada(Manifest.permission.CALL_PHONE, "Sin el permiso" +
+                    " administrar llamadas no puedo borrar llamadas del registro.", SOLICITUD_PERMISO_WRITE_CALL, this);
+        }
+    }
+    public static void solicitarPermisoLlamada(final String permiso, String justificacion, final int requestCode, final Activity actividad) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(actividad, permiso)) {
+            new AlertDialog.Builder(actividad)
+                    .setTitle("Solicitud de permiso")
+                    .setMessage(justificacion)
+                    .setPositiveButton("Ok", (dialog, whichButton) -> ActivityCompat.requestPermissions(actividad, new String[]{permiso}, requestCode)).show(); } else {
+            ActivityCompat.requestPermissions(actividad, new String[]{permiso}, requestCode);
+        }
     }
 }
 
