@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.Contract;
 
@@ -29,11 +30,14 @@ public class FireBaseActions {
     static public FirebaseAuth auth;
     static public FirebaseUser user;
 
+    static public FirebaseFirestore db;
+
     
     public FireBaseActions() {
         // Inicialitza l'instància d'autenticació de Firebase
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
     }
 
     @NonNull
@@ -68,16 +72,16 @@ public class FireBaseActions {
 
     }
 
-    public  static void createUser(@NonNull UserCredentials UserCredentials, Context Context, Activity Activity, Class Class) {
+    public  static void createUser(@NonNull User User, Context Context, Activity Activity, Class Class) {
 
-        auth.createUserWithEmailAndPassword(UserCredentials.email, UserCredentials.password)
+        auth.createUserWithEmailAndPassword(User.email, User.password)
                 .addOnCompleteListener(Activity, (OnCompleteListener<AuthResult>) task -> {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success");
                         FirebaseUser user = auth.getCurrentUser();
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(UserCredentials.completeName)
+                                .setDisplayName(User.completeName)
                                 .build();
                         //Update Profile with displayName
                         assert user != null;
@@ -113,7 +117,7 @@ public class FireBaseActions {
         }
     }
     @Nullable
-    public static UserCredentials getCredentials (@NonNull Context Context) {
+    public static User getCredentials (@NonNull Context Context) {
         if (getCurrentUser() != null) {
             // Name, email address, and profile photo Url
             String name = user.getDisplayName();
@@ -122,7 +126,7 @@ public class FireBaseActions {
             String id = user.getUid();
 
 
-            return new UserCredentials(email, name ,photoUrl,id);
+            return new User(email, name ,photoUrl,id);
 
         }
         Toast.makeText(Context,"La toma de datos ha fallado",Toast.LENGTH_SHORT);

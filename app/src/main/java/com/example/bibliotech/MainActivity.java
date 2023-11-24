@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void updateInfo (ImageView pfp, TextView username, TextView id, Context Context) {
         if (FireBaseActions.getCurrentUser() != null) {
-            UserCredentials credentials = FireBaseActions.getCredentials(Context);
+            User credentials = FireBaseActions.getCredentials(Context);
             Glide.with(Context)
                     .load(credentials.photoUri)
                     .into(pfp);

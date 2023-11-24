@@ -33,7 +33,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void updateNames () {
-        UserCredentials credentials = FireBaseActions.getCredentials(this);
+        User credentials = FireBaseActions.getCredentials(this);
         name.setText(credentials.username);
         email.setText(credentials.email);
         Glide.with(this)

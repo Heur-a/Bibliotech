@@ -2,18 +2,12 @@
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.bibliotech.EditProfileActivity;
-import com.example.bibliotech.R;
-import com.google.android.material.textview.MaterialTextView;
-
-import java.lang.reflect.Field;
 
  public class perfilActivity extends AppCompatActivity {
 
@@ -53,7 +47,7 @@ import java.lang.reflect.Field;
      }
 
      private void updateNames () {
-        UserCredentials credentials = FireBaseActions.getCredentials(this);
+        User credentials = FireBaseActions.getCredentials(this);
         name.setText(credentials.username);
         email.setText(credentials.email);
          Glide.with(this)
