@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageHeader = headerView.findViewById(R.id.imageHeader);
         TextView headerText = headerView.findViewById(R.id.headerText);
         TextView idText = headerView.findViewById(R.id.headerId);
-        ponerDatosMockup();
+        //ponerDatosMockup();
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -288,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void ponerDatosMockup() {
+    /*public void ponerDatosMockup() {
         BookFireStore bookdb = new BookFireStore();
         Book book = new Book("12345","CACA","EDITIORAL CHACHI PIRULI","LO QUE EL VIENTO SE DEJÓ","55","CIENCIA","RESUMEN BUENO BUENO BUENO");
         bookdb.add(book);
@@ -309,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
         reservaLibro reservaLibro1 = new reservaLibro(date1,date2,user.id,book.getISBN());
         reservaLibro1.anyadirAUser(user.id);
 
-    }
+    }*/
 
     public void irtlf() {
         // Verifica si tienes el permiso CALL_PHONE

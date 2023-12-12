@@ -50,10 +50,10 @@ public class AdminEstadisticas extends Fragment {
 
         // Inicializa el Map con los nombres correspondientes a los valores
         valueToNameMap = new HashMap<>();
-        valueToNameMap.put(1f, "asd");
-        valueToNameMap.put(2f, "asdasd");
-        valueToNameMap.put(3f, "asdassadasdasddasd");
-        valueToNameMap.put(4f, "asdasdasd");
+        valueToNameMap.put(1f, "libros");
+        valueToNameMap.put(2f, "salas");
+        valueToNameMap.put(3f, "personas");
+        valueToNameMap.put(4f, "préstamos");
 
         PieChart pieChart = rootView.findViewById(R.id.PieChart);
 
@@ -110,6 +110,8 @@ public class AdminEstadisticas extends Fragment {
         return valueToNameMap.getOrDefault(value, "Nombre no encontrado");
     }
 
+    //funcion que genera valores randoms para poder probar el funcionamiento de las estadisitcas
+    //CAMBIAR EN PODER!!!!!!!!!!!!!!!!!!!!!
     private int randfun(){
         return  (int)Math.floor(Math.random()*100);
     }

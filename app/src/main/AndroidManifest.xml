@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,28 +15,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BiblioTech"
         tools:targetApi="31">
-        <activity android:name=".paginaInicialActivity"
-            android:exported="true">
+        <activity android:name=".paginacarga"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".paginaInicialActivity" android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity android:name=".CustomLoginActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity android:name=".RegisterActivity"
-            android:exported="true"/>
-        <activity android:name=".EditProfileActivity" android:exported="true"/>
-        <activity android:name="perfilActivity" android:exported="true"/>
-        <activity android:name=".reservasalaactivity" android:exported="true"/>
-        <activity android:name=".reservalibrosActivity" android:exported="true"/>
-        <activity android:name=".libroresActivity" android:exported="true"/>
-        <activity android:name=".LibrosDescActivity" android:exported="true"/>
-        <activity android:name=".desplegableActivity" android:exported="true"/>
-        <activity android:name=".AdminMainActivity" android:exported="true"/>
-        <activity android:name=".AcercaDeActivity" android:label="Acerca de ..." android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".EditProfileActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name="perfilActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".reservasalaactivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".reservalibrosActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".libroresActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".LibrosDescActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".desplegableActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".AdminMainActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".AcercaDeActivity" android:label="Acerca de ..." android:theme="@style/Theme.AppCompat.Light.Dialog" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

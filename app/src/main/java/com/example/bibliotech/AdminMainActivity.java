@@ -37,7 +37,7 @@ public class AdminMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_admin);
         TabLayout tabLayout = findViewById(R.id.tabs);
         ViewPager2 viewPager = findViewById(R.id.viewpager);
-        viewPager.setAdapter(new AdminMainActivity.MiPagerAdapter(this));
+        viewPager.setAdapter(new AdminMainActivity.MiPagerAdapter(this)); //añade el adapter a la actividad
         DrawerLayout drawableLayout = findViewById(R.id.drawable_layout);
 
 
@@ -139,7 +139,7 @@ public class AdminMainActivity extends AppCompatActivity {
 
         @Override
         @NonNull
-        public Fragment createFragment(int position) {
+        public Fragment createFragment(int position) { //dependiendo de la posicion del tab se mueve a un fragmento
             switch (position) {
                 case 0:
                     return new reservasviewnew();
