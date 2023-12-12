@@ -52,6 +52,10 @@ public class FireBaseActions {
         }else return user = auth.getCurrentUser();
     }
 
+    public static void refreshUser(){
+        user = auth.getCurrentUser();
+    }
+
     public static void signOut() {
         auth.signOut();
     }
@@ -88,8 +92,8 @@ public class FireBaseActions {
                         user.updateProfile(profileUpdates)
                                 .addOnCompleteListener(task1 -> {
                                     if (task1.isSuccessful()) {
-                                        Log.d(TAG, "User profile updated.");
                                         verificaSiUsuarioValidado(Context,Class,Activity);
+                                        Log.d(TAG, "User profile updated.");
                                     }
                                 });
 
@@ -113,6 +117,7 @@ public class FireBaseActions {
         if (auth.getCurrentUser() != null) {
             // User is signed in, navigate to the main activity
             Intent i = new Intent(Context, Class);
+            refreshUser();
             User updateUser = FireBaseActions.getUserAuth(Context);
             UserFirestore dbu = new UserFirestore();
             dbu.add(updateUser);
@@ -127,7 +132,7 @@ public class FireBaseActions {
     // CREATE USER FORM AUTH
     //USER NOT COMPLETE
     public static User getUserAuth(@NonNull Context Context) {
-        if (getCurrentUser() != null) {
+        if (auth.getCurrentUser() != null) {
             // Name, email address, and profile photo Url
             String name = user.getDisplayName();
             String email = user.getEmail();
