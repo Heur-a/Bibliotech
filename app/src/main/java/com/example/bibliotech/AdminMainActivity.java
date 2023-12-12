@@ -3,16 +3,13 @@ package com.example.bibliotech;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -20,7 +17,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -172,7 +168,7 @@ public class AdminMainActivity extends AppCompatActivity {
 
     public static void updateInfo (ImageView pfp, TextView username, TextView id, Context Context) {
         if (FireBaseActions.getCurrentUser() != null) {
-            User credentials = FireBaseActions.getCredentials(Context);
+            User credentials = FireBaseActions.getUserAuth(Context);
             Glide.with(Context)
                     .load(credentials.photoUri)
                     .into(pfp);

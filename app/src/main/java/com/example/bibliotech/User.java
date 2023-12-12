@@ -10,19 +10,20 @@ public class User {
     public String surnames;
     public String username;
     public String id;
+    public String categoria;
 
-    public User(String email, String password, String name, String surnames, String id, String rol) {
+    public User(String email, String password, String name, String surnames, String id, String role) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.surnames = surnames;
         this.id = id;
-        this.rol = rol;
+        this.role = role;
     }
 
-    public String rol;
+    public String role;
 
-    public String completeName,role;
+    public String completeName;
     public Uri photoUri;
 
 
@@ -31,7 +32,7 @@ public class User {
         password = "";
         name = "";
         surnames = "";
-        role="";
+        role ="";
         setCompleteName();
     }
 
@@ -65,6 +66,14 @@ public class User {
         this.completeName = completeName;
         this.role = role;
         this.photoUri = photoUri;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void updateNames () {
-        User credentials = FireBaseActions.getCredentials(this);
+        User credentials = FireBaseActions.getUserAuth(this);
         name.setText(credentials.username);
         email.setText(credentials.email);
         Glide.with(this)
@@ -62,6 +62,8 @@ public class EditProfileActivity extends AppCompatActivity {
             // Crea un intent per reiniciar l'activitat amb les dades actualitzades
             Intent intent = new Intent(EditProfileActivity.this, EditProfileActivity.class);
             intent.putExtras(dadesActualitzades);
+
+
 
             startActivity(intent);
             finish(); // Tanca l'activitat actual

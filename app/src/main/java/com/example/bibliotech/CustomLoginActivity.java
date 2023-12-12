@@ -2,6 +2,8 @@ package com.example.bibliotech;
 
 import static android.content.ContentValues.TAG;
 
+import static com.example.bibliotech.FireBaseActions.verificaSiUsuarioValidado;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -94,26 +96,16 @@ public class CustomLoginActivity extends AppCompatActivity {
                                 String displayName = firebaseUser.getDisplayName();
                                 Log.d(TAG, "Firebase User Name: " + displayName);
                             }
-                            verificaSiUsuarioValidado(MainActivity.class);
+                            verificaSiUsuarioValidado(this, MainActivity.class,this);
                         }
                     });
         } catch (ApiException e) {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            verificaSiUsuarioValidado(MainActivity.class);
+            verificaSiUsuarioValidado(this, MainActivity.class,this);
         }
     }
 
-    public void verificaSiUsuarioValidado(Class Class) {
-        if (auth.getCurrentUser() != null) {
-            // User is signed in, navigate to the main activity
-            Intent i = new Intent(this, Class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    | Intent.FLAG_ACTIVITY_NEW_TASK
-                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
-            finish();
-        }
-    }
+
 
     private void inicioSesionCorreo(View view) {
         if (verificaCampos()) {
@@ -121,7 +113,7 @@ public class CustomLoginActivity extends AppCompatActivity {
             auth.signInWithEmailAndPassword(editTextMail.getText().toString(), editTextPassword.getText().toString())
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            verificaSiUsuarioValidado(MainActivity.class);
+                            verificaSiUsuarioValidado(this, MainActivity.class,this);
                         } else {
                             dialog.dismiss();
                             mensaje("The provided email does not exist");

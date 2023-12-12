@@ -47,7 +47,7 @@ import com.bumptech.glide.Glide;
      }
 
      private void updateNames () {
-        User credentials = FireBaseActions.getCredentials(this);
+        User credentials = FireBaseActions.getUserAuth(this);
         name.setText(credentials.username);
         email.setText(credentials.email);
          Glide.with(this)

@@ -105,10 +105,17 @@ public class FireBaseActions {
 
     }
 
+
+    //Veirfies if user is validated and goes on
+    // Class is the activity you want to go
+    //Activity is the activity you are in
     public static void verificaSiUsuarioValidado(Context Context, Class Class, Activity Activity) {
         if (auth.getCurrentUser() != null) {
             // User is signed in, navigate to the main activity
             Intent i = new Intent(Context, Class);
+            User updateUser = FireBaseActions.getUserAuth(Context);
+            UserFirestore dbu = new UserFirestore();
+            dbu.add(updateUser);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                     | Intent.FLAG_ACTIVITY_NEW_TASK
                     | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -117,7 +124,9 @@ public class FireBaseActions {
         }
     }
     @Nullable
-    public static User getCredentials (@NonNull Context Context) {
+    // CREATE USER FORM AUTH
+    //USER NOT COMPLETE
+    public static User getUserAuth(@NonNull Context Context) {
         if (getCurrentUser() != null) {
             // Name, email address, and profile photo Url
             String name = user.getDisplayName();

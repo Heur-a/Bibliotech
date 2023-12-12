@@ -7,11 +7,13 @@ import android.util.Log;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,35 +24,42 @@ public class UserFirestore {
 
 
     public UserFirestore () {
+        // Inicializes firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         users = db.collection("users");
     }
 
     public void add(User Object) {
-        users.document(Object.id).set(Object);
+        // Adds user checking if exists data without overwriting all the data
+        users.document(Object.id).set(Object, SetOptions.merge());
     }
 
 
 
     public void delete(String id) {
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!CAUTION: CAUTION. WE SHOLD NEVER EVER DELETE USERS!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         users.document(id).delete();
     }
 
-    public Book get(String id) {
+    public User get(String id) {
         try {
+            //DOWNLOADS DOCUMENT
             Task<DocumentSnapshot> task = users.document(id).get();
-            Tasks.await(task); // Espera fins que la tasca estigui completada
+            Tasks.await(task); // waits...
 
             if (task.isSuccessful()) {
-                return task.getResult().toObject(Book.class);
+                //if works returns a user
+                return task.getResult().toObject(User.class);
             } else {
-                // Potser voldràs gestionar l'error d'alguna manera aquí
+                //if not user doesn't exist
                 Log.d("FireBase GET", "Error user null");
                 return null;
             }
         } catch (Exception e) {
-            // Gestionar excepcions, com per exemple TimeoutException si la tasca pren massa temps
-            Log.d("FireBase GET", "Error unkown");
+            // internal error
+            Log.d("FireBase GET", "Error: " + e);
             return null;
         }
     }
@@ -81,6 +90,9 @@ public class UserFirestore {
 
         return UserList;
     }
+
+
+
 
 
 }
