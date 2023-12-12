@@ -58,7 +58,7 @@ public class reservasviewnew extends Fragment {
         agregarEspaciadores(libros);
         agregarEspaciadores(salas);
 
-        recyclerView = rootView.findViewById(R.id.rv_book);
+            recyclerView = rootView.findViewById(R.id.rv_book);
         staticRvAdapter = new StaticRvAdapter(libros);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(staticRvAdapter);

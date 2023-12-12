@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="144dp"
-    android:layout_height="170dp"
+    android:layout_height="150dp"
     android:scrollbarSize="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/featured_image"
             android:layout_width="102dp"
-            android:layout_height="170dp"
+            android:layout_height="150dp"
             android:background="@drawable/orgulloprejuicio"
             android:backgroundTintMode="multiply"
             android:scrollbarSize="0dp"
@@ -25,11 +25,10 @@
         <TextView
             android:id="@+id/numero"
             android:layout_width="83dp"
-            android:layout_height="154dp"
-            android:layout_marginTop="15dp"
+            android:layout_height="150dp"
             android:text="2"
             android:textColor="@color/gris2"
-            android:textSize="150dp"
+            android:textSize="140dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
