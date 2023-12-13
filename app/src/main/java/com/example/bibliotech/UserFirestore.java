@@ -1,99 +1,50 @@
 package com.example.bibliotech;
 
-import static android.content.ContentValues.TAG;
-
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SetOptions;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CompletableFuture;
 
 public class UserFirestore {
     private CollectionReference users;
 
+    public interface UserCallback {
+        void onUserLoaded(User user);
 
-    public UserFirestore () {
-        // Inicializes firestore
+        void onUserError(Exception e);
+    }
+
+    public UserFirestore() {
+        // Inicializa Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         users = db.collection("users");
     }
 
-    public void add(User Object) {
-        // Adds user checking if exists data without overwriting all the data
-        users.document(Object.id).set(Object, SetOptions.merge());
+    public void add(User user) {
+        // Añade un usuario comprobando si ya existen datos sin sobrescribirlo todo
+        users.document(user.id).set(user);
     }
 
-
-
     public void delete(String id) {
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!CAUTION: CAUTION. WE SHOLD NEVER EVER DELETE USERS!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // !!! CAUTION: CAUTION. WE SHOULD NEVER EVER DELETE USERS !!!
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         users.document(id).delete();
     }
 
-    public User get(String id) {
-        try {
-            //DOWNLOADS DOCUMENT
-            Task<DocumentSnapshot> task = users.document(id).get();
-            Tasks.await(task); // waits...
-
-            if (task.isSuccessful()) {
-                //if works returns a user
-                return task.getResult().toObject(User.class);
-            } else {
-                //if not user doesn't exist
-                Log.d("FireBase GET", "Error user null");
-                return null;
-            }
-        } catch (Exception e) {
-            // internal error
-            Log.d("FireBase GET", "Error: " + e);
-            return null;
-        }
-    }
-
-    public List<User> getBooksSynchronously() {
-        final List<User> UserList = new ArrayList<>();
-        final CountDownLatch latch = new CountDownLatch(1);
-
-        users.get()
-                .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            User user = document.toObject(User.class);
-                            UserList.add(user);
-                        }
-                    } else {
-                        Log.w(TAG, "Error getting documents.", task.getException());
-                    }
-
-                    latch.countDown(); // Indiquem que la tasca s'ha completat
+    public void getUser(String id, UserCallback callback) {
+        users.document(id).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    User user = documentSnapshot.toObject(User.class);
+                    callback.onUserLoaded(user);
+                })
+                .addOnFailureListener(e -> {
+                    Log.d("FireBase GET", "Error fetching user: " + e.getMessage());
+                    callback.onUserError(e);
                 });
 
-        try {
-            latch.await(); // Esperem fins que la tasca s'hagi completat
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return UserList;
     }
-
-
-
-
-
 }
-

@@ -1,6 +1,8 @@
  package com.example.bibliotech;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,14 +11,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import java.util.HashMap;
+import java.util.Map;
+
  public class perfilActivity extends AppCompatActivity {
 
     TextView name, surnames, email, category;
     ImageView image;
+     public static UserFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.perfil); // Set the layout for this activity
+        db = new UserFirestore();
 
         ImageView editarImageView = findViewById(R.id.editar);
         editarImageView.setOnClickListener(new View.OnClickListener() {
@@ -46,17 +53,34 @@ import com.bumptech.glide.Glide;
          updateNames();
      }
 
-     private void updateNames () {
-        User credentials = FireBaseActions.getUserAuth(this);
-        name.setText(credentials.username);
-        email.setText(credentials.email);
-         Glide.with(this)
-                 .load(credentials.photoUri)
-                 .into(image);
-    }
+     private void updateNames() {
+         db = new UserFirestore();
+         getNames(db, new UserFirestore.UserCallback() {
+             @Override
+             public void onUserLoaded(User user) {
+                 name.setText(user.getName());
+                 email.setText(user.getEmail());
+                 surnames.setText(user.getSurnames());
+                 Glide.with(perfilActivity.this)
+                         .load(user.getPhotoUri())
+                         .into(image);
+             }
+
+             @Override
+             public void onUserError(Exception e) {
+                 Log.d("Firebase GET", "Error loading user: " + e.getMessage());
+             }
+         });
+     }
+
+     public static void getNames(UserFirestore db, UserFirestore.UserCallback callback) {
+         String uid = FireBaseActions.getUserId();
+         db.getUser(uid, callback);
+     }
     public void atras(View view) {
         // Open the EditProfileActivity when the "editar" ImageView is clicked
         Intent intent = new Intent(perfilActivity.this, MainActivity.class);
         startActivity(intent);
     }
+
 }
