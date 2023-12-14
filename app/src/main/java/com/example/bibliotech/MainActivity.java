@@ -13,10 +13,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -26,15 +26,22 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.example.bibliotech.datos.User;
+import com.example.bibliotech.datos.firestore.FireBaseActions;
+import com.example.bibliotech.presentacion.AcercaDeActivity;
+import com.example.bibliotech.presentacion.home;
+import com.example.bibliotech.presentacion.libros;
+import com.example.bibliotech.presentacion.mapa;
+import com.example.bibliotech.presentacion.paginaInicialActivity;
+import com.example.bibliotech.presentacion.perfilActivity;
+import com.example.bibliotech.presentacion.reservalibrosActivity;
+import com.example.bibliotech.presentacion.reservasalaactivity;
+import com.example.bibliotech.presentacion.reservasviewnew;
+import com.example.bibliotech.presentacion.salas;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import androidx.appcompat.widget.Toolbar;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -272,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
         // Implement the logic to navigate to the profile page here
         // For example, you can start a new activity or replace the current fragment.
         // Replace "YourProfileActivity.class" with your actual profile activity.
-        Intent intent = new Intent(this, AdminMainActivity.class);
+        Intent intent = new Intent(this, com.example.bibliotech.presentacion.AdminMainActivity.class);
         startActivity(intent);
     }
 

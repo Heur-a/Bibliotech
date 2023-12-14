@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.bibliotech.presentacion.paginaInicialActivity;
 
 public class paginacarga extends AppCompatActivity {
 

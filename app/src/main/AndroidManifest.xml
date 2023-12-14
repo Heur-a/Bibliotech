@@ -23,26 +23,26 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".paginaInicialActivity" android:exported="true"
+        <activity android:name=".presentacion.paginaInicialActivity" android:exported="true"
             android:screenOrientation="portrait"/>
-        <activity android:name=".CustomLoginActivity"
+        <activity android:name=".presentacion.CustomLoginActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
-        <activity android:name=".RegisterActivity"
+        <activity android:name=".presentacion.RegisterActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
-        <activity android:name=".EditProfileActivity" android:exported="true" android:screenOrientation="portrait"/>
-        <activity android:name="perfilActivity" android:exported="true" android:screenOrientation="portrait"/>
-        <activity android:name=".reservasalaactivity" android:exported="true" android:screenOrientation="portrait"/>
-        <activity android:name=".reservalibrosActivity" android:exported="true" android:screenOrientation="portrait"/>
-        <activity android:name=".libroresActivity" android:exported="true" android:screenOrientation="portrait"/>
-        <activity android:name=".LibrosDescActivity" android:exported="true" android:screenOrientation="portrait"/>
-        <activity android:name=".desplegableActivity" android:exported="true" android:screenOrientation="portrait"/>
-        <activity android:name=".AdminMainActivity" android:exported="true" android:screenOrientation="portrait"/>
-        <activity android:name=".AcercaDeActivity" android:label="Acerca de ..." android:theme="@style/Theme.AppCompat.Light.Dialog" android:screenOrientation="portrait"/>
+        <activity android:name=".presentacion.EditProfileActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".presentacion.perfilActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".presentacion.reservasalaactivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".presentacion.reservalibrosActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".presentacion.libroresActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".presentacion.LibrosDescActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".presentacion.desplegableActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".presentacion.AdminMainActivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".presentacion.AcercaDeActivity" android:label="Acerca de ..." android:theme="@style/Theme.AppCompat.Light.Dialog" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

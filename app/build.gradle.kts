@@ -70,4 +70,6 @@ dependencies {
     implementation ("com.airbnb.android:lottie:4.2.0") // libreria para la animacion de carga
     implementation ("com.google.android.material:material:1.0.0") // libreria para el diseño de la app
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    //implementacion img zoom
+    implementation("com.github.MikeOrtiz:TouchImageView:1.4.1")
 }
