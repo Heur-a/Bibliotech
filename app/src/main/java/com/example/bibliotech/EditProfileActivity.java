@@ -16,6 +16,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.net.URI;
 import java.util.HashMap;
@@ -24,6 +26,8 @@ import java.util.Map;
 public class EditProfileActivity extends AppCompatActivity {
     private TextView name, surnames, email, category;
     private ImageView image;
+
+    private StorageReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +118,16 @@ public class EditProfileActivity extends AppCompatActivity {
             name.setText(nouNom);
             email.setText(nouEmail);
         }
+    }
+
+    //Get pfp form the database
+    //Each pfp will be named after the uid of its user
+    private void getProfilePicture(String id) {
+        ref = FirebaseStorage.getInstance().getReference();
+        StorageReference imgPool = ref.child(getResources()
+                .getString(R.string.pfp_image_path));
+
+
     }
 
     private boolean verificaCampos() {

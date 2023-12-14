@@ -80,4 +80,6 @@
     <string name="Genero">Género</string>
     <string name="Sinopsis">Sinopsis</string>
     <string name="Romance">Romance</string>
+    <string name="pfp_image_path" translatable="false">images/pfp</string>
+    <string name="images_dafult" translatable="false">images/default</string>
 </resources>

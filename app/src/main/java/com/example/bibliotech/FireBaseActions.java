@@ -6,6 +6,7 @@ import static androidx.core.content.ContextCompat.startActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
@@ -22,9 +23,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.jetbrains.annotations.Contract;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 public class FireBaseActions {
 
     static public FirebaseAuth auth;
@@ -32,12 +41,15 @@ public class FireBaseActions {
 
     static public FirebaseFirestore db;
 
+    static public StorageReference ref;
+
     
     public FireBaseActions() {
         // Inicialitza l'instància d'autenticació de Firebase
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
+        ref = FirebaseStorage.getInstance().getReference();
     }
 
     @NonNull
@@ -139,12 +151,78 @@ public class FireBaseActions {
             Uri photoUrl = user.getPhotoUrl();
             String id = user.getUid();
 
+            //Put image on Storage
+            uploadImageUri(photoUrl,id,Context.getResources().getString(R.string.pfp_image_path),Context);
 
             return new User(email, name ,photoUrl,id);
 
         }
         Toast.makeText(Context,"La toma de datos ha fallado",Toast.LENGTH_SHORT);
         return null;
+    }
+
+    private static void uploadImageUri (@NonNull Uri imageUri, @NonNull String imageName, @Nullable String imagePath, @NonNull Context context){
+
+        new Thread(() -> {
+            try {
+                //Convert URI to Stream
+                URL url = null;
+                InputStream stream = null;
+                try {
+                    url = new URL(imageUri.toString());
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+                URLConnection connection = null;
+                try {
+                    connection = url.openConnection();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                try {
+                    stream = connection.getInputStream();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+                //Create Image Storage Reference
+
+
+                //we defualt if string is not in input
+                StorageReference imgRef;
+                if (imagePath != null || !imagePath.isEmpty()) {
+                    imgRef = ref.child(imagePath + "/" + imageName);
+                } else {
+                    // Handle the case where imagePath is null
+                    // You might want to use a default path or take some other action
+                    Resources res = context.getResources();
+                    imgRef = ref.child(res.getString(R.string.images_dafult) + "/" + imageName); // Change "defaultPath" to your preferred default
+                }
+                // Upload the image using the InputStream
+                UploadTask uploadTask = imgRef.putStream(stream);
+
+                // Register observers to listen for when the upload is successful or fails
+                uploadTask.addOnSuccessListener(taskSnapshot -> {
+                    // Image uploaded successfully
+                    // You can get the download URL if needed
+                    imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        // The download URL is available here
+                        String downloadUrl = uri.toString();
+
+                        Log.d("FireBaseActions UploadImage", "Image uploaded successfully. Download URL: " + downloadUrl);
+                    });
+                }).addOnFailureListener(e -> {
+                    // Handle unsuccessful uploads
+                    Log.d("FireBaseActions UploadImage", "Error uploading image: " + e.getMessage());
+                });
+            } catch (Exception e) {
+                // Handle exceptions appropriately
+                Log.e("FireBaseActions UploadImage", "Error: " + e.getMessage());
+            }
+        }).start();
+
     }
 
     public static void updateUsername (String username) {
