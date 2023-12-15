@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/general"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/G3"
-    android:backgroundTint="@color/G1">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imageView24"
@@ -42,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Sofía Torres García"
+        android:textColor="@color/gris2"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView24"
         app:layout_constraintStart_toStartOf="@+id/imageView24"
@@ -53,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="645465778999477"
+        android:textColor="@color/gris2"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,9 +61,9 @@
 
     <Button
         android:id="@+id/btn_prf_hist"
+        style="@style/botones"
         android:layout_width="320dp"
         android:layout_height="69dp"
-        android:backgroundTint="@color/white"
         android:elevation="10dp"
         android:text="Historial"
         android:textAlignment="viewStart"
@@ -79,9 +80,9 @@
 
     <Button
         android:id="@+id/btn_prf_idioma"
+        style="@style/botones"
         android:layout_width="320dp"
         android:layout_height="69dp"
-        android:backgroundTint="@color/white"
         android:elevation="10dp"
         android:text="idioma"
         android:textAlignment="viewStart"
@@ -98,10 +99,10 @@
 
     <Button
         android:id="@+id/btn_prf_cerrarsesi"
+        style="@style/botoncerrarsesion"
         android:layout_width="320dp"
         android:layout_height="69dp"
         android:layout_marginTop="40dp"
-        android:backgroundTint="@color/gris2"
         android:elevation="10dp"
         android:text="Cerrar Sesion"
         android:textAlignment="viewStart"
@@ -109,6 +110,7 @@
         app:cornerRadius="12dp"
         app:icon="@android:drawable/ic_menu_revert"
         app:iconPadding="16dp"
+        app:iconTint="#FF688DB9"
         app:layout_constraintEnd_toEndOf="@+id/btn_prf_contrasena"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btn_prf_contrasena"
@@ -116,9 +118,9 @@
 
     <Button
         android:id="@+id/btn_prf_priv"
+        style="@style/botones"
         android:layout_width="320dp"
         android:layout_height="69dp"
-        android:backgroundTint="@color/white"
         android:elevation="10dp"
         android:text="Privacidad"
         android:textAlignment="viewStart"
@@ -131,16 +133,16 @@
         app:iconTint="@color/gris2"
         app:iconTintMode="src_in"
         app:layout_constraintEnd_toEndOf="@+id/btn_prf_notis"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/btn_prf_notis"
-        tools:layout_editor_absoluteY="290dp" />
+        tools:layout_editor_absoluteY="288dp" />
 
     <Button
         android:id="@+id/btn_prf_contrasena"
+        style="@style/botones"
         android:layout_width="320dp"
         android:layout_height="69dp"
-        android:layout_marginTop="68dp"
-        android:backgroundTint="@color/white"
+        android:layout_marginTop="8dp"
         android:elevation="10dp"
         android:text="@string/Contrasena"
         android:textAlignment="viewStart"
@@ -151,15 +153,15 @@
         app:iconPadding="16dp"
         app:iconTint="@color/gris2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_prf_priv" />
 
     <Button
         android:id="@+id/btn_prf_notis"
+        style="@style/botones"
         android:layout_width="320dp"
         android:layout_height="69dp"
-        android:backgroundTint="@color/white"
         android:backgroundTintMode="src_atop"
         android:elegantTextHeight="false"
         android:elevation="2dp"

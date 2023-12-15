@@ -38,7 +38,6 @@
         android:layout_marginEnd="40dp"
         android:background="@drawable/paginalogin"
         android:backgroundTint="@color/oscuroG2"
-        android:backgroundTintMode="multiply"
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

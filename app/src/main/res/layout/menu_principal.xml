@@ -31,6 +31,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_est"
+        style="@style/tarjeta"
         android:layout_width="0dp"
         android:layout_height="190dp"
         android:layout_marginStart="40dp"
@@ -38,7 +39,6 @@
         android:layout_marginEnd="40dp"
         android:background="@drawable/paginalogin"
         android:backgroundTint="@color/oscuroG2"
-        android:backgroundTintMode="multiply"
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

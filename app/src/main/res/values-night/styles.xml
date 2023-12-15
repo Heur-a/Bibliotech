@@ -4,4 +4,133 @@
         <item name="tabIconTint">@color/black</item>
         <item name="tabIndicatorColor">@color/black</item>
     </style>
+
+    <!--Estilos Home-->
+    <style name="Home_txt_titulo">
+        <item name="android:textColor">#E2E8F3</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="tarjeta">
+        <item name="android:backgroundTint">#FFFFFF</item>
+    </style>
+
+    <style name="Home_card_notis">
+        <item name="android:backgroundTint">#C4D2E7</item>
+        <item name="android:textColor">#E2E8F3</item>
+    </style>
+
+    <style name="Home_card_txtA">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/claro_txt</item>
+    </style>
+
+    <style name="Home_card_txtb">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/claro_txt</item>
+    </style>
+    <!--Fin estilos Home-->
+
+    <!--Estilos reservas-->
+    <style name="titulo">
+        <item name="android:textColor">@color/G2</item>
+    </style>
+
+    <!--Fin estilos reservas-->
+
+    <!--Estilos datos reservas-->
+    <style name="textos">
+        <item name="android:textColor">@color/G2</item>
+    </style>
+    <style name="botonesdatosreservas">
+        <item name="android:backgroundTint">#C4D2E7</item>
+        <item name="android:textColor">@color/claro_txt</item>
+
+    </style>
+
+    <style name="botonvolver">
+        <item name="android:backgroundTint">@color/gris</item>
+        <item name="android:textColor">@color/gris2</item>
+    </style>
+
+    <!--Fin estilos datos reservas-->
+
+    <!--Estilos salas disponibles-->
+    <style name="titulosalas">
+        <item name="android:textColor">@color/G1</item>
+    </style>
+    <style name="botonessabermas">
+        <item name="android:backgroundTint">@color/claro_txt</item>
+        <item name="android:textColor">@color/G1</item>
+    </style>
+    <style name="iconoflecha">
+        <item name="tint">@color/G1</item>
+    </style>
+
+    <!--Fin estilos salas disponibles-->
+
+    <!--Estilos descripcion salas-->
+    <style name="txtdescricionsalas">
+        <item name="android:textColor">@color/G1</item>
+    </style>
+    <style name="botonreservarsala">
+        <item name="android:backgroundTint">@color/G1</item>
+        <item name="android:textColor">@color/G8</item>
+    </style>
+    <style name="iconotelemap">
+        <item name="tint">@color/G1</item>
+    </style>
+    <!--Fin estilos descripcion salas-->
+
+    <!--Estilos datos reservar sala-->
+    <style name="txtst">
+        <item name="color">@color/G1</item>
+        <item name="android:height">48px</item>
+        <item name="android:width">411px</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">36dp</item>
+    </style>
+
+    <style name="btn_sala">
+        <item name="android:layout_width">69dp</item>
+        <item name="android:layout_height">21dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/oscuroG4</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:padding">0px</item>
+    </style>
+    <!--Fin estilos datos reservar sala-->
+
+    <!--Estilos perfil-->
+    <style name="general">
+        <item name="android:backgroundTint">@color/G8</item>
+    </style>
+
+    <style name="botones">
+        <item name="android:backgroundTint">@color/claroFondo</item>
+        <item name="android:textColor">@color/gris2</item>
+    </style>
+
+    <style name="botoncerrarsesion">
+        <item name="android:backgroundTint">@color/G2</item>
+        <item name="android:textColor">@color/G6</item>
+    </style>
+    <!--Fin estilos perfil-->
+
+    <!--inicio pagina Libros page-->
+
+    <style name="buscar_lib">
+        <item name="android:background">@drawable/bk_buscar</item>
+        <item name="android:queryHint">@string/Busca_el_libro_que_deseas</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:color">@color/black</item>
+    </style>
+
+    <style name="fondolib">
+        <item name="android:background">@color/claro_txt</item>
+    </style>
+    <!--fin pagina Libros page-->
 </resources>

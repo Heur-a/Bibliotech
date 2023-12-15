@@ -7,43 +7,43 @@
 
     <TextView
         android:id="@+id/textView34"
+        style="@style/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
         android:text="Autor:"
-        android:textColor="@color/claro_txt"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/textView50"
         app:layout_constraintTop_toBottomOf="@+id/bk_name" />
 
     <TextView
         android:id="@+id/aut_name"
+        style="@style/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Autorname"
-        android:textColor="@color/claro_txt"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/textView50"
         app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
     <TextView
         android:id="@+id/textView30"
+        style="@style/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Numero de paginas:"
-        android:textColor="@color/claro_txt"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/textView62"
         app:layout_constraintTop_toTopOf="@+id/textView63" />
 
     <TextView
         android:id="@+id/num_pages"
+        style="@style/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="num pages"
-        android:textColor="@color/claro_txt"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/textView30"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
@@ -54,31 +54,30 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
         android:text="Nombre del libro:"
-        android:textColor="@color/claro_txt"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/textView50"
         app:layout_constraintTop_toBottomOf="@+id/day_res" />
 
     <TextView
         android:id="@+id/bk_name"
+        style="@style/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="bookname"
-        android:textColor="@color/claro_txt"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/textView50"
         app:layout_constraintTop_toBottomOf="@+id/textView63" />
 
     <TextView
         android:id="@+id/textView62"
+        style="@style/textos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:text="Fecha de devolucion:"
-        android:textColor="@color/claro_txt"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView50"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,11 +87,11 @@
 
     <TextView
         android:id="@+id/day_dev"
+        style="@style/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="fecha"
-        android:textColor="@color/claro_txt"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/textView62"
         app:layout_constraintTop_toBottomOf="@+id/textView62" />
@@ -173,12 +172,12 @@
 
     <TextView
         android:id="@+id/textView50"
+        style="@style/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:text="Fecha de reserva:"
-        android:textColor="@color/claro_txt"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/textView62"
         app:layout_constraintHorizontal_bias="0.5"
@@ -187,11 +186,11 @@
 
     <TextView
         android:id="@+id/day_res"
+        style="@style/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="fecha"
-        android:textColor="@color/claro_txt"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/textView50"
         app:layout_constraintTop_toBottomOf="@+id/textView50" />
@@ -203,7 +202,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="75dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/G8"
+        style="@style/botonesdatosreservas"
         android:text="Cancelar"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toStartOf="@+id/btn_volver"
@@ -217,8 +216,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/G8"
         android:text="Añadir"
+        style="@style/botonesdatosreservas"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_volver"
         app:layout_constraintEnd_toEndOf="parent"
@@ -231,7 +230,7 @@
         android:id="@+id/btn_volver"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/gris2"
+        style="@style/botonvolver"
         android:text="Volver"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_cancelar_book"
@@ -248,7 +247,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Datos Reserva"
-        android:textColor="@color/claro_txt"
+        style="@style/textos"
         android:textSize="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

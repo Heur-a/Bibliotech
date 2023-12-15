@@ -18,11 +18,11 @@
 
         <Button
             android:id="@+id/button12"
+            style="@style/botonessabermas"
             android:layout_width="214dp"
             android:layout_height="37dp"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="104dp"
-            android:backgroundTint=" #486f99 "
             android:text="Saber más"
             app:cornerRadius="7dp" />
 
@@ -103,11 +103,11 @@
 
         <Button
             android:id="@+id/button12"
+            style="@style/botonessabermas"
             android:layout_width="214dp"
             android:layout_height="37dp"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="104dp"
-            android:backgroundTint=" #486f99 "
             android:text="Saber más"
             app:cornerRadius="7dp" />
 
@@ -176,23 +176,23 @@
 
     <ImageView
         android:id="@+id/imageView14"
+        style="@style/iconoflecha"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:tint="@color/G8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <TextView
         android:id="@+id/textView32"
+        style="@style/titulosalas"
         android:layout_width="0dp"
         android:layout_height="96dp"
         android:layout_marginTop="61dp"
         android:text="Las salas disponibles son:"
         android:textAlignment="center"
-        android:textColor="#486f99"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -211,11 +211,11 @@
 
         <Button
             android:id="@+id/button12"
+            style="@style/botonessabermas"
             android:layout_width="214dp"
             android:layout_height="37dp"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="104dp"
-            android:backgroundTint=" #486f99 "
             android:text="Saber más"
             app:cornerRadius="7dp" />
 
