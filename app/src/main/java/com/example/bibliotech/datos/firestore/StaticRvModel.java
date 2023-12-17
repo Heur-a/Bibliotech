@@ -1,4 +1,4 @@
-package com.example.bibliotech.presentacion;
+package com.example.bibliotech.datos.firestore;
 
 public class StaticRvModel {
 

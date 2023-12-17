@@ -34,6 +34,7 @@
         <activity android:name=".presentacion.RegisterActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
+        <activity android:name=".presentacion.MapActivity" android:exported="true"/>
         <activity android:name=".presentacion.EditProfileActivity" android:exported="true" android:screenOrientation="portrait"/>
         <activity android:name=".presentacion.perfilActivity" android:exported="true" android:screenOrientation="portrait"/>
         <activity android:name=".presentacion.reservasalaactivity" android:exported="true" android:screenOrientation="portrait"/>

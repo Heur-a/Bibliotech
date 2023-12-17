@@ -2,14 +2,14 @@ package com.example.bibliotech.presentacion;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Matrix;
+
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
+
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,17 +25,20 @@ public class mapa extends Fragment {
 
     private static final int SOLICITUD_PERMISO_ACCESS_FINE_LOCATION = 0;
     private View view;
-    private ImageView imageView;
-    private Matrix matrix;
-    private ScaleGestureDetector scaleGestureDetector;
-    private GestureDetector gestureDetector;
-
+    public ImageView imageView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.mapa, container, false);
         solicitudpermiso();
-
+        imageView = view.findViewById(R.id.mapbtn);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MapActivity.class );
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -60,4 +63,5 @@ public class mapa extends Fragment {
             ActivityCompat.requestPermissions((Activity) actividad.getContext(), new String[]{permiso}, requestCode);
         }
     }
+
 }

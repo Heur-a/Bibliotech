@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bibliotech.R;
+import com.example.bibliotech.datos.firestore.StaticRvModel;
 
 import java.util.ArrayList;
 

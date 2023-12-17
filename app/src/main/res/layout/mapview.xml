@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ortiz.touchview.TouchImageView
+        android:id="@+id/imgmap"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:src="@drawable/plantabaja"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/puntero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:textColor="#FF0000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgmap"
+        app:layout_constraintEnd_toEndOf="@id/imgmap"
+        app:layout_constraintStart_toStartOf="@id/imgmap"
+        app:layout_constraintTop_toTopOf="@id/imgmap" />
+
+
+    <Button
+        android:id="@+id/btnizq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="izq"
+        app:layout_constraintEnd_toStartOf="@+id/btnarri"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnarri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="arri"
+        app:layout_constraintEnd_toStartOf="@+id/btnabaj"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnizq" />
+
+    <Button
+        android:id="@+id/btnabaj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="baj"
+        app:layout_constraintEnd_toStartOf="@+id/btnder"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnarri" />
+
+    <Button
+        android:id="@+id/btnder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dere"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnabaj" />
+
+    <Button
+        android:id="@+id/btnguar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="guardar pos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

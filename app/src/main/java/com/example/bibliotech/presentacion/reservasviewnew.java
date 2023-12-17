@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import com.example.bibliotech.datos.firestore.FireBaseActions;
 import com.example.bibliotech.R;
+import com.example.bibliotech.datos.firestore.StaticRvModel;
 import com.example.bibliotech.datos.reservaLibro;
 import com.google.android.material.tabs.TabLayout;
 
