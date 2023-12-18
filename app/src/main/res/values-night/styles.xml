@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Toolbar">
-        <item name="tabIconTint">@color/black</item>
-        <item name="tabIndicatorColor">@color/black</item>
+        <item name="tabIconTint">@color/G8</item>
+        <item name="tabIndicatorColor">@color/G8</item>
+        <item name="backgroundTint">@color/G1</item>
     </style>
 
     <!--Estilos Home-->

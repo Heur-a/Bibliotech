@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.bibliotech.presentacion.paginaInicialActivity;
 
-//a
 public class paginacarga extends AppCompatActivity {
 
     ImageView fondoanimacion;
