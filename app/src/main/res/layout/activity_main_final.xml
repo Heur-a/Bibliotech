@@ -69,7 +69,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            style="@style/iconoflecha"
+            style="@style/Homebtndes"
+            android:tintMode="multiply"
             android:id="@+id/btn_menu_desplegable"
             android:layout_width="40dp"
             android:layout_height="40dp"

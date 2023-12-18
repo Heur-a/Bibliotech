@@ -79,6 +79,9 @@
     <style name="Home_card_notis">
         <item name="android:backgroundTint">@color/G2</item>
     </style>
+    <style name="Homebtndes">
+        <item name="backgroundTint">@color/claroFondo.toolbar</item>
+    </style>
 
     <style name="Home_card_txtA">
         <item name="android:textSize">14sp</item>
