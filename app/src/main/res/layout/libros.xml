@@ -106,6 +106,8 @@
                 app:headerLayout="@layout/book_card_viewc" />
 
             <com.google.android.material.navigation.NavigationView
+                style="@style/fondolib"
+
                 android:id="@+id/nav_view4"
                 android:layout_width="144dp"
                 android:layout_height="match_parent"

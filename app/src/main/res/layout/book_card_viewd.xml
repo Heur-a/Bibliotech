@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="144dp"
     android:layout_height="150dp"
-    android:scrollbarSize="0dp">
+    android:scrollbarSize="0dp"
+    style="@style/fondolib">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/fondolib"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="right"

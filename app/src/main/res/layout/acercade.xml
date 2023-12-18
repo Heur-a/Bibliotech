@@ -1,9 +1,9 @@
 <!--Sento Marcos Ibarra-->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/textos"
     android:id="@+id/TextView01"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="#8A6578F6"
     android:text="Con Bibliotech, el conocimiento encuentra su camino en la era digital, simplificando el acceso a la información en cada página de tu biblioteca."
-    android:textColor="#858383"
     android:textSize="20sp"></TextView>
