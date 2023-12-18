@@ -15,9 +15,8 @@ import com.example.bibliotech.MainActivity;
 import com.example.bibliotech.R;
 import com.example.bibliotech.datos.User;
 import com.example.bibliotech.datos.firestore.UserFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
  public class perfilActivity extends AppCompatActivity {
 
@@ -66,10 +65,17 @@ import java.util.Map;
                  name.setText(user.getName());
                  email.setText(user.getEmail());
                  surnames.setText(user.getSurnames());
-                 Glide.with(perfilActivity.this)
-                         .load(user.getPhotoUri())
-                         .into(image);
+                 // Load image from Firebase Storage using FirebaseImageLoader
+                 FirebaseStorage.getInstance()
+                         .getReference().child("images/pfp/" + FireBaseActions.getUserId()).getDownloadUrl().addOnSuccessListener(task -> {
+                             Glide.with(perfilActivity.this)
+                                     .load(task)
+                                     .into(image);
+                         });
+
+
              }
+
 
              @Override
              public void onUserError(Exception e) {
