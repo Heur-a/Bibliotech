@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bibliotech.R;
+import com.example.bibliotech.maplogic.LecturaWiFi;
+import com.example.bibliotech.maplogic.WifiScanner;
 import com.ortiz.touchview.TouchImageView;
+
+import java.util.List;
 
 public class MapActivity extends Activity {
     private Button izq, arr, abj, der, guar;
@@ -171,5 +176,8 @@ public class MapActivity extends Activity {
     private void showMessage(String message) {
         // Mostrar el mensaje con un Toast
         Toast.makeText(MapActivity.this, message, Toast.LENGTH_SHORT).show();
+        List<LecturaWiFi> lecturas = WifiScanner.obtenerLecturasWifi(this);
+        Log.d("LecturaWIFI", lecturas.toString());
+        Log.d("possmap", message);
     }
 }

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     HashMap<String, List<String>> topicList;
 
     private static final int SOLICITUD_PERMISO_WRITE_CALL= 0;
+    private boolean modoOscuro = false;
 
     private Toolbar supportActionBar;
 
@@ -183,7 +185,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.btn_config) {
                     //switchToSettingsPage();
                 } else if (id == R.id.btn_modo) {
-                    // Implement the dark mode toggle logic here
+                    // Alternar entre modo oscuro y claro
+                    alternarModoOscuro();
                 } else if (id == R.id.btn_reporterr) {
                     irtlf();
                 } else if (id == R.id.btn_acercade) {
@@ -338,6 +341,23 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("Ok", (dialog, whichButton) -> ActivityCompat.requestPermissions(actividad, new String[]{permiso}, requestCode)).show(); } else {
             ActivityCompat.requestPermissions(actividad, new String[]{permiso}, requestCode);
         }
+    }
+    // Método para alternar entre el modo oscuro y claro
+    // Método para alternar entre el modo oscuro y claro
+    private void alternarModoOscuro() {
+        modoOscuro = !modoOscuro;
+
+        // Configurar el modo oscuro en tu actividad o aplicación según el estado actual
+        if (modoOscuro) {
+            // Activar el modo oscuro
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            // Desactivar el modo oscuro
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
+        // Aplicar el cambio de modo oscuro al instante
+        getDelegate().applyDayNight();
     }
 }
 

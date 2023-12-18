@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +40,40 @@ import java.util.Map;
                 startActivity(intent);
             }
         });
+
+        Button notificaciones = findViewById(R.id.btn_prf_notis);
+       notificaciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Open the EditProfileActivity when the "notificaciones" ImageView is clicked
+                Intent intent = new Intent(perfilActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button privacidad = findViewById(R.id.btn_prf_priv);
+        privacidad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Open the EditProfileActivity when the "privacidad" ImageView is clicked
+                Intent intent = new Intent(perfilActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button idioma = findViewById(R.id.btn_prf_idioma);
+        privacidad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Open the EditProfileActivity when the "idioma" ImageView is clicked
+                Intent intent = new Intent(perfilActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
 
         name =  findViewById(R.id.textViewNameProfile);
         surnames = findViewById(R.id.textViewSurnames);
