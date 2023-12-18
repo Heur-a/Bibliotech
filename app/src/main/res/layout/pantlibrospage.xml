@@ -81,17 +81,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/textos"
     android:backgroundTint="@color/G2"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView13"
+        style="@style/iconoflecha"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         app:srcCompat="?attr/actionModeCloseDrawable"
-        app:tint="@color/G8"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -99,6 +100,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="UN CUENTO PERFECTO"
+        android:textStyle="bold"
+        style="@style/textos"
         android:layout_marginStart="10dp"
         android:textSize="70px"
         android:gravity="center" />
@@ -125,6 +128,7 @@
     <ExpandableListView
 
         android:id="@+id/eListView"
+        style="@style/textos"
         android:layout_width="393dp"
         android:layout_height="match_parent"
         android:layoutDirection="rtl"

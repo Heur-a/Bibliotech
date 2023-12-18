@@ -188,13 +188,15 @@
     <TextView
         android:id="@+id/textView32"
         style="@style/titulosalas"
-        android:layout_width="0dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="61dp"
-        android:text="Las salas disponibles son:"
+        android:layout_width="409dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="72dp"
+        android:text="Salas Disponibles"
         android:textAlignment="center"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

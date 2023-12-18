@@ -13,6 +13,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="83dp"
         android:text="Acreditación"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,6 +26,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="23dp"
         android:text="Notificaciones"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/card_est"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_est" />
@@ -84,6 +86,7 @@
             android:layout_marginTop="41dp"
             android:layout_marginRight="129dp"
             android:layout_marginBottom="130dp"
+            android:textStyle="bold"
             android:text="Estudiante"
             android:textColor="@color/claro_txt" />
 
@@ -110,6 +113,7 @@
             android:layout_marginRight="129dp"
             android:layout_marginBottom="84dp"
             android:text="Número De Estudiante"
+            android:textStyle="bold"
             android:textColor="@color/claro_txt" />
 
         <TextView

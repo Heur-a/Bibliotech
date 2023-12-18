@@ -7,12 +7,12 @@
 
     <ImageView
         android:id="@+id/atras"
+        style="@style/iconoflecha"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:onClick="onClick"
-        android:tint="@color/G8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
@@ -155,6 +155,7 @@
 
     <ImageView
         android:id="@+id/editar"
+        style="@style/iconoflecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="355dp"
