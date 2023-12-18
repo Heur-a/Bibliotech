@@ -13,6 +13,46 @@
         <item>2ºPlanta</item>
         <item>3ºPlanta</item>
     </string-array>
+    <string-array name="regions_array">
+            <!-- Países donde se habla inglés -->
+            <item>Estados Unidos</item>
+            <item>Reino Unido</item>
+            <item>Canadá</item>
+            <item>Australia</item>
+            <item>Nueva Zelanda</item>
+            <item>Irlanda</item>
+            <item>Sudáfrica</item>
+            <item>Jamaica</item>
+            <!-- Países donde se habla español -->
+            <item>España</item>
+            <item>México</item>
+            <item>Argentina</item>
+            <item>Colombia</item>
+            <item>Chile</item>
+            <item>Perú</item>
+            <item>Venezuela</item>
+            <item>Ecuador</item>
+            <item>Guatemala</item>
+            <item>Cuba</item>
+            <item>Bolivia</item>
+            <item>República Dominicana</item>
+            <item>Honduras</item>
+            <item>Paraguay</item>
+            <item>El Salvador</item>
+            <item>Nicaragua</item>
+            <item>Costa Rica</item>
+            <item>Puerto Rico</item>
+            <item>Uruguay</item>
+            <item>Guinea Ecuatorial</item>
+    </string-array>
+
+    <string-array name="idioma">
+       <item>Español (España)</item>
+        <item>Inglés (Reino Unido)</item>
+        <item>Valenciano (Catalán)</item>
+    </string-array>
+
+
 
     <!--Crear Cuenta-->
     <string name="recpassword"><u>¿Has olvidado tu contraseña?</u></string>
