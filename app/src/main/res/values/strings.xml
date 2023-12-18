@@ -62,7 +62,7 @@
     <string name="ConfiCorreo">Confirmar correo electrónico</string>
     <string name="Contrasena">Contraseña</string>
     <string name="conficontra">Confirmar Contraseña</string>
-    <string name="CrearUnaCuanta">Crea una cuenta</string>
+    <string name="CrearUnaCuanta">Crear una cuenta</string>
     <string name="navigation_drawer_open">open naviegasjdn dreas</string>
     <string name="navigation_drawer_close">cloce naviegasjdn dreas</string>
     <string name="Busca_el_libro_que_deseas">Busca el libro que deseas...</string>
@@ -95,7 +95,7 @@
     <string name="Con_Accesorios">Con accesorios</string>
     <string name="Sin_Accesorios">Sin Accesorios</string>
     <string name="Saber_Mas">Saber más</string>
-    <string name="Sala_para">Sala Para</string>
+    <string name="Sala_para">Sala Para Dos Personas</string>
     <string name="Dos_Personas">dos personas</string>
     <string name="Cuatro_Personas">cuatro personas</string>
     <string name="Seis_Personas">seis personas</string>
@@ -122,4 +122,7 @@
     <string name="Romance">Romance</string>
     <string name="pfp_image_path" translatable="false">images/pfp</string>
     <string name="images_dafult" translatable="false">images/default</string>
+    <string name="iniciarsesion">Iniciar Sesión</string>
+    <string name="CrearCuenta">Crear Cuenta</string>
+    <string name="descripcionAire">- Aire acondicionado para un ambiente fresco y agradable.</string>
 </resources>

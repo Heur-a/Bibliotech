@@ -9,6 +9,7 @@
     <string name="Contrasena">Contraseña</string>
     <string name="conficontra">Confirmar Contraseña</string>
     <string name="CrearUnaCuanta">Crea una cuenta</string>
+    <string name="iniciarsesion">Iniciar Sesión</string>
     <string name="navigation_drawer_open">open naviegasjdn dreas</string>
     <string name="navigation_drawer_close">cloce naviegasjdn dreas</string>
     <string name="Busca_el_libro_que_deseas">"   Busca el libro que deseas..."</string>
@@ -41,7 +42,7 @@
     <string name="Con_Accesorios">Con accesorios</string>
     <string name="Sin_Accesorios">Sin Accesorios</string>
     <string name="Saber_Mas">Saber más</string>
-    <string name="Sala_para">Sala para</string>
+    <string name="Sala_para">Sala para dos personas</string>
     <string name="Dos_Personas">dos personas</string>
     <string name="Cuatro_Personas">cuatro personas</string>
     <string name="Seis_Personas">seis personas</string>
@@ -66,4 +67,5 @@
     <string name="Genero">Género</string>
     <string name="Sinopsis">Sinopsis</string>
     <string name="Romance">Romance</string>
+    <string name="CrearCuenta">Crear Cuenta</string>
 </resources>
