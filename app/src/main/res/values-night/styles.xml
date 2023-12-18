@@ -41,7 +41,7 @@
 
     <!--Estilos datos reservas-->
     <style name="textos">
-        <item name="android:textColor">@color/G1</item>
+        <item name="android:textColor">@color/G2</item>
     </style>
     <style name="botonesdatosreservas">
         <item name="android:backgroundTint">#C4D2E7</item>
@@ -85,7 +85,7 @@
 
     <!--Estilos datos reservar sala-->
     <style name="txtst">
-        <item name="color">@color/G1</item>
+        <item name="color">@color/G2</item>
         <item name="android:height">48px</item>
         <item name="android:width">411px</item>
         <item name="android:textAlignment">center</item>

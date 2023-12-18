@@ -161,6 +161,7 @@
     <!--Estilos datos reservar sala-->
     <style name="txtst">
         <item name="color">@color/claro_txt</item>
+        <item name="android:textColor">@color/G8</item>
         <item name="android:height">48px</item>
         <item name="android:width">411px</item>
         <item name="android:textAlignment">center</item>

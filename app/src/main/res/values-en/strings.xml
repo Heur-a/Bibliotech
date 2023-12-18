@@ -24,6 +24,7 @@
     <string name="Portal">Your portal to reserve knowledge</string>
     <string name="Recordar">"Remember "</string>
     <string name="Iniciar_Google">Log In With Google</string>
+    <string name="iniciarsesion">Log In</string>
     <string name="Acreditacion">Credential</string>
     <string name="Estudiante">Student</string>
     <string name="Numero_Estudiante">Student Code</string>
@@ -39,7 +40,7 @@
     <string name="Con_Accesorios">With accessories</string>
     <string name="Sin_Accesorios">Without Accesories</string>
     <string name="Saber_Mas">Know more</string>
-    <string name="Sala_para">Room for</string>
+    <string name="Sala_para">Room for two</string>
     <string name="Dos_Personas">two people</string>
     <string name="Cuatro_Personas">four peoble</string>
     <string name="Seis_Personas">six people</string>
@@ -64,4 +65,5 @@
     <string name="Genero">Genre</string>
     <string name="Sinopsis">Synopsis</string>
     <string name="Romance">Romance</string>
+    <string name="CrearCuenta">Create an account</string>
 </resources>

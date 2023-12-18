@@ -13,6 +13,46 @@
         <item>2ºPlanta</item>
         <item>3ºPlanta</item>
     </string-array>
+    <string-array name="regions_array">
+            <!-- Países donde se habla inglés -->
+            <item>Estados Unidos</item>
+            <item>Reino Unido</item>
+            <item>Canadá</item>
+            <item>Australia</item>
+            <item>Nueva Zelanda</item>
+            <item>Irlanda</item>
+            <item>Sudáfrica</item>
+            <item>Jamaica</item>
+            <!-- Países donde se habla español -->
+            <item>España</item>
+            <item>México</item>
+            <item>Argentina</item>
+            <item>Colombia</item>
+            <item>Chile</item>
+            <item>Perú</item>
+            <item>Venezuela</item>
+            <item>Ecuador</item>
+            <item>Guatemala</item>
+            <item>Cuba</item>
+            <item>Bolivia</item>
+            <item>República Dominicana</item>
+            <item>Honduras</item>
+            <item>Paraguay</item>
+            <item>El Salvador</item>
+            <item>Nicaragua</item>
+            <item>Costa Rica</item>
+            <item>Puerto Rico</item>
+            <item>Uruguay</item>
+            <item>Guinea Ecuatorial</item>
+    </string-array>
+
+    <string-array name="idioma">
+       <item>Español (España)</item>
+        <item>Inglés (Reino Unido)</item>
+        <item>Valenciano (Catalán)</item>
+    </string-array>
+
+
 
     <!--Crear Cuenta-->
     <string name="recpassword"><u>¿Has olvidado tu contraseña?</u></string>
@@ -22,7 +62,7 @@
     <string name="ConfiCorreo">Confirmar correo electrónico</string>
     <string name="Contrasena">Contraseña</string>
     <string name="conficontra">Confirmar Contraseña</string>
-    <string name="CrearUnaCuanta">Crea una cuenta</string>
+    <string name="CrearUnaCuanta">Crear una cuenta</string>
     <string name="navigation_drawer_open">open naviegasjdn dreas</string>
     <string name="navigation_drawer_close">cloce naviegasjdn dreas</string>
     <string name="Busca_el_libro_que_deseas">Busca el libro que deseas...</string>
@@ -55,7 +95,7 @@
     <string name="Con_Accesorios">Con accesorios</string>
     <string name="Sin_Accesorios">Sin Accesorios</string>
     <string name="Saber_Mas">Saber más</string>
-    <string name="Sala_para">Sala Para</string>
+    <string name="Sala_para">Sala Para Dos Personas</string>
     <string name="Dos_Personas">dos personas</string>
     <string name="Cuatro_Personas">cuatro personas</string>
     <string name="Seis_Personas">seis personas</string>
@@ -82,4 +122,7 @@
     <string name="Romance">Romance</string>
     <string name="pfp_image_path" translatable="false">images/pfp</string>
     <string name="images_dafult" translatable="false">images/default</string>
+    <string name="iniciarsesion">Iniciar Sesión</string>
+    <string name="CrearCuenta">Crear Cuenta</string>
+    <string name="descripcionAire">- Aire acondicionado para un ambiente fresco y agradable.</string>
 </resources>
