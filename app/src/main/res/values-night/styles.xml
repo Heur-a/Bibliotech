@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Toolbar">
-        <item name="tabIconTint">@color/black</item>
-        <item name="tabIndicatorColor">@color/black</item>
+        <item name="tabIconTint">@color/G8</item>
+        <item name="tabIndicatorColor">@color/G8</item>
+        <item name="backgroundTint">@color/G1</item>
     </style>
 
     <!--Estilos Home-->
@@ -29,6 +30,10 @@
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/claro_txt</item>
     </style>
+
+    <style name="Homebtndes">
+        <item name="backgroundTint">@color/G1</item>
+    </style>
     <!--Fin estilos Home-->
 
     <!--Estilos reservas-->
@@ -40,7 +45,7 @@
 
     <!--Estilos datos reservas-->
     <style name="textos">
-        <item name="android:textColor">@color/G1</item>
+        <item name="android:textColor">@color/G2</item>
     </style>
     <style name="botonesdatosreservas">
         <item name="android:backgroundTint">#C4D2E7</item>
@@ -84,7 +89,7 @@
 
     <!--Estilos datos reservar sala-->
     <style name="txtst">
-        <item name="color">@color/G1</item>
+        <item name="color">@color/G2</item>
         <item name="android:height">48px</item>
         <item name="android:width">411px</item>
         <item name="android:textAlignment">center</item>

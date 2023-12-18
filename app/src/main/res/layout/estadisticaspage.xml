@@ -91,6 +91,7 @@
         android:layout_marginTop="32dp"
         android:text="Estadísticas"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -103,7 +104,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="Libros mas Populares"
-        android:textColor="#486f99"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/PieChart"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />

@@ -81,8 +81,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/textos"
-    android:backgroundTint="@color/G2"
     android:orientation="vertical">
 
     <ImageView
@@ -113,6 +111,7 @@
         android:layout_marginStart="109dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="109dp"
+        style="@style/textos"
         android:layout_marginBottom="50dp"
         app:cardCornerRadius="10dp">
 
@@ -126,10 +125,9 @@
     </androidx.cardview.widget.CardView>
 
     <ExpandableListView
-
         android:id="@+id/eListView"
         style="@style/textos"
-        android:layout_width="393dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layoutDirection="rtl"
         android:visibility="visible" />
