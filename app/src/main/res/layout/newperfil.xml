@@ -23,7 +23,7 @@
         app:cardCornerRadius="200dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView24"
         app:layout_constraintEnd_toEndOf="@+id/imageView24"
-        app:layout_constraintStart_toStartOf="@+id/imageView24"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView24"
         app:layout_constraintVertical_bias="0.25">
 
@@ -39,7 +39,7 @@
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:text="Sofía Torres García"
         android:textColor="@color/gris2"
         android:textSize="20sp"
@@ -135,7 +135,7 @@
         app:layout_constraintEnd_toEndOf="@+id/btn_prf_notis"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/btn_prf_notis"
-        tools:layout_editor_absoluteY="288dp" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_prf_notis" />
 
     <Button
         android:id="@+id/btn_prf_contrasena"
@@ -162,6 +162,7 @@
         style="@style/botones"
         android:layout_width="320dp"
         android:layout_height="69dp"
+        android:layout_marginTop="13dp"
         android:backgroundTintMode="src_atop"
         android:elegantTextHeight="false"
         android:elevation="2dp"
@@ -174,12 +175,10 @@
         app:icon="@android:drawable/ic_popup_reminder"
         app:iconPadding="16dp"
         app:iconTint="@color/gris2"
-        app:layout_constraintBottom_toTopOf="@+id/btn_prf_priv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_id"
-        app:layout_constraintVertical_bias="0.84000003" />
+        app:layout_constraintTop_toBottomOf="@+id/user_id" />
 
     <ImageView
         android:id="@+id/atras3"

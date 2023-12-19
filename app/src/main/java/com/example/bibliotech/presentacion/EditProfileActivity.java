@@ -60,9 +60,13 @@ public class EditProfileActivity extends AppCompatActivity {
                 name.setText(user.getName());
                 email.setText(user.getEmail());
                 surnames.setText(user.getSurnames());
-                Glide.with(EditProfileActivity.this)
-                        .load(user.getPhotoUri())
-                        .into(image);
+                // Load image from Firebase Storage using FirebaseImageLoader
+                FirebaseStorage.getInstance()
+                        .getReference().child("images/pfp/" + FireBaseActions.getUserId()).getDownloadUrl().addOnSuccessListener(task -> {
+                            Glide.with(getApplicationContext())
+                                    .load(task)
+                                    .into(image);
+                        });
             }
 
             @Override

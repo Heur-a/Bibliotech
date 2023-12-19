@@ -21,16 +21,16 @@ import com.google.firebase.storage.StorageReference;
 
  public class perfilActivity extends AppCompatActivity {
 
-    TextView name, surnames, email, category;
+    TextView name, email, id;
     ImageView image;
      public static UserFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.perfil); // Set the layout for this activity
+        setContentView(R.layout.newperfil); // Set the layout for this activity
         db = new UserFirestore();
 
-        ImageView editarImageView = findViewById(R.id.editar);
+        ImageView editarImageView = findViewById(R.id.editar2);
         editarImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,11 +74,9 @@ import com.google.firebase.storage.StorageReference;
 
 
 
-        name =  findViewById(R.id.textViewNameProfile);
-        surnames = findViewById(R.id.textViewSurnames);
-        email =  findViewById(R.id.textViewEmailProfile);
-        category =  findViewById(R.id.textViewCategoryProfile);
-        image = findViewById(R.id.imageViewProfile);
+        name =  findViewById(R.id.user_name);
+        image = findViewById(R.id.img_user);
+        id = findViewById(R.id.user_id);
 
         updateNames();
 
@@ -98,14 +96,15 @@ import com.google.firebase.storage.StorageReference;
              @Override
              public void onUserLoaded(User user) {
                  name.setText(user.getName());
-                 email.setText(user.getEmail());
-                 surnames.setText(user.getSurnames());
+                 id.setText(user.getId());
                  // Load image from Firebase Storage using FirebaseImageLoader
                  FirebaseStorage.getInstance()
                          .getReference().child("images/pfp/" + FireBaseActions.getUserId()).getDownloadUrl().addOnSuccessListener(task -> {
                              Glide.with(perfilActivity.this)
                                      .load(task)
                                      .into(image);
+                         }).addOnFailureListener(e -> {
+                             Log.d("profileImgDownload", e.getMessage());
                          });
 
 

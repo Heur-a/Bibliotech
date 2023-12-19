@@ -136,7 +136,19 @@ public class FireBaseActions {
             refreshUser();
             User updateUser = FireBaseActions.getUserAuth(Context);
             UserFirestore dbu = new UserFirestore();
-            dbu.add(updateUser);
+            //See if user already exists
+            dbu.getUser(getUserId(), new UserFirestore.UserCallback() {
+                @Override
+                public void onUserLoaded(User user) {
+
+                }
+                //If not, create one
+                @Override
+                public void onUserError(Exception e) {
+                    dbu.add(updateUser);
+                }
+            });
+
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                     | Intent.FLAG_ACTIVITY_NEW_TASK
                     | Intent.FLAG_ACTIVITY_CLEAR_TASK);

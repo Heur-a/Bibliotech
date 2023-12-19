@@ -6,6 +6,7 @@ import com.example.bibliotech.datos.User;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -26,7 +27,7 @@ public class UserFirestore {
 
     public void add(User user) {
         // Añade un usuario comprobando si ya existen datos sin sobrescribirlo todo
-        users.document(user.id).set(user);
+        users.document(user.id).set(user, SetOptions.merge());
     }
 
     public void delete(String id) {
