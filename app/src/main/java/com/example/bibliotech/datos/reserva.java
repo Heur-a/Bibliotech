@@ -22,6 +22,10 @@ public class reserva {
         this.userId = userId;
     }
 
+    public reserva() {
+
+    }
+
     public Date getFechaIni() {
         return fechaIni;
     }
