@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Mis Reservas"
+        android:text="@string/Mis_reservas"
         style="@style/titulo"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -62,12 +62,12 @@
             android:layout_height="match_parent"
             android:layout_margin="0dp"
             android:padding="0dp"
-            android:text="Libros" />
+            android:text="@string/Libros" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Salas"
+            android:text="@string/Salas"
             tools:layout_editor_absoluteX="190dp"
             tools:layout_editor_absoluteY="89dp" />
 
