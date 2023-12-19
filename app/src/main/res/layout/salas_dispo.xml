@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="170dp"
             android:layout_marginTop="19dp"
-            android:text="Sala para dos personas"
+            android:text="@string/Sala_para"
             android:textColor="#5379a4"
             android:textSize="18sp" />
 
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="172dp"
             android:layout_marginTop="49dp"
-            android:text="Primera Planta H110"
+            android:text="@string/Primera_planta_H110"
             android:textColor="#5d83ae"
             android:textSize="13sp" />
 
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="172dp"
             android:layout_marginTop="74dp"
-            android:text="Con accesorios"
+            android:text="@string/Con_Accesorios"
             android:textColor="#5d83ae"
             android:textSize="13sp" />
 
@@ -108,7 +108,7 @@
             android:layout_height="37dp"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="104dp"
-            android:text="Saber más"
+            android:text="@string/Saber_Mas"
             app:cornerRadius="7dp" />
 
         <ImageView
@@ -135,7 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="170dp"
             android:layout_marginTop="19dp"
-            android:text="Sala para dos personas"
+            android:text="@string/Sala_para"
             android:textColor="#5379a4"
             android:textSize="18sp" />
 
@@ -145,7 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="172dp"
             android:layout_marginTop="49dp"
-            android:text="Primera Planta H110"
+            android:text="@string/Primera_planta_H110"
             android:textColor="#5d83ae"
             android:textSize="13sp" />
 
@@ -155,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="172dp"
             android:layout_marginTop="74dp"
-            android:text="Con accesorios"
+            android:text="@string/Con_Accesorios"
             android:textColor="#5d83ae"
             android:textSize="13sp" />
 
@@ -191,7 +191,7 @@
         android:layout_width="409dp"
         android:layout_height="68dp"
         android:layout_marginTop="72dp"
-        android:text="Salas Disponibles"
+        android:text="@string/Las_Salas_Disponibles_Son"
         android:textAlignment="center"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -218,7 +218,7 @@
             android:layout_height="37dp"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="104dp"
-            android:text="Saber más"
+            android:text="@string/Saber_Mas"
             app:cornerRadius="7dp" />
 
         <ImageView
@@ -245,7 +245,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="170dp"
             android:layout_marginTop="19dp"
-            android:text="Sala para dos personas"
+            android:text="@string/Sala_para"
             android:textColor="#5379a4"
             android:textSize="18sp" />
 
@@ -255,7 +255,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="172dp"
             android:layout_marginTop="49dp"
-            android:text="Primera Planta H110"
+            android:text="@string/Primera_planta_H110"
             android:textColor="#5d83ae"
             android:textSize="13sp" />
 
@@ -265,7 +265,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="172dp"
             android:layout_marginTop="74dp"
-            android:text="Con accesorios"
+            android:text="@string/Con_Accesorios"
             android:textColor="#5d83ae"
             android:textSize="13sp" />
 

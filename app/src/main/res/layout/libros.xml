@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="49dp"
-        android:text="Más populares"
+        android:text="@string/Mas_Populares"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bar_buscar" />
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Más populares"
+        android:text="@string/Mas_Populares"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/bar_buscar"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView3" />
@@ -170,7 +170,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:backgroundTint="#c4d2e7"
-        android:text="Filtrar"
+        android:text="@string/Filtrar"
         android:textColor=" #7d899f"
         android:textSize="16sp"
         app:cornerRadius="5dp"

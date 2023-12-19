@@ -34,7 +34,7 @@
         android:id="@+id/btnizq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="izq"
+        android:text="@string/izq"
         app:layout_constraintEnd_toStartOf="@+id/btnarri"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
@@ -43,7 +43,7 @@
         android:id="@+id/btnarri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="arri"
+        android:text="@string/Arri"
         app:layout_constraintEnd_toStartOf="@+id/btnabaj"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnizq" />
@@ -52,7 +52,7 @@
         android:id="@+id/btnabaj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="baj"
+        android:text="@string/baj"
         app:layout_constraintEnd_toStartOf="@+id/btnder"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnarri" />
@@ -61,7 +61,7 @@
         android:id="@+id/btnder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="dere"
+        android:text="@string/dere"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnabaj" />
@@ -70,7 +70,7 @@
         android:id="@+id/btnguar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="guardar pos"
+        android:text="@string/Guardar_pos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

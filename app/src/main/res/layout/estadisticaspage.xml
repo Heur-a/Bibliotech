@@ -89,7 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Estadísticas"
+        android:text="@string/Estadisticas"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="Libros mas Populares"
+        android:text="@string/Libros_populares"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/PieChart"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
@@ -149,7 +149,7 @@
         style="@style/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ciencia"
+        android:text="@string/Ciencia"
         app:layout_constraintEnd_toEndOf="@+id/progressBar1"
         app:layout_constraintStart_toStartOf="@+id/progressBar1"
         app:layout_constraintTop_toBottomOf="@+id/porc1" />
@@ -159,7 +159,7 @@
         style="@style/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Novela"
+        android:text="@string/Novela"
         app:layout_constraintEnd_toEndOf="@+id/progressBar2"
         app:layout_constraintStart_toStartOf="@+id/progressBar2"
         app:layout_constraintTop_toBottomOf="@+id/porc2" />
@@ -168,7 +168,7 @@
         android:id="@+id/textView64"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Poesia"
+        android:text="@string/Poesia"
         app:layout_constraintEnd_toEndOf="@+id/progressBar3"
         app:layout_constraintStart_toStartOf="@+id/progressBar3"
         app:layout_constraintTop_toBottomOf="@+id/porc3" />
@@ -178,7 +178,7 @@
         style="@style/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Historia"
+        android:text="@string/Historia"
         app:layout_constraintEnd_toEndOf="@+id/progressBar4"
         app:layout_constraintStart_toStartOf="@+id/progressBar4"
         app:layout_constraintTop_toBottomOf="@+id/porc4" />
