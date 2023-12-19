@@ -18,14 +18,16 @@ import java.util.List;
 public class reservaLibro extends reserva {
 
     private String bookId;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db;
 
     public reservaLibro(Date fechaIni, Date fechaFin, String userId, String bookId) {
         super(fechaIni, fechaFin, userId);
+        db = FirebaseFirestore.getInstance();
         this.bookId = bookId;
     }
     public reservaLibro() {
-        super(null,null,null);
+        super();
+        db = FirebaseFirestore.getInstance();
         this.bookId = null;
 
     }
@@ -67,23 +69,26 @@ public class reservaLibro extends reserva {
                 });
     }
 
-    static public List<reservaLibro> getReservasBook(String user) {
-        List<reservaLibro> reservaList = new ArrayList<>();
+    public interface ReservasCallback {
+        void onReservasLoaded(List<reservaLibro> reservaList);
+        void onReservasError(String errorMessage);
+    }
+
+    public static void getReservasBook(String userid, ReservasCallback callback) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference reservaCollectionRef = db.collection("users").document(user).collection("reservaLibro");
+        CollectionReference reservaCollectionRef = db.collection("users").document(userid).collection("reservaLibro");
 
         reservaCollectionRef.get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            reservaLibro reserva = document.toObject(reservaLibro.class);
-                            reservaList.add(reserva);
-                        }
-                    } else {
-                        // Handle error
+                .addOnSuccessListener(task -> {
+                    List<reservaLibro> reservaList = new ArrayList<>();
+                    for (QueryDocumentSnapshot document : task) {
+                        reservaLibro reserva = document.toObject(reservaLibro.class);
+                        reservaList.add(reserva);
                     }
+                    callback.onReservasLoaded(reservaList);
+                })
+                .addOnFailureListener(e -> {
+                    callback.onReservasError("Error: " + e.getMessage());
                 });
-
-        return reservaList;
     }
 }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -29,6 +30,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.example.bibliotech.datos.User;
 import com.example.bibliotech.datos.firestore.FireBaseActions;
+import com.example.bibliotech.datos.reservaLibro;
 import com.example.bibliotech.presentacion.AcercaDeActivity;
 import com.example.bibliotech.presentacion.home;
 import com.example.bibliotech.presentacion.libros;
@@ -43,6 +45,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -72,6 +75,23 @@ public class MainActivity extends AppCompatActivity {
         TextView headerText = headerView.findViewById(R.id.headerText);
         TextView idText = headerView.findViewById(R.id.headerId);
         //ponerDatosMockup();
+        reservaLibro reservaLibro = new reservaLibro();
+        List<reservaLibro> resrvlib = new ArrayList<>();
+        reservaLibro.getReservasBook(FireBaseActions.user.getUid(), new reservaLibro.ReservasCallback() {
+            @Override
+            public void onReservasLoaded(List<reservaLibro> reservaList) {
+                resrvlib.addAll(reservaList);
+                // Aquí puedes realizar acciones con la lista de reservas cargadas
+                for (reservaLibro reserva : resrvlib) {
+                    Log.d("Datos de la DB", reserva.toString());
+                }
+            }
+
+            @Override
+            public void onReservasError(String errorMessage) {
+                Log.d("reservaLibro getBooks", "Error: " + errorMessage);
+            }
+        });
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override

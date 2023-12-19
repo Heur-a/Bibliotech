@@ -30,6 +30,10 @@
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/claro_txt</item>
     </style>
+
+    <style name="Homebtndes">
+        <item name="backgroundTint">@color/G1</item>
+    </style>
     <!--Fin estilos Home-->
 
     <!--Estilos reservas-->

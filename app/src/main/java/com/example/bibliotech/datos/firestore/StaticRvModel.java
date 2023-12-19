@@ -4,13 +4,15 @@ public class StaticRvModel {
 
     private String bk_name, dia_dev, mes_res, dia_res, año_res;
     private boolean invisible;
+    private String bookId;
 
-    public StaticRvModel(String bk_name, String dia_dev, String mes_res, String dia_res, String año_res, boolean invisible) {
+    public StaticRvModel(String bk_name,String bookId, String dia_dev, String mes_res, String dia_res, String año_res, boolean invisible) {
         this.bk_name = bk_name;
         this.dia_dev = dia_dev;
         this.mes_res = mes_res;
         this.dia_res = dia_res;
         this.año_res = año_res;
+        this.bookId = bookId;
         this.invisible = invisible;
     }
 
@@ -36,5 +38,8 @@ public class StaticRvModel {
 
     public boolean isInvisible() {
         return invisible;
+    }
+    public String getBookId() {
+        return bookId;
     }
 }
