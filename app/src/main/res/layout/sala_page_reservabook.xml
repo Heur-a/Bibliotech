@@ -54,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
         android:text="Nombre del libro:"
+        style="@style/textos"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/textView50"
         app:layout_constraintTop_toBottomOf="@+id/day_res" />
@@ -61,11 +62,14 @@
     <TextView
         android:id="@+id/bk_name"
         style="@style/textos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="63dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:text="bookname"
         android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/num_pages"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView50"
         app:layout_constraintTop_toBottomOf="@+id/textView63" />
 
