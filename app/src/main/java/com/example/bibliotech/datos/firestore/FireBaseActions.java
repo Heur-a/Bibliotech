@@ -145,7 +145,20 @@ public class FireBaseActions {
                 //If not, create one
                 @Override
                 public void onUserError(Exception e) {
+
                     dbu.add(updateUser);
+                    dbu.getUser(getUserId(), new UserFirestore.UserCallback() {
+                        @Override
+                        public void onUserLoaded(User user) {
+                            uploadImageUri(user.getPhotoUri(),user.getId(),Context.getResources().getString(R.string.pfp_image_path),Context);
+                        }
+
+                        @Override
+                        public void onUserError(Exception e) {
+                            Log.d("Upload first Image", e.getMessage());
+                        }
+                    });
+
                 }
             });
 
@@ -168,7 +181,7 @@ public class FireBaseActions {
             String id = user.getUid();
 
             //Put image on Storage
-            uploadImageUri(photoUrl,id,Context.getResources().getString(R.string.pfp_image_path),Context);
+
 
             return new User(email, name ,photoUrl,id);
 
@@ -177,7 +190,7 @@ public class FireBaseActions {
         return null;
     }
 
-    private static void uploadImageUri (@NonNull Uri imageUri, @NonNull String imageName, @Nullable String imagePath, @NonNull Context context){
+    public static void uploadImageUri (@NonNull Uri imageUri, @NonNull String imageName, @Nullable String imagePath, @NonNull Context context){
 
         new Thread(() -> {
             try {
