@@ -9,6 +9,7 @@ import android.graphics.ColorMatrix;
 import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -42,20 +43,29 @@ public class libroresActivity extends AppCompatActivity {
         String fechaReservadia = getIntent().getStringExtra("fechaReservadia");
         String fechaReservames = getIntent().getStringExtra("fechaReservames");
         String fechaReservaano = getIntent().getStringExtra("fechaReservaano");
+        String isbn = getIntent().getStringExtra("isbn");
+        String autors = getIntent().getStringExtra("author");
+        String paginas = getIntent().getStringExtra("pageNumber");
 
 // Muestra los datos en tus vistas
         TextView user = findViewById(R.id.username);
         TextView nombreLibroTextView = findViewById(R.id.bk_name);
         TextView fechaDevolucionTextView = findViewById(R.id.day_dev);
         TextView fechaReservaTextView = findViewById(R.id.day_res);
-
+        TextView numpages = findViewById(R.id.num_pages);
+        TextView autor = findViewById(R.id.aut_name);
+        Log.d("autor", autors);
+        //Log.d("num",paginas);
         user.setText(username);
         nombreLibroTextView.setText(nombreLibro);
         fechaDevolucionTextView.setText(fechaDevolucion);
+        autor.setText(autors);
+        numpages.setText(paginas);
+
 
         fechaReservaTextView.setText(fechaReservadia + "/" + fechaReservames + "/" + fechaReservaano);
         img_qr = findViewById(R.id.qr);
-        generateQR();
+        generateQR(isbn);
 
         btn_volver = findViewById(R.id.btn_volver);
         btn_volver.setOnClickListener(new View.OnClickListener() {
@@ -68,12 +78,12 @@ public class libroresActivity extends AppCompatActivity {
         });
     }
 
-    private void generateQR() {
-        String userID = FireBaseActions.getUserId();
+    private void generateQR(String isbn) {
+
         MultiFormatWriter writer = new MultiFormatWriter();
 
         try {
-            BitMatrix matrix = writer.encode(userID, BarcodeFormat.QR_CODE, 400, 400);
+            BitMatrix matrix = writer.encode(isbn, BarcodeFormat.QR_CODE, 400, 400);
 
             // Cambiar el color del fondo del código QR (en este caso, blanco)
             int bgColor = Color.WHITE;
