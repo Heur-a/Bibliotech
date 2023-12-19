@@ -55,7 +55,7 @@ public class Book {
     }
 
     public void setPagenumber(String pagenumber) {
-        this.author = pagenumber;
+        this.pagenumber = pagenumber;
     }
 
     public boolean isDisponible() {
