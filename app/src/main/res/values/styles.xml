@@ -5,9 +5,10 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
     <!-- Define el color de la barra de notificaciones -->
-    <item name="colorPrimaryDark">@color/G2</item> <!-- Rojo, por ejemplo -->
+    <item name="colorPrimaryDark">@color/G2</item>
     <!-- Otros atributos del tema -->
    </style>
+
     <style name="Toolbar">
         <item name="tabIconTint">@color/white</item>
         <item name="tabIndicatorColor">@color/white</item>
