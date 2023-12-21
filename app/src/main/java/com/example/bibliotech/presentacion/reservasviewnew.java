@@ -276,7 +276,7 @@ import java.util.Locale;
 
         private void cargarDatos() {
             resrvlib.clear();
-            reservaLibro.getReservasBook(FireBaseActions.user.getUid(), new reservaLibro.ReservasCallback() {
+            reservaLibro.getReservasBook(FireBaseActions.user.getUid(), new reservaLibro.ReservasLibrosCallback() {
                 @Override
                 public void onReservasLoaded(List<reservaLibro> reservaList) {
                     resrvlib.addAll(reservaList);

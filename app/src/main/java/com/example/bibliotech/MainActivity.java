@@ -78,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
         //ponerDatosMockup();
         reservaLibro reservaLibro = new reservaLibro();
         List<reservaLibro> resrvlib = new ArrayList<>();
-        reservaLibro.getReservasBook(FireBaseActions.user.getUid(), new reservaLibro.ReservasCallback() {
+        reservaLibro.getReservasBook(FireBaseActions.user.getUid(), new com.example.bibliotech.datos.reservaLibro.ReservasLibrosCallback() {
             @Override
-            public void onReservasLoaded(List<reservaLibro> reservaList) {
+            public void onReservasLoaded(List<com.example.bibliotech.datos.reservaLibro> reservaList) {
                 resrvlib.addAll(reservaList);
                 // Aquí puedes realizar acciones con la lista de reservas cargadas
                 for (reservaLibro reserva : resrvlib) {

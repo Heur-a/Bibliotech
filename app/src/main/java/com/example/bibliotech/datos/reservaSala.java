@@ -9,10 +9,14 @@ import androidx.annotation.NonNull;
 import com.example.bibliotech.datos.reserva;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class reservaSala extends reserva {
 
@@ -23,9 +27,15 @@ public class reservaSala extends reserva {
         this.roomId = roomId;
     }
 
+    public reservaSala() {
+
+    }
+
     public String getRoomId() {
         return roomId;
     }
+
+
 
     public void setRoomId(String roomId) {
         this.roomId = roomId;
@@ -58,6 +68,29 @@ public class reservaSala extends reserva {
                         Log.w(TAG, "Error updating the document:", e);
                     }
                 });
+    }
+
+    public static void getReservaSala(String userid, ReservasSalasCallback callback) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference reservaCollectionRef = db.collection("users").document(userid).collection("reservaLibro");
+
+        reservaCollectionRef.get()
+                .addOnSuccessListener(task -> {
+                    List<reservaSala> reservaList = new ArrayList<>();
+                    for (QueryDocumentSnapshot document : task) {
+                        reservaSala reserva = document.toObject(reservaSala.class);
+                        reservaList.add(reserva);
+                    }
+                    callback.onReservasLoaded(reservaList);
+                })
+                .addOnFailureListener(e -> {
+                    callback.onReservasError("Error: " + e.getMessage());
+                });
+    }
+
+    public interface ReservasSalasCallback {
+        void onReservasLoaded(List<reservaSala> reservaList);
+        void onReservasError(String errorMessage);
     }
 }
 
