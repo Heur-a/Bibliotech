@@ -44,6 +44,7 @@ import com.example.bibliotech.presentacion.salas;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
         //ponerDatosMockup();
         reservaLibro reservaLibro = new reservaLibro();
         List<reservaLibro> resrvlib = new ArrayList<>();
-        reservaLibro.getReservasBook(FireBaseActions.user.getUid(), new reservaLibro.ReservasCallback() {
+        reservaLibro.getReservasBook(FireBaseActions.user.getUid(), new com.example.bibliotech.datos.reservaLibro.ReservasLibrosCallback() {
             @Override
-            public void onReservasLoaded(List<reservaLibro> reservaList) {
+            public void onReservasLoaded(List<com.example.bibliotech.datos.reservaLibro> reservaList) {
                 resrvlib.addAll(reservaList);
                 // Aquí puedes realizar acciones con la lista de reservas cargadas
                 for (reservaLibro reserva : resrvlib) {
@@ -275,9 +276,13 @@ public class MainActivity extends AppCompatActivity {
     public static void updateInfo (ImageView pfp, TextView username, TextView id, Context Context) {
         if (FireBaseActions.getCurrentUser() != null) {
             User credentials = FireBaseActions.getUserAuth(Context);
-            Glide.with(Context)
-                    .load(credentials.photoUri)
-                    .into(pfp);
+            // Load image from Firebase Storage using FirebaseImageLoader
+            FirebaseStorage.getInstance()
+                    .getReference().child("images/pfp/" + FireBaseActions.getUserId()).getDownloadUrl().addOnSuccessListener(task -> {
+                        Glide.with(Context)
+                                .load(task)
+                                .into(pfp);
+                    });
             username.setText(credentials.username);
             id.setText(credentials.id);
         }

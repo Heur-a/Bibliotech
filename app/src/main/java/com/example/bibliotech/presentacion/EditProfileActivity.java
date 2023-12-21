@@ -12,7 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -20,8 +25,11 @@ import com.example.bibliotech.R;
 import com.example.bibliotech.datos.User;
 import com.example.bibliotech.datos.firestore.FireBaseActions;
 import com.example.bibliotech.datos.firestore.UserFirestore;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 
 import java.net.URI;
@@ -29,8 +37,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EditProfileActivity extends AppCompatActivity {
+    private static final int PICK_IMAGE_REQUEST = 1;
     private TextView name, surnames, email, category;
     private ImageView image;
+
+    private Uri imageUri;
 
     private StorageReference ref;
     private UserFirestore db;
@@ -50,6 +61,21 @@ public class EditProfileActivity extends AppCompatActivity {
             changeCredentials();
         });
 
+
+        ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+                uri -> {
+                    // Handle the returned Uri
+                    imageUri = uri;
+                    Glide.with(getApplicationContext())
+                            .load(uri)
+                            .into(image);
+                });
+        image.setOnClickListener(click -> {
+            // Crear un intent per seleccionar contingut
+                mGetContent.launch("image/*");
+
+        });
+
     }
 
     private void updateNames() {
@@ -60,13 +86,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 name.setText(user.getName());
                 email.setText(user.getEmail());
                 surnames.setText(user.getSurnames());
-                // Load image from Firebase Storage using FirebaseImageLoader
-                FirebaseStorage.getInstance()
-                        .getReference().child("images/pfp/" + FireBaseActions.getUserId()).getDownloadUrl().addOnSuccessListener(task -> {
-                            Glide.with(getApplicationContext())
-                                    .load(task)
-                                    .into(image);
-                        });
+
             }
 
             @Override
@@ -107,10 +127,32 @@ public class EditProfileActivity extends AppCompatActivity {
 
             userFirestore.add(update);
 
+
+            // Handle  Uri
+            StorageReference ref = FireBaseActions.ref.child(getString(R.string.pfp_image_path) + "/" + FireBaseActions.getUserId());
+            UploadTask upload = ref.putFile(imageUri);
+
+            // Register observers to listen for when the download is done or if it fails
+            upload.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                    Toast.makeText(getApplicationContext(),"No se ha podido subir la imagen ",Toast.LENGTH_SHORT).show();
+                    Log.d("EditProfileUploadPfp",exception.getMessage());
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(getApplicationContext(),"Imagen subida satisfactoriamente",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(EditProfileActivity.this, perfilActivity.class);
+                    startActivity(intent);
+                    finish(); // Tanca l'activitat actual
+                }
+            });
+
+
             // Crea un intent per reiniciar l'activitat amb les dades actualitzades
-            Intent intent = new Intent(EditProfileActivity.this, perfilActivity.class);
-            startActivity(intent);
-            finish(); // Tanca l'activitat actual
+
         }
     }
 
