@@ -72,7 +72,7 @@ public class reservaSala extends reserva {
 
     public static void getReservaSala(String userid, ReservasSalasCallback callback) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference reservaCollectionRef = db.collection("users").document(userid).collection("reservaLibro");
+        CollectionReference reservaCollectionRef = db.collection("users").document(userid).collection("reservaSala");
 
         reservaCollectionRef.get()
                 .addOnSuccessListener(task -> {
