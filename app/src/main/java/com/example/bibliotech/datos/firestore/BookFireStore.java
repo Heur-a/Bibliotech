@@ -4,17 +4,19 @@ import static android.content.ContentValues.TAG;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.bumptech.glide.Glide;
 import com.example.bibliotech.datos.Book;
-import com.example.bibliotech.datos.BookAsync;
-import com.example.bibliotech.datos.User;
+import com.example.bibliotech.datos.reservaLibro;
+import com.example.bibliotech.datos.reservaSala;
+import com.example.bibliotech.presentacion.perfilActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -79,24 +81,33 @@ public class BookFireStore{
 
     }
 
-    public void getBooksSet() {
-        final Set<Book> bookList = new HashSet<>();
-        final CountDownLatch latch = new CountDownLatch(1);
+    public  void  getBooksSet(BookFireStoreSetCallback callback) {
+         Set<Book> bookList = new HashSet<>();;
 
         books.get()
-                .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Book book = document.toObject(Book.class);
-                            bookList.add(book);
-                        }
-                    } else {
-                        Log.w(TAG, "Error getting documents.", task.getException());
-                    }
-
+                .addOnSuccessListener(task -> {
+            for (QueryDocumentSnapshot document : task) {
+                Book book = document.toObject(Book.class);
+                FirebaseStorage.getInstance()
+                        .getReference().child("images/portada/" + book.getISBN() + ".jpg").getDownloadUrl().addOnSuccessListener(task2 -> {
+                            book.setImageUri(task2);
+                        }).addOnFailureListener(e -> {
+                            Log.d("BookFireStoreImageDownload", e.getMessage());
+                        });
+                bookList.add(book);
+            }
+            callback.onBookSetLoaded(bookList);
+        })
+                .addOnFailureListener(e -> {
+                    callback.onBookSetError("Error: " + e.getMessage());
                 });
     }
 
+
+    public interface BookFireStoreSetCallback {
+        void onBookSetLoaded(Set<Book> books);
+        void onBookSetError(String errorMessage);
+    }
 
 
 

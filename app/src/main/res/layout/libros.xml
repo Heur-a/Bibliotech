@@ -59,67 +59,10 @@
         app:layout_constraintStart_toStartOf="@+id/bar_buscar"
         app:layout_constraintTop_toBottomOf="@+id/textView12">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerViewLibros"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:scrollbarSize="0dp"
-            android:scrollbarThumbHorizontal="@android:color/transparent"
-            android:scrollbarThumbVertical="@android:color/transparent"
-            android:scrollbarTrackVertical="@android:color/transparent">
-
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/nav_view"
-                style="@style/fondolib"
-                android:layout_width="144dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:fitsSystemWindows="false"
-                android:scrollbarSize="0dp"
-                android:scrollbarThumbVertical="@android:color/transparent"
-                android:scrollbars="none"
-                android:verticalScrollbarPosition="left"
-                app:headerLayout="@layout/book_card_viewa" />
-
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/nav_view2"
-                style="@style/fondolib"
-                android:layout_width="144dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:scrollbarSize="0dp"
-                android:scrollbarThumbVertical="@android:color/transparent"
-                android:scrollbars="none"
-                android:verticalScrollbarPosition="left"
-                app:headerLayout="@layout/book_card_viewb" />
-
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/nav_view3"
-                style="@style/fondolib"
-                android:layout_width="144dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:scrollbarSize="0dp"
-                android:scrollbarThumbVertical="@android:color/transparent"
-                android:scrollbars="none"
-                android:verticalScrollbarPosition="left"
-                app:headerLayout="@layout/book_card_viewc" />
-
-            <com.google.android.material.navigation.NavigationView
-                style="@style/fondolib"
-
-                android:id="@+id/nav_view4"
-                android:layout_width="144dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:scrollbarSize="0dp"
-                android:scrollbarThumbVertical="@android:color/transparent"
-                android:scrollbars="none"
-                android:verticalScrollbarPosition="left"
-                app:headerLayout="@layout/book_card_viewd" />
-
-
-        </LinearLayout>
+            android:layout_height="match_parent" />
     </HorizontalScrollView>
 
     <HorizontalScrollView

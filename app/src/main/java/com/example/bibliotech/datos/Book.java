@@ -1,5 +1,9 @@
 package com.example.bibliotech.datos;
 
+import android.net.Uri;
+
+import java.io.Serializable;
+
 public class Book {
 
     //book
@@ -17,6 +21,8 @@ public class Book {
 
     private boolean reserved;
     private String section;
+
+    private Uri ImageUri;
 
 
     public Book(String ISBN, String author, String editorial, String name, String pageNumber, String section, String sinopsis) {
@@ -104,6 +110,22 @@ public class Book {
 
     public void setSinopsis(String sinopsis) {
         this.sinopsis = sinopsis;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public Uri getImageUri() {
+        return ImageUri;
+    }
+
+    public void setImageUri(Uri imageUri) {
+        ImageUri = imageUri;
     }
 
     @Override
