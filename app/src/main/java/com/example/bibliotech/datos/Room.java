@@ -1,13 +1,17 @@
 package com.example.bibliotech.datos;
 
+import java.util.List;
+
 public class Room {
     private String nombreSala;
-
     private String numberpeople;
-    private String[] accesories;
+    private List<String> accesories; // Cambiado de String[] a List<String>
     private String disponibility = "No";
 
-    public Room(String nombreSala, String numberpeople, String[] accesories, String disponibility) {
+    // Constructor sin argumentos
+    public Room() {}
+
+    public Room(String nombreSala, String numberpeople, List<String> accesories, String disponibility) {
         this.nombreSala = nombreSala;
         this.numberpeople = numberpeople;
         this.accesories = accesories;
@@ -31,30 +35,38 @@ public class Room {
     }
 
     public String getNumberpeople() {
-
         return numberpeople;
     }
 
     public void setNumberpeople(String numberpeople) {
-
         this.numberpeople = numberpeople;
     }
 
-    public String[] getAccesories() {
+    public List<String> getAccesories() {
         return accesories;
     }
 
-    public void setAccesories(String[] accesories) {
+    public void setAccesories(List<String> accesories) {
         this.accesories = accesories;
     }
 
     @Override
     public String toString() {
+        StringBuilder accessoriesStr = new StringBuilder("[");
+        if (accesories != null && !accesories.isEmpty()) {
+            for (String accessory : accesories) {
+                accessoriesStr.append(accessory).append(", ");
+            }
+            // Eliminar la coma y el espacio extra al final
+            accessoriesStr.setLength(accessoriesStr.length() - 2);
+        }
+        accessoriesStr.append("]");
+
         return "Room{" +
-                "numberpeople='" + numberpeople + '\'' +
-                "accesories='" + accesories + '\'' +
-                "disponibility='" + disponibility + '\'' +
+                "nombreSala='" + nombreSala + '\'' +
+                ", numberpeople='" + numberpeople + '\'' +
+                ", accesories=" + accessoriesStr +
+                ", disponibility='" + disponibility + '\'' +
                 '}';
     }
-
 }

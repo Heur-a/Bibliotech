@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView30"
+        style="@style/textos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Numero_Personas"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/textView62"
+        app:layout_constraintTop_toTopOf="@+id/textView63" />
+
+    <TextView
+        android:id="@+id/num_pages"
+        style="@style/textos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/Numero_Personas"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView30"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <TextView
+        android:id="@+id/textView63"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:text="@string/Nombre"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/textView50"
+        app:layout_constraintTop_toBottomOf="@+id/day_res" />
+
+    <TextView
+        android:id="@+id/bk_name"
+        style="@style/textos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/Nombre"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView50"
+        app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+    <TextView
+        android:id="@+id/textView62"
+        style="@style/textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/Fecha_devolucion"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView50"
+        app:layout_constraintTop_toBottomOf="@+id/cardView6" />
+
+    <TextView
+        android:id="@+id/day_dev"
+        style="@style/textos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/Fecha"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView62"
+        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView6"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView36">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/fondolib"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/proyectosemaitnt"
+                android:backgroundTint="#88a7d0"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="center"
+                    android:text="user"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/proyectosento"
+                android:backgroundTint="@color/gris"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/qr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/G8"
+                    android:backgroundTint="@color/claroFondo.toolbar"
+                    android:backgroundTintMode="multiply"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView50"
+        style="@style/textos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/Fecha_reserva"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView62"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView6" />
+
+    <TextView
+        android:id="@+id/day_res"
+        style="@style/textos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/Fecha"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView50"
+        app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+    <Button
+        android:id="@+id/btn_cancelar_book"
+        style="@style/botonesdatosreservas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="195dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/Cancelar"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_volver"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bk_name" />
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/Anadir"
+        style="@style/botonesdatosreservas"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_volver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_volver"
+        app:layout_constraintTop_toTopOf="@+id/btn_volver"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btn_volver"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/botonvolver"
+        android:text="@string/Volver"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_cancelar_book"
+        app:layout_constraintEnd_toStartOf="@+id/btn_add"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_cancelar_book"
+        app:layout_constraintTop_toTopOf="@+id/btn_cancelar_book"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/Datos_Reserva"
+        android:textStyle="bold"
+        style="@style/textos"
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

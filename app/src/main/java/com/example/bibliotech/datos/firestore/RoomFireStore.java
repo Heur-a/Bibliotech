@@ -1,13 +1,10 @@
 package com.example.bibliotech.datos.firestore;
 
-import static android.content.ContentValues.TAG;
-
 import android.util.Log;
 
 import com.example.bibliotech.datos.Room;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -15,50 +12,54 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 
 public class RoomFireStore {
 
     private CollectionReference rooms;
 
+    public interface RoomCallback {
+        void onRoomLoaded(Room room);
 
-    public RoomFireStore () {
+        void onRoomError(Exception e);
+    }
+
+    public interface SetRoomCallback {
+        void onRoomsLoaded(Set<Room> roomList);
+
+        void onRoomsError(Exception e);
+    }
+
+    public RoomFireStore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        rooms = db.collection("users");
+        rooms = db.collection("rooms");
     }
 
-    public void add(Room Object) {
-        rooms.document(Object.getNombreSala()).set(Object);
+    public void add(Room room) {
+        rooms.document(room.getNombreSala()).set(room);
     }
-
-
 
     public void delete(String id) {
         rooms.document(id).delete();
     }
 
-    public Room get(String id) {
-        try {
-            Task<DocumentSnapshot> task = rooms.document(id).get();
-            Tasks.await(task); // Espera fins que la tasca estigui completada
-
-            if (task.isSuccessful()) {
-                return task.getResult().toObject(Room.class);
-            } else {
-                // Potser voldràs gestionar l'error d'alguna manera aquí
-                Log.d("FireBase GET", "Error user null");
-                return null;
-            }
-        } catch (Exception e) {
-            // Gestionar excepcions, com per exemple TimeoutException si la tasca pren massa temps
-            Log.d("FireBase GET", "Error unkown");
-            return null;
-        }
+    public void getRoom(String id, RoomCallback callback) {
+        rooms.document(id).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    Room room = documentSnapshot.toObject(Room.class);
+                    callback.onRoomLoaded(room);
+                })
+                .addOnFailureListener(e -> {
+                    Log.d("FireBase GET", "Error fetching room: " + e.getMessage());
+                    callback.onRoomError(e);
+                });
     }
 
-    public List<Room> getBooksSynchronously() {
-        final List<Room> UserList = new ArrayList<>();
+    public void getRoomsSet(SetRoomCallback callback) {
+        final Set<Room> roomList = new HashSet<>();
         final CountDownLatch latch = new CountDownLatch(1);
 
         rooms.get()
@@ -66,22 +67,14 @@ public class RoomFireStore {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Room room = document.toObject(Room.class);
-                            UserList.add(room);
+                            roomList.add(room);
                         }
+                        callback.onRoomsLoaded(roomList);
                     } else {
-                        Log.w(TAG, "Error getting documents.", task.getException());
+                        Log.w("FireBase GET", "Error getting documents.", task.getException());
+                        callback.onRoomsError(task.getException());
                     }
-
-                    latch.countDown(); // Indiquem que la tasca s'ha completat
+                    latch.countDown(); // Indicamos que la tarea se ha completado
                 });
-
-        try {
-            latch.await(); // Esperem fins que la tasca s'hagi completat
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return UserList;
     }
-
 }

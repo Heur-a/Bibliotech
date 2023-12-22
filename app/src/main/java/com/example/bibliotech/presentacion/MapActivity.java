@@ -2,8 +2,10 @@ package com.example.bibliotech.presentacion;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +18,13 @@ import com.example.bibliotech.maplogic.LecturaWiFi;
 import com.example.bibliotech.maplogic.WifiScanner;
 import com.ortiz.touchview.TouchImageView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MapActivity extends Activity {
     private Button izq, arr, abj, der, guar;
@@ -28,6 +36,8 @@ public class MapActivity extends Activity {
     private float posX;
     private float posY;
     private TouchImageView imgmap;
+
+    private StringBuilder coordenadasStringBuilder = new StringBuilder();
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -88,27 +98,9 @@ public class MapActivity extends Activity {
         guar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Obtener la posición del centro del TextView en relación con la imagen
-                float[] viewCenter = new float[]{textView.getX() + textView.getWidth() / 2, textView.getY() + textView.getHeight() / 2};
-
-                // Obtener la matriz de transformación actual de la imagen
-                float[] matrixValues = new float[9];
-                imgmap.getImageMatrix().getValues(matrixValues);
-
-                // Obtener el factor de escala actual de la imagen
-                float scale = matrixValues[Matrix.MSCALE_X];
-
-                // Calcular la posición del punto deseado en relación con la imagen considerando el zoom y el desplazamiento
-                float imageX = (viewCenter[0] - matrixValues[Matrix.MTRANS_X]) / scale;
-                float imageY = (viewCenter[1] - matrixValues[Matrix.MTRANS_Y]) / scale;
-
-                // Mostrar un mensaje con la posición deseada en la imagen después del zoom
-                showMessage("Posición deseada en la imagen después del zoom: (" + imageX + ", " + imageY + ")");
+                guardarCoordenadasEnArchivo();
             }
         });
-
-
-
 
         // Agregar onTouchListener al TextView para moverlo con el dedo
         textView.setOnTouchListener(new View.OnTouchListener() {
@@ -171,6 +163,49 @@ public class MapActivity extends Activity {
     private void updatePosition() {
         textView.setX(posX);
         textView.setY(posY);
+    }
+
+    private void guardarCoordenadasEnArchivo() {
+        String message = "Posición deseada en la imagen después del zoom: (" + posX + ", " + posY + ")";
+        showMessage(message);
+
+        // Almacena las coordenadas en el StringBuilder
+        coordenadasStringBuilder.append(message);
+
+        // Agrega información de lectura WiFi
+        List<LecturaWiFi> lecturas = WifiScanner.obtenerLecturasWifi(this);
+        if (!lecturas.isEmpty()) {
+            coordenadasStringBuilder.append("\nLecturas WiFi:\n");
+            for (LecturaWiFi lectura : lecturas) {
+                coordenadasStringBuilder.append(lectura);
+
+
+            }
+        }
+
+        coordenadasStringBuilder.append("\n\n");
+
+        try {
+            // Obtén el directorio público en el almacenamiento externo
+            File directorioExterno = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+
+            // Crea un objeto File para el archivo de texto en el directorio externo
+            File archivoTxt = new File(directorioExterno, "coordenadas.txt");
+
+            // Crea el flujo de salida para escribir en el archivo
+            FileOutputStream fos = new FileOutputStream(archivoTxt, true); // El segundo parámetro "true" indica modo de apéndice
+
+            // Escribe las coordenadas en el archivo
+            fos.write(coordenadasStringBuilder.toString().getBytes());
+
+            // Cierra el flujo de salida
+            fos.close();
+
+            Toast.makeText(MapActivity.this, "Coordenadas guardadas en " + archivoTxt.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(MapActivity.this, "Error al guardar las coordenadas", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showMessage(String message) {

@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     HashMap<String, List<String>> topicList;
 
-    private static final int SOLICITUD_PERMISO_WRITE_CALL= 0;
+    private static final int SOLICITUD_PERMISO_WRITE_CALL = 0;
     private boolean modoOscuro = false;
 
     private Toolbar supportActionBar;
@@ -82,17 +82,18 @@ public class MainActivity extends AppCompatActivity {
         // Crear una intención para abrir la aplicación cuando se haga clic en la notificación
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-        Notification notification = new NotificationCompat.Builder(this, "CHANNEL_ID")
+
+        // Configurar la notificación
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID")
                 .setSmallIcon(R.drawable.bajolamismaestrella)
                 .setContentTitle("Nuevo libro disponible")
                 .setContentText("Haz clic aquí para abrir Bibliotech.")
                 .setContentIntent(pendingIntent)
-                .setAutoCancel(true)
-                .build();
+                .setAutoCancel(true);
 
         // Obtener el administrador de notificaciones y mostrar la notificación
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, notification);
+        notificationManager.notify(1, builder.build());
         //ponerDatosMockup();
         reservaLibro reservaLibro = new reservaLibro();
         List<reservaLibro> resrvlib = new ArrayList<>();
