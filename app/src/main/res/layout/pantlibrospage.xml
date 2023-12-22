@@ -84,14 +84,16 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView13"
-        style="@style/iconoflecha"
+        android:id="@+id/atras2"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        app:srcCompat="?attr/actionModeCloseDrawable"
-        tools:ignore="ContentDescription" />
+        android:onClick="onClick"
+        style="@style/iconoflecha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <TextView
         android:id="@+id/textView30"
@@ -121,15 +123,38 @@
             android:layout_height="242dp"
             android:background="@drawable/uncuentoperfecto" />
 
-
     </androidx.cardview.widget.CardView>
 
     <ExpandableListView
         android:id="@+id/eListView"
         style="@style/textos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="181dp"
         android:layoutDirection="rtl"
         android:visibility="visible" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/botonreservarsala"
+        android:layout_width="329dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="@string/Reservala_ya"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/buttonlogInInit"
+        android:layout_marginLeft="45dp"/>
+
+    <Button
+        android:id="@+id/buttonSignInInit"
+
+        android:layout_marginEnd="47dp"
+        android:text="@string/CrearUnaCuanta"
+
+
+
+        />
 
 </LinearLayout>

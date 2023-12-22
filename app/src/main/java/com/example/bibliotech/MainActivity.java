@@ -2,6 +2,9 @@ package com.example.bibliotech;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -75,6 +79,20 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageHeader = headerView.findViewById(R.id.imageHeader);
         TextView headerText = headerView.findViewById(R.id.headerText);
         TextView idText = headerView.findViewById(R.id.headerId);
+        // Crear una intención para abrir la aplicación cuando se haga clic en la notificación
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        Notification notification = new NotificationCompat.Builder(this, "CHANNEL_ID")
+                .setSmallIcon(R.drawable.bajolamismaestrella)
+                .setContentTitle("Nuevo libro disponible")
+                .setContentText("Haz clic aquí para abrir Bibliotech.")
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .build();
+
+        // Obtener el administrador de notificaciones y mostrar la notificación
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, notification);
         //ponerDatosMockup();
         reservaLibro reservaLibro = new reservaLibro();
         List<reservaLibro> resrvlib = new ArrayList<>();
