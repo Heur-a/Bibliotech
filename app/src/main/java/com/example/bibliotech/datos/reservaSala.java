@@ -22,8 +22,8 @@ public class reservaSala extends reserva {
 
     private String roomId;
 
-    public reservaSala(Date startDate, Date endDate, String userId, String roomId) {
-        super(startDate, endDate, userId);
+    public reservaSala(Date fechaIni, Date fechaFin, String userId, String roomId) {
+        super(fechaIni, fechaFin, userId);
         this.roomId = roomId;
     }
 
@@ -52,7 +52,7 @@ public class reservaSala extends reserva {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // Get a reference to the document you want to update
-        DocumentReference documentRef = db.collection("salas").document(documentId);
+        DocumentReference documentRef = db.collection("users").document(documentId).collection("reservaSala").document();
 
         // Use the set method to replace all data in the document with the new object
         documentRef.set(this)
