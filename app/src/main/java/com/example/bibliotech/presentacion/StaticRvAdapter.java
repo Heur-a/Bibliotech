@@ -24,8 +24,7 @@ public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.Static
     @Override
     public StaticRVViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_book, parent, false);
-        StaticRVViewHolder staticRVViewHolder = new StaticRVViewHolder(view);
-        return staticRVViewHolder;
+        return new StaticRVViewHolder(view);
     }
 
     @Override
@@ -34,21 +33,18 @@ public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.Static
 
         // Verifica la propiedad 'invisible' y ajusta el ancho en consecuencia
         if (currentItem.isInvisible()) {
-            ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
-            params.width = 0;// Ancho cero para elementos invisibles
-            holder.itemView.setLayoutParams(params);
+            holder.itemView.getLayoutParams().width = 0; // Ancho cero para elementos invisibles
         } else {
             // Restaura el ancho original para elementos visibles
-            ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
-            params.width = ViewGroup.LayoutParams.MATCH_PARENT;  // Ancho original
-            holder.itemView.setLayoutParams(params);
+            holder.itemView.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
         }
 
-        holder.año_res.setText(currentItem.getAño_res());
-        holder.dia_res.setText(currentItem.getDia_res());
-        holder.bk_name.setText(currentItem.getBk_name());
-        holder.dia_dev.setText(currentItem.getDia_dev());
-        holder.mes_res.setText(currentItem.getMes_res());
+        // Establece los valores en los TextView
+        holder.añoRes.setText(currentItem.getAño_res());
+        holder.dayRes.setText(currentItem.getDia_res());
+        holder.bookName.setText(currentItem.getBk_name());
+        holder.dayDev.setText(currentItem.getDia_dev());
+        holder.mesRes.setText(currentItem.getMes_res());
     }
 
     @Override
@@ -57,16 +53,15 @@ public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.Static
     }
 
     public static class StaticRVViewHolder extends RecyclerView.ViewHolder {
-        TextView bk_name, dia_dev, mes_res, dia_res, año_res;
+        TextView bookName, dayDev, mesRes, dayRes, añoRes;
 
         public StaticRVViewHolder(@NonNull View itemView) {
             super(itemView);
-            bk_name = itemView.findViewById(R.id.book_name);
-            dia_dev = itemView.findViewById(R.id.book_day_dev);
-            mes_res = itemView.findViewById(R.id.book_mes_res);
-            dia_res = itemView.findViewById(R.id.book_day_res);
-            año_res = itemView.findViewById(R.id.book_año_res);
+            bookName = itemView.findViewById(R.id.book_name);
+            dayDev = itemView.findViewById(R.id.book_day_dev);
+            mesRes = itemView.findViewById(R.id.book_mes_res);
+            dayRes = itemView.findViewById(R.id.book_day_res);
+            añoRes = itemView.findViewById(R.id.book_año_res);
         }
     }
 }
-

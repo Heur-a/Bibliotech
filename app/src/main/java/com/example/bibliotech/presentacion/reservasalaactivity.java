@@ -60,7 +60,7 @@ public class reservasalaactivity extends AppCompatActivity {
         nombreLibroTextView.setText(nombreLibro);
         fechaDevolucionTextView.setText(fechaDevolucion);
         // autor.setText(autors); // No proporcionas autors
-        // numpages.setText(paginas); // No proporcionas paginas
+         numpages.setText(personas); // No proporcionas paginas
 
         fechaReservaTextView.setText(fechaReservadia + "/" + fechaReservames + "/" + fechaReservaano);
         img_qr = findViewById(R.id.qr);

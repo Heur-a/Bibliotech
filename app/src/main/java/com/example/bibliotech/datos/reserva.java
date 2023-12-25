@@ -1,5 +1,6 @@
 package com.example.bibliotech.datos;
 
+import com.github.mikephil.charting.renderer.DataRenderer;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -14,6 +15,8 @@ public class reserva {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Date fechaIni;
     private Date fechaFin;
+
+
     private String userId;
 
     public reserva(Date fechaIni, Date fechaFin, String userId) {
@@ -41,7 +44,6 @@ public class reserva {
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
-
     public String getUserId() {
         return userId;
     }
