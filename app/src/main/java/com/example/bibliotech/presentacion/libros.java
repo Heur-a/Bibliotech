@@ -1,6 +1,7 @@
 package com.example.bibliotech.presentacion;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,9 +17,8 @@ import com.example.bibliotech.R;
 import com.example.bibliotech.datos.Book;
 import com.example.bibliotech.datos.bookAdapter;
 import com.example.bibliotech.datos.firestore.BookFireStore;
-import com.example.bibliotech.presentacion.desplegableActivity;
+import com.google.firebase.storage.FirebaseStorage;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -33,6 +33,8 @@ public class libros extends Fragment {
 
     private List<Book> listBook = new ArrayList<>();
     private BookFireStore db = new BookFireStore();
+
+    private List<Uri> UriList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,9 +54,9 @@ public class libros extends Fragment {
         cargarDatos();
 
         recyclerView = rootView.findViewById(R.id.RecyclerViewLibros);
-        bookAdapter = new bookAdapter(listBook,getContext());
+        /*bookAdapter = new bookAdapter(listBook,getContext(), UriList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        recyclerView.setAdapter(bookAdapter);
+        recyclerView.setAdapter(bookAdapter);*/
         final boolean[] isFinish = new boolean[1];
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
@@ -94,8 +96,18 @@ public class libros extends Fragment {
             @Override
             public void onBookSetLoaded(Set<Book> books) {
                 listBook = new ArrayList<>(books);
-                confgigureRecyclerView(listBook);
+
+                for (Book book : listBook) {
+                    FirebaseStorage.getInstance()
+                            .getReference().child("images/portada/" + book.getISBN() + ".jpg").getDownloadUrl().addOnSuccessListener(task2 -> {
+                                UriList.add(task2);
+                            }).addOnFailureListener(e -> {
+                                Log.d("BookFireStoreImageDownload", e.getMessage());
+                            });
+                }
+                confgigureRecyclerView(listBook,UriList);
             }
+
 
             @Override
             public void onBookSetError(String errorMessage) {
@@ -105,8 +117,8 @@ public class libros extends Fragment {
 
     }
 
-    private void confgigureRecyclerView (List<Book> list){
-        bookAdapter = new bookAdapter(list,getContext());
+    private void confgigureRecyclerView (List<Book> list,List<Uri> uriList){
+        bookAdapter = new bookAdapter(list,getContext(),uriList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         recyclerView.setAdapter(bookAdapter);
         recyclerView.addOnItemTouchListener(

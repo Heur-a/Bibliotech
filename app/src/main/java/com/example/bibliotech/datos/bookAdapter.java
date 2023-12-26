@@ -1,6 +1,7 @@
 package com.example.bibliotech.datos;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,24 +12,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airbnb.lottie.L;
 import com.bumptech.glide.Glide;
-import com.example.bibliotech.MainActivity;
 import com.example.bibliotech.R;
 import com.example.bibliotech.datos.firestore.FireBaseActions;
 import com.example.bibliotech.presentacion.perfilActivity;
 import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class bookAdapter extends RecyclerView.Adapter<bookAdapter.bookAdapterViewHolder> {
     private List<Book> bookArrayList;
     private Context context;
-    public bookAdapter(List<Book> items, Context context) {
+
+    private List<Uri> uriList;
+    public bookAdapter(List<Book> items, Context context, List<Uri> uriList) {
 
         bookArrayList = items;
         this.context = context;
+        this.uriList = uriList;
     }
 
 
@@ -45,9 +47,16 @@ public class bookAdapter extends RecyclerView.Adapter<bookAdapter.bookAdapterVie
 
                 //TODO: Change this to actually put the ranking number
                 holder.numero.setText(String.valueOf(position + 1));
-        Glide.with(context)
-                .load(currentBook.getImageUri())  // Utilitza la URL emmagatzemada a Firebase Storage
-                .into(holder.portada);
+        FirebaseStorage.getInstance()
+                .getReference().child("images/portada/" +currentBook.getISBN() + ".jpg").getDownloadUrl().addOnSuccessListener(task -> {
+                    holder.portada.setImageResource(0);
+                    Picasso.get()
+                            .load(task)
+                            .into(holder.portada);
+                }).addOnFailureListener(e -> {
+                    Log.d("profileImgDownload", e.getMessage());
+                });
+
         ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
         params.width = ViewGroup.LayoutParams.MATCH_PARENT;  // Ancho original
         holder.itemView.setLayoutParams(params);

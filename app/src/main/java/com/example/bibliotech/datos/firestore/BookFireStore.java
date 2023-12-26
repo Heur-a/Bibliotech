@@ -88,12 +88,7 @@ public class BookFireStore{
                 .addOnSuccessListener(task -> {
             for (QueryDocumentSnapshot document : task) {
                 Book book = document.toObject(Book.class);
-                FirebaseStorage.getInstance()
-                        .getReference().child("images/portada/" + book.getISBN() + ".jpg").getDownloadUrl().addOnSuccessListener(task2 -> {
-                            book.setImageUri(task2);
-                        }).addOnFailureListener(e -> {
-                            Log.d("BookFireStoreImageDownload", e.getMessage());
-                        });
+
                 bookList.add(book);
             }
             callback.onBookSetLoaded(bookList);
