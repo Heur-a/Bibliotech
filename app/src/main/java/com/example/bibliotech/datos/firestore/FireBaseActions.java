@@ -129,7 +129,7 @@ public class FireBaseActions {
     //Veirfies if user is validated and goes on
     // Class is the activity you want to go
     //Activity is the activity you are in
-    public static void verificaSiUsuarioValidado(Context Context, Class Class, Activity Activity) {
+    public static void verificaSiUsuarioValidado(Context Context, Class Class, Activity activity) {
         if (auth.getCurrentUser() != null) {
             // User is signed in, navigate to the main activity
             Intent i = new Intent(Context, Class);
@@ -140,7 +140,22 @@ public class FireBaseActions {
             dbu.getUser(getUserId(), new UserFirestore.UserCallback() {
                 @Override
                 public void onUserLoaded(User user) {
+                    if (user == null) {
+                        dbu.add(updateUser);
+                        dbu.getUser(getUserId(), new UserFirestore.UserCallback() {
+                            @Override
+                            public void onUserLoaded(User user) {
+                                uploadImageUri(user.getPhotoUri(),user.getId(),Context.getResources().getString(R.string.pfp_image_path),Context);
+                            }
 
+                            @Override
+                            public void onUserError(Exception e) {
+                                Log.d("Upload first Image", e.getMessage());
+                            }
+                        });
+                        activity.finish();
+
+                    }
                 }
                 //If not, create one
                 @Override
@@ -158,15 +173,16 @@ public class FireBaseActions {
                             Log.d("Upload first Image", e.getMessage());
                         }
                     });
-
+                    activity.finish();
                 }
+
             });
 
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                     | Intent.FLAG_ACTIVITY_NEW_TASK
                     | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(Context,i,null);
-            Activity.finish();
+
         }
     }
     @Nullable

@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bibliotech.MainActivity;
 import com.example.bibliotech.R;
 import com.example.bibliotech.datos.Book;
+import com.example.bibliotech.datos.firestore.FireBaseActions;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -126,6 +127,8 @@ public class CustomLoginActivity extends AppCompatActivity {
 
     private void signInWithGoogle(View view) {
         // Start Google Sign-In process
+        FireBaseActions.signOut();
+        googleSignInClient.signOut();
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
     }
