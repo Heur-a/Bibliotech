@@ -49,7 +49,7 @@
     <string name="Ocho_Personas">"ocho personas "</string>
     <string name="Diez_Personas">diez personas</string>
     <string name="Buscar_Salas_Disponibles">Buscar salas disponibles</string>
-    <string name="Las_Salas_Disponibles_Son">Salas Disponibles</string>
+    <string name="Las_Salas_Disponibles_Son">Las salas disponibles son:</string>
     <string name="De">De</string>
     <string name="Aire_acondicionado">Aire acondicionado</string>
     <string name="descripcion_aire">para un ambiente fresco y agradable</string>
@@ -68,6 +68,7 @@
     <string name="Sinopsis">Sinopsis</string>
     <string name="Romance">Romance</string>
     <string name="CrearCuenta">Crear Cuenta</string>
+    <string name="descripcionAire">- Aire acondicionado para un ambiente freco y agradable.</string>
     <string name="Estadisticas">Estadísticas</string>
     <string name="Libros_populares">Libros más populares</string>
     <string name="Ciencia">Ciencia</string>

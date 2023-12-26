@@ -64,4 +64,7 @@
     <string name="Genero">Génere</string>
     <string name="Sinopsis">Sinopsi</string>
     <string name="Romance">Romanç</string>
+    <string name="iniciarsesion">Iniciar Sessió</string>
+    <string name="CrearCuenta">Crear Compte</string>
+    <string name="descripcionAire">- Aire condicionat per a un ambient frec i agradable.</string>
 </resources>
