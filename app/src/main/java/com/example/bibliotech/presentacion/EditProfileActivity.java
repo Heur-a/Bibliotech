@@ -86,6 +86,14 @@ public class EditProfileActivity extends AppCompatActivity {
                 name.setText(user.getName());
                 email.setText(user.getEmail());
                 surnames.setText(user.getSurnames());
+                FirebaseStorage.getInstance()
+                        .getReference().child("images/pfp/" + FireBaseActions.getUserId()).getDownloadUrl().addOnSuccessListener(task -> {
+                            Glide.with(EditProfileActivity.this)
+                                    .load(task)
+                                    .into(image);
+                        }).addOnFailureListener(e -> {
+                            Log.d("profileImgDownload", e.getMessage());
+                        });
 
             }
 
@@ -196,4 +204,6 @@ public class EditProfileActivity extends AppCompatActivity {
         }
         return isValid;
     }
+
+
 }
