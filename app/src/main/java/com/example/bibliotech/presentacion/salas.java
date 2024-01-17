@@ -27,13 +27,11 @@ import java.util.Date;
 import java.util.List;
 
 public class salas extends Fragment implements View.OnClickListener {
-    Button btnDatePicker, btnTimePicker, btnTimePicker2,btnSearch;
+    private final boolean[] DATE_SET = {false, false, false};
+    Button btnDatePicker, btnTimePicker, btnTimePicker2, btnSearch;
     private int mYear, mMonth, mDay, mHour, mMinute, mHour2, mMinute2;
-
     private RoomFireStore ROOMDB;
     private reservaSala OPERATIONS;
-
-    private boolean DATE_SET[] = {false,false,false};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,15 +54,14 @@ public class salas extends Fragment implements View.OnClickListener {
         Spinner mSpinner2 = view.findViewById(R.id.spinner_plant);
 
         // Inicializa y configura los elementos de DatePicker
-        btnDatePicker = (Button) view.findViewById(R.id.btn_date);
+        btnDatePicker = view.findViewById(R.id.btn_date);
         btnDatePicker.setOnClickListener(this);
 
         // Inicializa y configura los elementos de TimePicker
-        btnTimePicker = (Button) view.findViewById(R.id.btn_time_desde);
-        btnTimePicker2 = (Button) view.findViewById(R.id.btn_time_hasta);
+        btnTimePicker = view.findViewById(R.id.btn_time_desde);
+        btnTimePicker2 = view.findViewById(R.id.btn_time_hasta);
         btnTimePicker.setOnClickListener(this);
         btnTimePicker2.setOnClickListener(this);
-
 
 
         //BtnSearch
@@ -72,8 +69,9 @@ public class salas extends Fragment implements View.OnClickListener {
         btnSearch.setOnClickListener(task -> {
             boolean FLAG = true;
             for (boolean b : DATE_SET) {
-                if(b == false) {
+                if (!b) {
                     FLAG = false;
+                    break;
                 }
             }
             if (FLAG) {
@@ -102,9 +100,6 @@ public class salas extends Fragment implements View.OnClickListener {
         mSpinner2.setAdapter(mArrayAdapter2);
 
 
-
-
-
         return view;
 
 
@@ -124,6 +119,9 @@ public class salas extends Fragment implements View.OnClickListener {
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
+                            mYear = year;
+                            mMonth = monthOfYear;
+                            mDay = dayOfMonth;
                             btnDatePicker.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                         }
                     }, mYear, mMonth, mDay);
@@ -142,6 +140,8 @@ public class salas extends Fragment implements View.OnClickListener {
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
+                            mHour = hourOfDay;
+                            mMinute = minute;
                             btnTimePicker.setText(hourOfDay + ":" + minute);
                         }
                     }, mHour, mMinute, false);
@@ -160,6 +160,8 @@ public class salas extends Fragment implements View.OnClickListener {
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
+                            mHour2 = hourOfDay;
+                            mMinute2 = minute;
                             btnTimePicker2.setText(hourOfDay + ":" + minute);
                         }
                     }, mHour2, mMinute2, false);
@@ -169,18 +171,24 @@ public class salas extends Fragment implements View.OnClickListener {
     }
 
 
-
-
     private void anyadirReserva() {
+        // Obtén una instància de Calendar
+        Calendar calendarDesde = Calendar.getInstance();
+        calendarDesde.set(mYear, mMonth, mDay, mHour, mMinute);
+
+        Calendar calendarHasta = Calendar.getInstance();
+        calendarHasta.set(mYear, mMonth, mDay, mHour2, mMinute2);
+
+        // Crea l'objecte reservaSala amb les dates de Calendar
         reservaSala RESERVA = new reservaSala(
-                new Date(mYear,mMonth,mDay,mHour,mMinute),
-                new Date(mYear,mMonth,mDay,mHour2,mMinute2),
+                calendarDesde.getTime(),
+                calendarHasta.getTime(),
                 FireBaseActions.getUserId(),
                 "H-010");
-        ROOMDB.addReserva(RESERVA,"H-010");
 
+        // Afegeix la reserva utilitzant l'objecte RoomFireStore
+        ROOMDB.addReserva(RESERVA, "H-010");
     }
-
 
 
 
