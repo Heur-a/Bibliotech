@@ -45,6 +45,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private StorageReference ref;
     private UserFirestore db;
+    private boolean FLAG_IMG_UPLOAD = false;
+    private boolean FLAG_ACTIVITY_CHANGE = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     Glide.with(getApplicationContext())
                             .load(uri)
                             .into(image);
+                    FLAG_IMG_UPLOAD = true;
                 });
         image.setOnClickListener(click -> {
             // Crear un intent per seleccionar contingut
@@ -91,6 +94,7 @@ public class EditProfileActivity extends AppCompatActivity {
                             Glide.with(EditProfileActivity.this)
                                     .load(task)
                                     .into(image);
+                            imageUri = task;
                         }).addOnFailureListener(e -> {
                             Log.d("profileImgDownload", e.getMessage());
                         });
@@ -134,32 +138,42 @@ public class EditProfileActivity extends AppCompatActivity {
             UserFirestore userFirestore = new UserFirestore();
 
             userFirestore.add(update);
+            FLAG_ACTIVITY_CHANGE = true;
 
 
-            // Handle  Uri
-            StorageReference ref = FireBaseActions.ref.child(getString(R.string.pfp_image_path) + "/" + FireBaseActions.getUserId());
-            UploadTask upload = ref.putFile(imageUri);
+            if (FLAG_IMG_UPLOAD) {
+                // Handle  Uri
+                StorageReference ref = FireBaseActions.ref.child(getString(R.string.pfp_image_path) + "/" + FireBaseActions.getUserId());
+                UploadTask upload = ref.putFile(imageUri);
 
-            // Register observers to listen for when the download is done or if it fails
-            upload.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle unsuccessful uploads
-                    Toast.makeText(getApplicationContext(),"No se ha podido subir la imagen ",Toast.LENGTH_SHORT).show();
-                    Log.d("EditProfileUploadPfp",exception.getMessage());
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(getApplicationContext(),"Imagen subida satisfactoriamente",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(EditProfileActivity.this, perfilActivity.class);
-                    startActivity(intent);
-                    finish(); // Tanca l'activitat actual
-                }
-            });
+                // Register observers to listen for when the download is done or if it fails
+                upload.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        Toast.makeText(getApplicationContext(),"No se ha podido subir la imagen ",Toast.LENGTH_SHORT).show();
+                        Log.d("EditProfileUploadPfp",exception.getMessage());
+                        FLAG_ACTIVITY_CHANGE = false;
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        FLAG_ACTIVITY_CHANGE =  true;
+                    }
+                });
+            }
+
+            if (FLAG_ACTIVITY_CHANGE) {
+                Toast.makeText(getApplicationContext(),"Perfil cambiado satisfactoriamentwe",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EditProfileActivity.this, perfilActivity.class);
+                startActivity(intent);
+                finish(); // Tanca l'activitat actual
+            }
 
 
             // Crea un intent per reiniciar l'activitat amb les dades actualitzades
+
+
 
         }
     }

@@ -2,10 +2,14 @@ package com.example.bibliotech.presentacion;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 
 import com.example.bibliotech.R;
 import com.example.bibliotech.datos.Book;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,12 +23,15 @@ public class desplegableActivity extends AppCompatActivity {
     List<String> chapterList;
     HashMap<String, List<String>> topicList;
     private Book book = new Book();
-    private String num_pag, author, editorial, genre, sinopsis;
+    private String num_pag, author, editorial, genre, sinopsis, ISBN;
+    private ImageView portada;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pantlibrospage);
         expandableListView = findViewById(R.id.eListView);
+        portada = findViewById(R.id.imageView15);
+
 
 
         Intent intentRebut = getIntent();
@@ -33,13 +40,15 @@ public class desplegableActivity extends AppCompatActivity {
                     intentRebut.hasExtra("author") &&
                     intentRebut.hasExtra("editorial") &&
                     intentRebut.hasExtra("genre") &&
-                    intentRebut.hasExtra("sinopsis")) {
+                    intentRebut.hasExtra("sinopsis") &&
+                    intentRebut.hasExtra("ISBN")) {
 
                 num_pag = intentRebut.getStringExtra("num_pag");
                 author = intentRebut.getStringExtra("author");
                 editorial = intentRebut.getStringExtra("editorial");
                 genre = intentRebut.getStringExtra("genre");
                 sinopsis = intentRebut.getStringExtra("sinopsis");
+                ISBN = intentRebut.getStringExtra("ISBN");
 
                 // Utilitza les variables rebudes per omplir les dades del llibre
                 book.setPagenumber(num_pag);
@@ -49,6 +58,16 @@ public class desplegableActivity extends AppCompatActivity {
                 book.setSinopsis(sinopsis);
             }
         }
+
+        FirebaseStorage.getInstance()
+                .getReference().child("images/portada/" + ISBN + ".jpg").getDownloadUrl().addOnSuccessListener(task -> {
+                    portada.setImageResource(0);
+                    Picasso.get()
+                            .load(task)
+                            .into(portada);
+                }).addOnFailureListener(e -> {
+                    Log.d("profileImgDownload", e.getMessage());
+                });
 
         showList();
         listViewAdapter = new ExpandableListViewAdapter(this, chapterList, topicList);

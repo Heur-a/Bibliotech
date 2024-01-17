@@ -7,6 +7,7 @@ public class Room {
     private String numberpeople;
     private List<String> accesories; // Cambiado de String[] a List<String>
     private String disponibility = "No";
+    private int floor;
 
     // Constructor sin argumentos
     public Room() {}

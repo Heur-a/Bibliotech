@@ -70,6 +70,7 @@ public class libros extends Fragment {
                         intent.putExtra("editorial", bookToTravel.getEditorial());
                         intent.putExtra("genre",bookToTravel.getSection());
                         intent.putExtra("sinopsis",bookToTravel.getSinopsis());
+                        intent.putExtra("ISBN", bookToTravel.getISBN());
                         startActivity(intent);
                         isFinish[0] = true;
 
