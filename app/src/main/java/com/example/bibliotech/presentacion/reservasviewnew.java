@@ -194,7 +194,7 @@ public class reservasviewnew extends Fragment {
                         if (tabLayout.getSelectedTabPosition() == 0) {
                             // Tratar la selección de libro
                             tratarSeleccionLibro(selectedItem);
-                        } else {
+                        } else if(tabLayout.getSelectedTabPosition() == 1) {
                             // Tratar la selección de sala
                             tratarSeleccionSala(selectedItem);
                         }
@@ -281,8 +281,8 @@ public class reservasviewnew extends Fragment {
 
         intent.putExtra("nombreSalas", room.getNombreSala());
         intent.putExtra("fechaDevolucion", selectedItem.getDia_dev());
-        intent.putExtra("fechaReservadia", formatearNumero(localDate.getDayOfMonth()));
-        intent.putExtra("fechaReservames", obtenerNombreMesAbreviado(localDate.getMonthValue() - 1));
+        intent.putExtra("fechaReservadia", selectedItem.getDia_res());
+        intent.putExtra("fechaReservames", selectedItem.getMes_res());
         intent.putExtra("fechaReservaano", Integer.toString(localDate.getYear()));
         intent.putExtra("number", room.getNumberpeople());
 

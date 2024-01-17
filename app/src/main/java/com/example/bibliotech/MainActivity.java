@@ -16,7 +16,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.example.bibliotech.maplogic.LecturaWiFi;
+import com.example.bibliotech.maplogic.PosicionManager;
+import com.example.bibliotech.maplogic.WifiScanner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean modoOscuro = false;
 
     private Toolbar supportActionBar;
+    private PosicionManager posicionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageHeader = headerView.findViewById(R.id.imageHeader);
         TextView headerText = headerView.findViewById(R.id.headerText);
         TextView idText = headerView.findViewById(R.id.headerId);
+        posicionManager = new PosicionManager(this);
         // Crear una intención para abrir la aplicación cuando se haga clic en la notificación
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
@@ -402,6 +406,26 @@ public class MainActivity extends AppCompatActivity {
 
         // Aplicar el cambio de modo oscuro al instante
         getDelegate().applyDayNight();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        iniciarActualizacionContinua();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        detenerActualizacionContinua();
+    }
+
+    private void iniciarActualizacionContinua() {
+            posicionManager.iniciarTriangulacionContinua();
+    }
+
+    private void detenerActualizacionContinua() {
+        posicionManager.detenerTriangulacionContinua();
     }
 }
 

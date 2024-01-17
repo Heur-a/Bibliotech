@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.bibliotech.R;
 import com.example.bibliotech.maplogic.LecturaWiFi;
 import com.example.bibliotech.maplogic.WifiScanner;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.ortiz.touchview.TouchImageView;
 
 import java.io.File;
@@ -39,6 +40,7 @@ public class MapActivity extends Activity {
 
     private StringBuilder coordenadasStringBuilder = new StringBuilder();
 
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class MapActivity extends Activity {
         guar = findViewById(R.id.btnguar);
         textView = findViewById(R.id.puntero);
         imgmap = findViewById(R.id.imgmap);
+
 
         // Obtener dimensiones de la pantalla
         screenWidth = getResources().getDisplayMetrics().widthPixels;
@@ -169,17 +172,35 @@ public class MapActivity extends Activity {
         String message = "Posición deseada en la imagen después del zoom: (" + posX + ", " + posY + ")";
         showMessage(message);
 
-        // Almacena las coordenadas en el StringBuilder
+// Almacena las coordenadas en el StringBuilder
         coordenadasStringBuilder.append(message);
 
-        // Agrega información de lectura WiFi
+// Agrega información de lectura WiFi
         List<LecturaWiFi> lecturas = WifiScanner.obtenerLecturasWifi(this);
         if (!lecturas.isEmpty()) {
             coordenadasStringBuilder.append("\nLecturas WiFi:\n");
             for (LecturaWiFi lectura : lecturas) {
+                // Agrega las coordenadas al objeto LecturaWiFi
+                lectura.setPosX(posX);
+                lectura.setPosY(posY);
+
                 coordenadasStringBuilder.append(lectura);
 
+                // Almacena las coordenadas en el StringBuilder
+                coordenadasStringBuilder.append(" (").append(posX).append(", ").append(posY).append(")\n");
 
+                // Guarda la lecturaWiFi en Firestore
+                FirebaseFirestore.getInstance()
+                        .collection("mapp1")
+                        .document("("+posX+","+posY+")").collection("lecturaWifi").add(lectura)
+                        .addOnSuccessListener(documentReference -> {
+                            // Éxito al agregar el documento a Firestore
+                            showMessage("LecturaWiFi añadida con éxito con ID: " + documentReference.getId());
+                        })
+                        .addOnFailureListener(e -> {
+                            // Error al agregar el documento a Firestore
+                            showMessage("Error al añadir LecturaWiFi a Firestore: " + e.getMessage());
+                        });
             }
         }
 
