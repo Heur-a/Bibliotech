@@ -71,6 +71,8 @@ dependencies {
     //implementacion img zoom
     implementation("com.github.MikeOrtiz:TouchImageView:1.4.1")
     implementation ("com.firebaseui:firebase-ui-storage:7.2.0")
+    implementation ("com.google.android.gms:play-services-tasks:17.2.0")
+
 
 
     implementation ("com.squareup.picasso:picasso:2.8")
