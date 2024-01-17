@@ -63,42 +63,39 @@ public class RoomFireStore {
                 });
     }
 
-    public void addReserva(reservaSala reserva,String salaID){
+    public void addReserva(reservaSala reserva, String salaID) {
         rooms.document(salaID).collection("reservaSala").document().set(reserva);
     }
 
     public void getReservaRooms(RoomReserveMap callback) {
         final Map<Room, List<reservaSala>> roomListMap = new HashMap<>();
-        Map<Room, List<reservaSala>> RoomReserva = new HashMap<>();
         getRoomsSet(new RoomFireStore.SetRoomCallback() {
             @Override
             public void onRoomsLoaded(Set<Room> roomList) {
                 final boolean[] SUCCES_FLAG = {false};
-                final Exception[] exceptions = new Exception[0];
+                final Exception[] exceptions = new Exception[1];
                 for (Room room : roomList) {
                     List<reservaSala> reservaSalaList = new ArrayList<>();
                     rooms.document(room.getNombreSala()).collection("reservaSala").get()
                             .addOnSuccessListener(task -> {
+                                SUCCES_FLAG[0] = true;
                                 for (QueryDocumentSnapshot queryDocumentSnapshot : task) {
                                     reservaSala reservaSala = queryDocumentSnapshot.toObject(com.example.bibliotech.datos.reservaSala.class);
                                     reservaSalaList.add(reservaSala);
+                                    roomListMap.put(room, reservaSalaList);
+                                }
+                                if (roomListMap.size() == roomList.size()) {
+                                    callback.onRoomReserveMapLoaded(roomListMap);
                                 }
 
 
                             }).addOnFailureListener(task -> {
-                                SUCCES_FLAG[0] = false;
-                                exceptions[0] = task;
+                                callback.onRoomsReserveError(task);
                             });
 
-
-                    if (SUCCES_FLAG[0] == false) {
-                    callback.onRoomsReserveError(exceptions[0]);
-                    break;
-                    }
-                    roomListMap.put(room, reservaSalaList);
                 }
 
-                callback.onRoomReserveMapLoaded(roomListMap);
+
             }
 
             @Override

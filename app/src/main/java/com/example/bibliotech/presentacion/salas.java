@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.TimePicker;
 import androidx.fragment.app.Fragment;
 
 import com.example.bibliotech.R;
+import com.example.bibliotech.datos.Room;
 import com.example.bibliotech.datos.firestore.FireBaseActions;
 import com.example.bibliotech.datos.firestore.RoomFireStore;
 import com.example.bibliotech.datos.reservaSala;
@@ -25,6 +27,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class salas extends Fragment implements View.OnClickListener {
     private final boolean[] DATE_SET = {false, false, false};
@@ -100,7 +103,22 @@ public class salas extends Fragment implements View.OnClickListener {
         mSpinner2.setAdapter(mArrayAdapter2);
 
 
+        //DEBUG
+        ROOMDB.getReservaRooms(new RoomFireStore.RoomReserveMap() {
+            @Override
+            public void onRoomReserveMapLoaded(Map<Room, List<reservaSala>> roomsRsereva) {
+                Log.d("RESERVA_MAP",roomsRsereva.toString());
+            }
+
+            @Override
+            public void onRoomsReserveError(Exception e) {
+                Log.d("RESERVA_MAP",e.getMessage());
+            }
+        });
+
         return view;
+
+
 
 
     }
@@ -187,7 +205,7 @@ public class salas extends Fragment implements View.OnClickListener {
                 "H-010");
 
         // Afegeix la reserva utilitzant l'objecte RoomFireStore
-        ROOMDB.addReserva(RESERVA, "H-010");
+        ROOMDB.addReserva(RESERVA, "H-012");
     }
 
 
