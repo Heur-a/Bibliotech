@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -284,7 +283,7 @@ public class reservasviewnew extends Fragment {
         intent.putExtra("fechaReservadia", formatearNumero(localDate.getDayOfMonth()));
         intent.putExtra("fechaReservames", obtenerNombreMesAbreviado(localDate.getMonthValue() - 1));
         intent.putExtra("fechaReservaano", Integer.toString(localDate.getYear()));
-        intent.putExtra("number", room.getNumberpeople());
+        intent.putExtra("number", room.getNumberPeople());
 
         startActivity(intent);
     }

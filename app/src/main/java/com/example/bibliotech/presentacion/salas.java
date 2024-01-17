@@ -17,14 +17,23 @@ import android.widget.TimePicker;
 import androidx.fragment.app.Fragment;
 
 import com.example.bibliotech.R;
+import com.example.bibliotech.datos.firestore.FireBaseActions;
+import com.example.bibliotech.datos.firestore.RoomFireStore;
+import com.example.bibliotech.datos.reservaSala;
 
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class salas extends Fragment implements View.OnClickListener {
-    Button btnDatePicker, btnTimePicker, btnTimePicker2;
+    Button btnDatePicker, btnTimePicker, btnTimePicker2,btnSearch;
     private int mYear, mMonth, mDay, mHour, mMinute, mHour2, mMinute2;
+
+    private RoomFireStore ROOMDB;
+    private reservaSala OPERATIONS;
+
+    private boolean DATE_SET[] = {false,false,false};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,10 @@ public class salas extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.filtro_sala, container, false);
+
+        //DEBUG:
+        ROOMDB = new RoomFireStore();
+        OPERATIONS = new reservaSala();
 
         // Obtén una referencia al contexto actual
         Context context = getContext();
@@ -51,6 +64,23 @@ public class salas extends Fragment implements View.OnClickListener {
         btnTimePicker2 = (Button) view.findViewById(R.id.btn_time_hasta);
         btnTimePicker.setOnClickListener(this);
         btnTimePicker2.setOnClickListener(this);
+
+
+
+        //BtnSearch
+        btnSearch = view.findViewById(R.id.btnSearch);
+        btnSearch.setOnClickListener(task -> {
+            boolean FLAG = true;
+            for (boolean b : DATE_SET) {
+                if(b == false) {
+                    FLAG = false;
+                }
+            }
+            if (FLAG) {
+                anyadirReserva();
+            }
+
+        });
 
         Resources resources = getResources();
 
@@ -71,7 +101,13 @@ public class salas extends Fragment implements View.OnClickListener {
         mSpinner.setAdapter(mArrayAdapter);
         mSpinner2.setAdapter(mArrayAdapter2);
 
+
+
+
+
         return view;
+
+
     }
 
     @Override
@@ -92,6 +128,7 @@ public class salas extends Fragment implements View.OnClickListener {
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
+            DATE_SET[0] = true;
         }
         if (v == btnTimePicker) {
             // Get Current Time
@@ -109,6 +146,7 @@ public class salas extends Fragment implements View.OnClickListener {
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
+            DATE_SET[1] = true;
         }
         if (v == btnTimePicker2) {
             // Get Current Time
@@ -126,6 +164,24 @@ public class salas extends Fragment implements View.OnClickListener {
                         }
                     }, mHour2, mMinute2, false);
             timePickerDialog.show();
+            DATE_SET[2] = true;
         }
     }
+
+
+
+
+    private void anyadirReserva() {
+        reservaSala RESERVA = new reservaSala(
+                new Date(mYear,mMonth,mDay,mHour,mMinute),
+                new Date(mYear,mMonth,mDay,mHour2,mMinute2),
+                FireBaseActions.getUserId(),
+                "H-010");
+        ROOMDB.addReserva(RESERVA,"H-010");
+
+    }
+
+
+
+
 }

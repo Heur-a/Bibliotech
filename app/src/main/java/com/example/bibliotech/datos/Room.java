@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Room {
     private String nombreSala;
-    private String numberpeople;
+    private String numberPeople;
     private List<String> accesories; // Cambiado de String[] a List<String>
     private String disponibility = "No";
     private int floor;
@@ -12,11 +12,12 @@ public class Room {
     // Constructor sin argumentos
     public Room() {}
 
-    public Room(String nombreSala, String numberpeople, List<String> accesories, String disponibility) {
+    public Room(String nombreSala, String numberPeople, List<String> accesories, String disponibility, int floor) {
         this.nombreSala = nombreSala;
-        this.numberpeople = numberpeople;
+        this.numberPeople = numberPeople;
         this.accesories = accesories;
         this.disponibility = disponibility;
+        this.floor = floor;
     }
 
     public String getNombreSala() {
@@ -35,12 +36,12 @@ public class Room {
         this.disponibility = disponibility;
     }
 
-    public String getNumberpeople() {
-        return numberpeople;
+    public String getNumberPeople() {
+        return numberPeople;
     }
 
-    public void setNumberpeople(String numberpeople) {
-        this.numberpeople = numberpeople;
+    public void setNumberPeople(String numberPeople) {
+        this.numberPeople = numberPeople;
     }
 
     public List<String> getAccesories() {
@@ -51,23 +52,24 @@ public class Room {
         this.accesories = accesories;
     }
 
+    public int getFloor() {
+        return floor;
+    }
+
     @Override
     public String toString() {
-        StringBuilder accessoriesStr = new StringBuilder("[");
-        if (accesories != null && !accesories.isEmpty()) {
-            for (String accessory : accesories) {
-                accessoriesStr.append(accessory).append(", ");
-            }
-            // Eliminar la coma y el espacio extra al final
-            accessoriesStr.setLength(accessoriesStr.length() - 2);
-        }
-        accessoriesStr.append("]");
-
         return "Room{" +
                 "nombreSala='" + nombreSala + '\'' +
-                ", numberpeople='" + numberpeople + '\'' +
-                ", accesories=" + accessoriesStr +
+                ", numberpeople='" + numberPeople + '\'' +
+                ", accesories=" + accesories +
                 ", disponibility='" + disponibility + '\'' +
+                ", floor=" + floor +
                 '}';
     }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+
 }
