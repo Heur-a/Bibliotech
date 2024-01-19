@@ -30,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+            app:layout_constraintTop_toBottomOf="@+id/locationSwitch" />
 
         <TextView
             android:id="@+id/textView27"
@@ -58,7 +58,7 @@
             app:srcCompat="?attr/actionModeCloseDrawable" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/locationSwitch"
             style="@style/textos"
             android:layout_width="290dp"
             android:layout_height="45dp"
@@ -78,7 +78,7 @@
             app:layout_constraintBottom_toTopOf="@+id/switch2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+            app:layout_constraintTop_toBottomOf="@+id/locationSwitch" />
 
         <View
             android:id="@+id/divider2"

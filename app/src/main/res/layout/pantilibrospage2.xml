@@ -8,11 +8,10 @@
 
     <TextView
         android:id="@+id/chapter_tv"
+        style="@style/textos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nº de páginas"
-        android:textSize="30sp"
-        android:textColor="@color/G8"
-        />
+        android:textSize="30sp" />
 
 </LinearLayout>
