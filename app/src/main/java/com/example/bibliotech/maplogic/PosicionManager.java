@@ -5,21 +5,14 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class PosicionManager {
 
@@ -46,34 +39,30 @@ public class PosicionManager {
 
     private void obtenerPosicionesConocidas(PosicionesConocidasCallback callback) {
         Task<QuerySnapshot> taskq = db.collection("mapp1").get();
-        taskq.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    QuerySnapshot querySnapshot = task.getResult();
-                    Log.d("PosicionManager", "a");
-                    if (querySnapshot != null) {
-                        List<LecturaPos> posicionesConocidas = new ArrayList<>();
-                        for (QueryDocumentSnapshot document : querySnapshot) {
-                            Double posX = document.getDouble("posX");
-                            Double posY = document.getDouble("posY");
-                            Log.d("PosicionManager", "Obteniendo posiciones conocidas: Documento -> " + document.getId() + ", posX: " + posX + ", posY: " + posY);
-                            if (posX != null && posY != null) {
-                                Log.d("PosicionManager", "Las coordenadas posX y posY no son nulas.");
-                                posicionesConocidas.add(new LecturaPos(posX, posY, obtenerLecturasWifi(document.getReference().collection("lecturaWIFI"))));
-                            }
+        taskq.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                QuerySnapshot querySnapshot = task.getResult();
+                Log.d("PosicionManager", "a");
+                if (querySnapshot != null) {
+                    List<LecturaPos> posicionesConocidas = new ArrayList<>();
+                    for (QueryDocumentSnapshot document : querySnapshot) {
+                        Double posX = document.getDouble("posX");
+                        Double posY = document.getDouble("posY");
+                        Log.d("PosicionManager", "Obteniendo posiciones conocidas: Documento -> " + document.getId() + ", posX: " + posX + ", posY: " + posY);
+                        if (posX != null && posY != null) {
+                            Log.d("PosicionManager", "Las coordenadas posX y posY no son nulas.");
+                            posicionesConocidas.add(new LecturaPos(posX, posY, obtenerLecturasWifi(document.getReference().collection("lecturaWIFI"))));
                         }
-                        callback.onPosicionesConocidasObtenidas(posicionesConocidas);
-                    } else {
-                        Log.e("PosicionManager", "Error: el resultado de la consulta es nulo");
                     }
+                    callback.onPosicionesConocidasObtenidas(posicionesConocidas);
                 } else {
-                    Log.e("PosicionManager", "Error al obtener posiciones conocidas", task.getException());
+                    Log.e("PosicionManager", "Error: el resultado de la consulta es nulo");
                 }
+            } else {
+                Log.e("PosicionManager", "Error al obtener posiciones conocidas", task.getException());
             }
         });
     }
-
 
 
     private List<LecturaWiFi> obtenerLecturasWifi(CollectionReference lecturasRef) {
@@ -112,7 +101,6 @@ public class PosicionManager {
                     Log.d("PosicionManager", String.valueOf(posicionesConocidas.size()));
                     return;
                 }
-
 
 
                 if (!posicionesConocidas.isEmpty()) {

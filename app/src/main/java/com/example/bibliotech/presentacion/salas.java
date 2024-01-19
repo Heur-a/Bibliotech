@@ -9,32 +9,64 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.bibliotech.R;
 import com.example.bibliotech.datos.Room;
+import com.example.bibliotech.datos.TimeOperations;
 import com.example.bibliotech.datos.firestore.FireBaseActions;
 import com.example.bibliotech.datos.firestore.RoomFireStore;
 import com.example.bibliotech.datos.reservaSala;
 
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class salas extends Fragment implements View.OnClickListener {
-    private final boolean[] DATE_SET = {false, false, false};
-    Button btnDatePicker, btnTimePicker, btnTimePicker2, btnSearch;
+    private final boolean[] DATE_SET = {false, false, false,false,false};
+    Button btnDatePicker,  btnSearch;
+    Spinner btnTimePicker, btnTimePicker2;
     private int mYear, mMonth, mDay, mHour, mMinute, mHour2, mMinute2;
     private RoomFireStore ROOMDB;
-    private reservaSala OPERATIONS;
+    private Set<android.icu.util.Calendar[]> calendarIniSet;
+    private Map<Room, Set<android.icu.util.Calendar[]>> roomHours;
+    private Map<Room, List<String>> roomsAviableHours;
+
+    private Map<Room,List<String[]>> roomOccupiedHoursString;
+
+    private final LocalTime horaINI = LocalTime.of(8,0);
+    private final LocalTime horaFIN = LocalTime.of(20,0);
+
+    private enum DATE_SETTING {
+        FIRST_HOUR_SET(0),
+        LAST_HOUR_SET(1),
+        YEAR_MONTH_DATE_SET(2),
+        PEOPLE_SET(3),
+        FLOOR_SET(4);
+
+        private final int value;
+
+        DATE_SETTING(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +79,7 @@ public class salas extends Fragment implements View.OnClickListener {
 
         //DEBUG:
         ROOMDB = new RoomFireStore();
-        OPERATIONS = new reservaSala();
+        reservaSala OPERATIONS = new reservaSala();
 
         // Obtén una referencia al contexto actual
         Context context = getContext();
@@ -63,14 +95,34 @@ public class salas extends Fragment implements View.OnClickListener {
         // Inicializa y configura los elementos de TimePicker
         btnTimePicker = view.findViewById(R.id.btn_time_desde);
         btnTimePicker2 = view.findViewById(R.id.btn_time_hasta);
-        btnTimePicker.setOnClickListener(this);
-        btnTimePicker2.setOnClickListener(this);
+        btnTimePicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                // Obtenir la hora i els minuts seleccionats
+                String selectedTime = adapterView.getItemAtPosition(i).toString();
+                String[] timeParts = selectedTime.split(":");
+
+                // Emmagatzemar la hora i els minuts com a enters
+                mHour = Integer.parseInt(timeParts[0]);
+                mMinute = Integer.parseInt(timeParts[1]);
+
+                TimeOperations.setSpinnerDataForAvailableHours(roomOccupiedHoursString,"H-010",mHour,mMinute,btnTimePicker2,30,horaFIN);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
         //BtnSearch
         btnSearch = view.findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(task -> {
             boolean FLAG = true;
+            //MIRA SI SE HAN USADO TODOS LOS BOTONES
             for (boolean b : DATE_SET) {
                 if (!b) {
                     FLAG = false;
@@ -135,56 +187,60 @@ public class salas extends Fragment implements View.OnClickListener {
             DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
-                        public void onDateSet(DatePicker view, int year,
-                                              int monthOfYear, int dayOfMonth) {
+                        public void onDateSet(DatePicker view,
+                                              int year,
+                                              int monthOfYear,
+                                              int dayOfMonth) {
                             mYear = year;
                             mMonth = monthOfYear;
                             mDay = dayOfMonth;
                             btnDatePicker.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            DATE_SET[DATE_SETTING.YEAR_MONTH_DATE_SET.getValue()] = true;
+                            ROOMDB.getReservaRooms(new RoomFireStore.RoomReserveMap() {
+                                @Override
+                                public void onRoomReserveMapLoaded(Map<Room, List<reservaSala>> roomsReserva) {
+                                    roomHours = new HashMap<Room, Set<android.icu.util.Calendar[]>>();
+                                    roomsReserva.forEach((room, reservaSalas) -> {
+                                        calendarIniSet = new HashSet<android.icu.util.Calendar[]>();
+                                        for (reservaSala reservaSala : reservaSalas) {
+                                            android.icu.util.Calendar calIni = android.icu.util.Calendar.getInstance();
+                                            android.icu.util.Calendar calEnd = android.icu.util.Calendar.getInstance();
+                                            calIni.setTime(reservaSala.getFechaIni());
+                                            calEnd.setTime(reservaSala.getFechaFin());
+
+                                            // Obté els camps de l'any, mes i dia
+                                            int yearCal = calIni.get(Calendar.YEAR);
+                                            int monthCal = calIni.get(Calendar.MONTH);
+                                            int dayCal = calIni.get(Calendar.DAY_OF_MONTH);
+
+                                            // Afegix a l'HashSet si es el mateix dia
+                                            if (yearCal == year && monthCal == monthOfYear && dayCal == dayOfMonth) {
+                                                android.icu.util.Calendar[] calendarPair = {calIni, calEnd};
+                                                calendarIniSet.add(calendarPair);
+                                            }
+                                        }
+                                            roomHours.put(room, calendarIniSet);
+
+
+                                    });
+                                    Log.d("ROOMRESERVASALA", roomHours.toString());
+                                    Log.d("XDDD", TimeOperations.generateAvailableTimes(roomHours,horaINI,horaFIN,30).toString());
+                                    roomsAviableHours = TimeOperations.generateAvailableTimes(roomHours,horaINI,horaFIN,30);
+                                    TimeOperations.setSpinnerDataForRoom(roomsAviableHours,"H-010",btnTimePicker);
+                                    roomOccupiedHoursString = TimeOperations.convertToTimeString(roomHours);
+
+
+                                }
+
+                                @Override
+                                public void onRoomsReserveError(Exception e) {
+                                    Toast.makeText(getContext(), "Something happened with our database", Toast.LENGTH_SHORT).show();
+                                    Log.d("GETROOMSRESERVA", "onRoomsReserveError: " + e.getMessage());
+                                }
+                            });
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
-            DATE_SET[0] = true;
-        }
-        if (v == btnTimePicker) {
-            // Get Current Time
-            final Calendar c = Calendar.getInstance();
-            mHour = c.get(Calendar.HOUR_OF_DAY);
-            mMinute = c.get(Calendar.MINUTE);
-
-            // Launch Time Picker Dialog
-            TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
-                    new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay,
-                                              int minute) {
-                            mHour = hourOfDay;
-                            mMinute = minute;
-                            btnTimePicker.setText(hourOfDay + ":" + minute);
-                        }
-                    }, mHour, mMinute, false);
-            timePickerDialog.show();
-            DATE_SET[1] = true;
-        }
-        if (v == btnTimePicker2) {
-            // Get Current Time
-            final Calendar c = Calendar.getInstance();
-            mHour2 = c.get(Calendar.HOUR_OF_DAY);
-            mMinute2 = c.get(Calendar.MINUTE);
-
-            // Launch Time Picker Dialog
-            TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
-                    new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay,
-                                              int minute) {
-                            mHour2 = hourOfDay;
-                            mMinute2 = minute;
-                            btnTimePicker2.setText(hourOfDay + ":" + minute);
-                        }
-                    }, mHour2, mMinute2, false);
-            timePickerDialog.show();
-            DATE_SET[2] = true;
         }
     }
 

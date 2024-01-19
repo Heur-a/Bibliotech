@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text" />
 
-    <Button
+    <Spinner
         android:id="@+id/btn_time_hasta"
         style="@style/fhsele"
         android:layout_width="0dp"
@@ -81,7 +81,7 @@
         app:layout_constraintStart_toEndOf="@+id/spinner_personas"
         app:layout_constraintTop_toTopOf="@+id/view" />
 
-    <Button
+    <Spinner
         android:id="@+id/btn_time_desde"
         style="@style/fhsele"
         android:layout_width="0dp"
