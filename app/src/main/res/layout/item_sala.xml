@@ -25,8 +25,8 @@
             android:background="@drawable/proyectosemaitnt"
             android:backgroundTint="#88a7d0">
 
-            <TextView
-                android:id="@+id/txtNumeroPersonas"
+            <EditText
+                android:id="@+id/editTextNumeroPersonas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#e2e8f3"
@@ -39,8 +39,8 @@
                 app:layout_constraintVertical_bias="0.088" />
 
 
-            <TextView
-                android:id="@+id/txtNumeroSala"
+            <EditText
+                android:id="@+id/editTextNumeroSala"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#e2e8f3"
@@ -52,8 +52,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.345" />
 
-            <TextView
-                android:id="@+id/txtAccesorios"
+            <EditText
+                android:id="@+id/editTextAccesorios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#e2e8f3"

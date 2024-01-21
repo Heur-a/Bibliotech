@@ -9,8 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bibliotech.MainActivity;
 import com.example.bibliotech.R;
+import com.example.bibliotech.datos.Room;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AdminAnyadirSalasActivity extends AppCompatActivity {
+    private List<Room> roomList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,23 +33,26 @@ public class AdminAnyadirSalasActivity extends AppCompatActivity {
 
     }
 
-    /*
     private void guardarInformacion() {
         // Obtén los datos de los EditText
-        String nombre = ((EditText) findViewById(R.id.textViewNameProfile)).getText().toString();
-        String apellidos = ((EditText) findViewById(R.id.textViewSurnames)).getText().toString();
-        String categoria = ((EditText) findViewById(R.id.textViewCategoryProfile)).getText().toString();
-        String correo = ((EditText) findViewById(R.id.textViewEmailProfile)).getText().toString();
+        String numeroPersonas = ((EditText) findViewById(R.id.editTextNumeroPersonas)).getText().toString();
+        String numeroSala = ((EditText) findViewById(R.id.editTextNumeroSala)).getText().toString();
+        String accesorios = ((EditText) findViewById(R.id.editTextAccesorios)).getText().toString();
 
-        // Realiza las acciones necesarias con la información obtenida
-        // Por ejemplo, puedes añadir estos datos a una lista o realizar una operación de guardado en tu base de datos
+        // Divide el string de accesorios por comas y crea una lista
+        List<String> listaAccesorios = Arrays.asList(accesorios.split("\\s*,\\s*"));
 
-        // Ejemplo: Añadir a una lista de personas
-        // personList.add(new Person(nombre + " " + apellidos, categoria, correo));
+        // Crea una nueva sala con la información
+        Room nuevaRoom = new Room(numeroPersonas, numeroSala, listaAccesorios, null);
 
-        // Puedes también realizar otras acciones, como navegar a otra pantalla
-        // o mostrar un mensaje de éxito
+        // Agrega la nueva sala a la lista o base de datos según tus necesidades
+        // ...
+
+        // Obtén la posición del nuevo elemento (último elemento en la lista)
+        int position = roomList.size() - 1;
+
+        // Actualiza el elemento en la posición específica del RecyclerView
+        // SalasAdminAdapter.updateItemAtPosition(position, nuevaRoom);
     }
-    */
 
 }

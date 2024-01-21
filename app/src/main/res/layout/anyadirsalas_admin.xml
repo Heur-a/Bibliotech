@@ -30,84 +30,39 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/bk_perfil" />
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="146dp"
-        android:text="Planta de la sala"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView22"
-        app:layout_constraintTop_toTopOf="@+id/imageView22" />
-
     <EditText
-        android:id="@+id/textViewNameProfile"
+        android:id="@+id/txtNumeroSala"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="38dp"
         android:background="@drawable/bk_buscar"
         android:paddingLeft="21dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:text="Sofía "
         android:textColor=" #486f99"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-    <EditText
-        android:id="@+id/textViewSurnames"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="38dp"
-        android:background="@drawable/bk_buscar"
-        android:paddingLeft="21dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:text="Torres García"
-        android:textColor=" #486f99"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="17dp"
-        android:text="Número de sala"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView22"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNameProfile" />
-
     <EditText
-        android:id="@+id/textViewCategoryProfile"
+        android:id="@+id/txtAccesorios"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="38dp"
         android:background="@drawable/bk_buscar"
         android:paddingLeft="21dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:text="@string/Estudiante"
         android:textColor=" #486f99"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
@@ -115,42 +70,41 @@
         android:id="@+id/textView49"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
         android:text="Número de personas"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/imageView22"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSurnames" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNumeroSala" />
 
     <TextView
         android:id="@+id/textView37"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="112dp"
         android:text="Accesorios"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/imageView22"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSurnames" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNumeroSala" />
 
     <EditText
         android:id="@+id/textViewEmailProfile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="38dp"
         android:background="@drawable/bk_buscar"
         android:paddingLeft="21dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:text="sofiatorresgarcia@upv.es"
         android:textColor=" #486f99"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
@@ -158,12 +112,23 @@
         android:id="@+id/textView52"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="12dp"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/imageView22"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmailProfile" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="Número de sala"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView22"
+        tools:layout_editor_absoluteY="223dp" />
 
     <ImageView
         android:id="@+id/editar"
@@ -184,9 +149,9 @@
         android:backgroundTint="#486f99"
         android:text="@string/Guardar_cambios"
         app:cornerRadius="7dp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewCategoryProfile"
-        app:layout_constraintStart_toStartOf="@+id/textViewCategoryProfile"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCategoryProfile" />
+        app:layout_constraintEnd_toEndOf="@+id/txtAccesorios"
+        app:layout_constraintStart_toStartOf="@+id/txtAccesorios"
+        app:layout_constraintTop_toBottomOf="@+id/txtAccesorios" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

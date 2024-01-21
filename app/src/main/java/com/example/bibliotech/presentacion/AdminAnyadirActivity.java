@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.bibliotech.MainActivity;
 import com.example.bibliotech.R;
 
 public class AdminAnyadirActivity extends AppCompatActivity {
@@ -27,12 +26,12 @@ public class AdminAnyadirActivity extends AppCompatActivity {
 
     }
 
-    /*
+
     private void guardarInformacion() {
         // Obtén los datos de los EditText
         String nombre = ((EditText) findViewById(R.id.textViewNameProfile)).getText().toString();
-        String apellidos = ((EditText) findViewById(R.id.textViewSurnames)).getText().toString();
-        String categoria = ((EditText) findViewById(R.id.textViewCategoryProfile)).getText().toString();
+        String apellidos = ((EditText) findViewById(R.id.txtNumeroSala)).getText().toString();
+        String categoria = ((EditText) findViewById(R.id.txtAccesorios)).getText().toString();
         String correo = ((EditText) findViewById(R.id.textViewEmailProfile)).getText().toString();
 
         // Realiza las acciones necesarias con la información obtenida
@@ -44,6 +43,6 @@ public class AdminAnyadirActivity extends AppCompatActivity {
         // Puedes también realizar otras acciones, como navegar a otra pantalla
         // o mostrar un mensaje de éxito
     }
-    */
+
 
 }

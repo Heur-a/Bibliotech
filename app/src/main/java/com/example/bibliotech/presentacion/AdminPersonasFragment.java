@@ -10,12 +10,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.bibliotech.R;
+import com.example.bibliotech.datos.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdminPersonasFragment extends Fragment {
 
-    private List<Person> personList = new ArrayList<>();
+    private List<User> userList = new ArrayList<>();
     private PersonAdapter personAdapter;
 
     @Override
@@ -28,7 +30,7 @@ public class AdminPersonasFragment extends Fragment {
 
         // Configuración del RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        personAdapter = new PersonAdapter(personList);
+        personAdapter = new PersonAdapter(userList);
         recyclerView.setAdapter(personAdapter);
 
         // Configuración del botón para añadir personas
@@ -42,17 +44,4 @@ public class AdminPersonasFragment extends Fragment {
 
         return rootView;
     }
-
-   /* private void addPerson() {
-        // Genera un nombre aleatorio para la nueva persona (puedes cambiar esto según tus necesidades)
-        String randomName = "Persona " + (personList.size() + 1);
-
-        // Añade la nueva persona a la lista
-        personList.add(new Person(randomName));
-
-        // Notifica al adaptador sobre el cambio en los datos
-        personAdapter.notifyDataSetChanged();
-    }
-    */
-
 }

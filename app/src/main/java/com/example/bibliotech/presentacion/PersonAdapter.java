@@ -9,15 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bibliotech.R;
+import com.example.bibliotech.datos.User;
 
 import java.util.List;
 
 public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonViewHolder> {
 
-    private List<Person> personList;
+    private List<User> userList;
 
-    public PersonAdapter(List<Person> personList) {
-        this.personList = personList;
+    public PersonAdapter(List<User> personList) {
+        this.userList = personList;
     }
 
     @NonNull
@@ -29,13 +30,13 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
     @Override
     public void onBindViewHolder(@NonNull PersonViewHolder holder, int position) {
-        Person person = personList.get(position);
-        holder.bind(person);
+        User user = userList.get(position);
+        holder.bind(user);
     }
 
     @Override
     public int getItemCount() {
-        return personList.size();
+        return userList.size();
     }
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
@@ -46,8 +47,8 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
             txtName = itemView.findViewById(R.id.txtName);
         }
 
-        public void bind(Person person) {
-            txtName.setText(person.getName());
+        public void bind(User user) {
+            txtName.setText(user.getName());
         }
     }
 }

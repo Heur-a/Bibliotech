@@ -12,26 +12,45 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bibliotech.R;
+import com.example.bibliotech.datos.Room;
+import com.example.bibliotech.datos.firestore.RoomFireStore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class AdminSalasFragment extends Fragment {
 
-    private List<salasAdmin> salasList = new ArrayList<>();
+    private List<Room> salasList = new ArrayList<>();
     private SalasAdminAdapter salasAdapter;
+    private RoomFireStore ROOMDB;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.admin_salas, container, false);
 
+
+        ROOMDB = new RoomFireStore();
         RecyclerView recyclerView = rootView.findViewById(R.id.recyclerViewSalas);
         Button btnAddSala = rootView.findViewById(R.id.btnAddSala);
 
         // Configuración del RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         salasAdapter = new SalasAdminAdapter(salasList);
+        ROOMDB.getRoomsSet(new RoomFireStore.SetRoomCallback() {
+            @Override
+            public void onRoomsLoaded(Set<Room> roomList) {
+                salasList = new ArrayList<>(roomList);
+                recyclerView.setAdapter(salasAdapter);
+            }
+
+            @Override
+            public void onRoomsError(Exception e) {
+
+            }
+        });
+
         recyclerView.setAdapter(salasAdapter);
 
         // Configuración del botón para añadir salas

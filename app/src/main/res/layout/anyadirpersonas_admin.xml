@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <EditText
-        android:id="@+id/textViewSurnames"
+        android:id="@+id/txtNumeroSala"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProfile" />
 
     <EditText
-        android:id="@+id/textViewCategoryProfile"
+        android:id="@+id/txtAccesorios"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
@@ -121,7 +121,7 @@
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/imageView22"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSurnames" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNumeroSala" />
 
     <EditText
         android:id="@+id/textViewEmailProfile"
@@ -172,9 +172,9 @@
         android:backgroundTint="#486f99"
         android:text="@string/Guardar_cambios"
         app:cornerRadius="7dp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewCategoryProfile"
-        app:layout_constraintStart_toStartOf="@+id/textViewCategoryProfile"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCategoryProfile" />
+        app:layout_constraintEnd_toEndOf="@+id/txtAccesorios"
+        app:layout_constraintStart_toStartOf="@+id/txtAccesorios"
+        app:layout_constraintTop_toBottomOf="@+id/txtAccesorios" />
 
 
     <ImageView

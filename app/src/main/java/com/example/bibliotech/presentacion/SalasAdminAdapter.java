@@ -5,49 +5,62 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bibliotech.R;
+import com.example.bibliotech.datos.Room;
 
 import java.util.List;
 
-public class SalasAdminAdapter extends RecyclerView.Adapter<SalasAdminAdapter.ViewHolder> {
+public class SalasAdminAdapter extends RecyclerView.Adapter<SalasAdminAdapter.SalasAdminViewHolder> {
 
-    private List<salasAdmin> salasList;
+    private List<Room> roomList;
 
-    public SalasAdminAdapter(List<salasAdmin> salasList) {
-        this.salasList = salasList;
+    public SalasAdminAdapter(List<Room> roomList) {
+        this.roomList = roomList;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SalasAdminViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sala, parent, false);
-        return new ViewHolder(view);
+        return new SalasAdminViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        salasAdmin sala = salasList.get(position);
-        holder.txtNumeroPersonas.setText(sala.getNumeroPersonas());
-        holder.txtNumeroSala.setText(sala.getNumeroSala());
-        holder.txtAccesorios.setText(sala.getAccesorios());
+    public void onBindViewHolder(@NonNull SalasAdminViewHolder holder, int position) {
+        Room room = roomList.get(position);
+        holder.bind(room);
     }
 
     @Override
     public int getItemCount() {
-        return salasList.size();
+        return roomList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNumeroPersonas;
-        TextView txtNumeroSala;
-        TextView txtAccesorios;
+    // Método para actualizar la información de un elemento en una posición específica
+    public void updateItemAtPosition(int position, Room room) {
+        roomList.set(position, room);
+        notifyItemChanged(position);
+    }
 
-        public ViewHolder(View view) {
-            super(view);
-            txtNumeroPersonas = view.findViewById(R.id.txtNumeroPersonas);
-            txtNumeroSala = view.findViewById(R.id.txtNumeroSala);
-            txtAccesorios = view.findViewById(R.id.txtAccesorios);
+    public static class SalasAdminViewHolder extends RecyclerView.ViewHolder {
+        private TextView txtNumeroPersonas;
+        private TextView txtNumeroSala;
+        private TextView txtAccesorios;
+
+        public SalasAdminViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txtNumeroPersonas = itemView.findViewById(R.id.txtAccesorios);
+            txtNumeroSala = itemView.findViewById(R.id.txtNumeroSala);
+            txtAccesorios = itemView.findViewById(R.id.txtAccesorios);
+        }
+
+        public void bind(Room room) {
+            txtNumeroPersonas.setText(room.getNombreSala());
+            txtNumeroSala.setText(room.getNumberpeople());
+            txtAccesorios.setText(room.getAccesories().toString());
         }
     }
 }
