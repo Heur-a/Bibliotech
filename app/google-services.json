@@ -22,6 +22,22 @@
           }
         },
         {
+          "client_id": "92021108070-9do3m5b4gnb8n13h90tavgt026cn9fcc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bibliotech",
+            "certificate_hash": "2d8051f33903ae32ade0cb3e374fd61147b44e8a"
+          }
+        },
+        {
+          "client_id": "92021108070-cld2ngtjhuhmis1bbtm6u0b9tpqqvjjf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bibliotech",
+            "certificate_hash": "91f50d3199e4667677d999ae8d9bb47a8a48b255"
+          }
+        },
+        {
           "client_id": "92021108070-o38qkvb463362i6hpuimna25slbq795d.apps.googleusercontent.com",
           "client_type": 3
         }

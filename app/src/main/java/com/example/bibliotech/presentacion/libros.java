@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class libros extends Fragment {
+public class    libros extends Fragment {
     ImageView buttonlibro;
     View rootView;
 

@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.bibliotech.datos.NotificationHelper;
 import com.example.bibliotech.presentacion.paginaInicialActivity;
 
 public class paginacarga extends AppCompatActivity {
@@ -40,6 +41,7 @@ public class paginacarga extends AppCompatActivity {
         lottieAnimationView.animate().translationX(1400).setDuration(1000).setStartDelay(4000);
 
         handler = new Handler();
+
         handler.postDelayed(new Runnable() { // define el retardo con el que se hará la acción
             @Override
             public void run() { // inicia la acción
@@ -70,7 +72,6 @@ public class paginacarga extends AppCompatActivity {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, builder.build());
     }
-
     public void cambiopag() {
         Intent intent = new Intent(this, paginaInicialActivity.class);
         startActivity(intent);

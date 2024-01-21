@@ -176,10 +176,10 @@ public class MapActivity extends Activity {
         coordenadasStringBuilder.append(message);
 
 // Agrega información de lectura WiFi
-        List<LecturaWiFi> lecturas = WifiScanner.obtenerLecturasWifi(this);
-        if (!lecturas.isEmpty()) {
+        List<LecturaWiFi> lecturasEnTiempoReal = WifiScanner.obtenerLecturasWifi(this,  -70);
+        if (!lecturasEnTiempoReal.isEmpty()) {
             coordenadasStringBuilder.append("\nLecturas WiFi:\n");
-            for (LecturaWiFi lectura : lecturas) {
+            for (LecturaWiFi lectura : lecturasEnTiempoReal) {
                 // Agrega las coordenadas al objeto LecturaWiFi
                 lectura.setPosX(posX);
                 lectura.setPosY(posY);
@@ -232,8 +232,8 @@ public class MapActivity extends Activity {
     private void showMessage(String message) {
         // Mostrar el mensaje con un Toast
         Toast.makeText(MapActivity.this, message, Toast.LENGTH_SHORT).show();
-        List<LecturaWiFi> lecturas = WifiScanner.obtenerLecturasWifi(this);
-        Log.d("LecturaWIFI", lecturas.toString());
+        List<LecturaWiFi> lecturasEnTiempoReal =WifiScanner.obtenerLecturasWifi(this,  -70);
+        Log.d("LecturaWIFI", lecturasEnTiempoReal.toString());
         Log.d("possmap", message);
     }
 }
