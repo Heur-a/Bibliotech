@@ -10,6 +10,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="369dp"
+        android:layout_marginLeft="40dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="159dp" />
 

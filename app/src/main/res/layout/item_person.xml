@@ -23,20 +23,54 @@ android:layout_marginBottom="15dp">
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/proyectosemaitnt"
-        android:backgroundTint="#88a7d0">
+        android:backgroundTint="#88a7d0"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="111dp">
 
         <TextView
             android:id="@+id/txtName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="txtName"
+            android:textColor="#e2e8f3"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtSurname"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="14dp" />
+
+        <TextView
+            android:id="@+id/txtSurname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="txtSurname"
+            android:textColor="#e2e8f3"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtUserType"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            tools:layout_editor_absoluteX="12dp" />
+
+        <TextView
+            android:id="@+id/txtCorreo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="txtCorreo"
             android:textColor="#e2e8f3"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.07"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.088" />
+            app:layout_constraintTop_toBottomOf="@+id/txtUserType"
+            tools:layout_editor_absoluteX="12dp" />
+
+        <TextView
+            android:id="@+id/txtUserType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="txtUserType"
+            android:textColor="#e2e8f3"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtCorreo"
+            app:layout_constraintTop_toBottomOf="@+id/txtSurname"
+            tools:layout_editor_absoluteX="12dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
 

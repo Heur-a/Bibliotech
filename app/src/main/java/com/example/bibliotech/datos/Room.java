@@ -20,6 +20,12 @@ public class Room {
         this.floor = floor;
     }
 
+    public Room(String numeroPersonas, String numeroSala, List<String> listaAccesorios) {
+        this.numberPeople = numeroPersonas;
+        this.nombreSala = numeroSala;
+        this.accesories = listaAccesorios;
+    }
+
     public String getNombreSala() {
         return nombreSala;
     }

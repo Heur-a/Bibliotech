@@ -8,17 +8,22 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bibliotech.R;
+import com.example.bibliotech.datos.User;
+import com.example.bibliotech.datos.firestore.UserFirestore;
 
 public class AdminAnyadirActivity extends AppCompatActivity {
+    private UserFirestore USERDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.anyadirpersonas_admin);
+        USERDB = new UserFirestore();
 
         Button btnGuardar = findViewById(R.id.guardar);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                guardarInformacion();
                 Intent intent = new Intent(AdminAnyadirActivity.this, AdminPersonasFragment.class);
                 startActivity(intent);
             }
@@ -34,14 +39,11 @@ public class AdminAnyadirActivity extends AppCompatActivity {
         String categoria = ((EditText) findViewById(R.id.txtAccesorios)).getText().toString();
         String correo = ((EditText) findViewById(R.id.textViewEmailProfile)).getText().toString();
 
-        // Realiza las acciones necesarias con la información obtenida
-        // Por ejemplo, puedes añadir estos datos a una lista o realizar una operación de guardado en tu base de datos
+        //Crear usuario
+        User user = new User(correo,null,nombre,apellidos,null,categoria);
 
-        // Ejemplo: Añadir a una lista de personas
-        // personList.add(new Person(nombre + " " + apellidos, categoria, correo));
-
-        // Puedes también realizar otras acciones, como navegar a otra pantalla
-        // o mostrar un mensaje de éxito
+        //Añadir a la base de datos
+        USERDB.addAutoId(user);
     }
 
 

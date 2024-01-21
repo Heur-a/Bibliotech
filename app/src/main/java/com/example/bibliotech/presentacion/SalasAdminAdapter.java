@@ -3,6 +3,7 @@ package com.example.bibliotech.presentacion;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,20 +47,20 @@ public class SalasAdminAdapter extends RecyclerView.Adapter<SalasAdminAdapter.Sa
     }
 
     public static class SalasAdminViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtNumeroPersonas;
-        private TextView txtNumeroSala;
-        private TextView txtAccesorios;
+        private EditText txtNumeroPersonas;
+        private EditText txtNumeroSala;
+        private EditText txtAccesorios;
 
         public SalasAdminViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtNumeroPersonas = itemView.findViewById(R.id.txtAccesorios);
-            txtNumeroSala = itemView.findViewById(R.id.txtNumeroSala);
-            txtAccesorios = itemView.findViewById(R.id.txtAccesorios);
+            txtNumeroPersonas = itemView.findViewById(R.id.editTextNumeroPersonas);
+            txtNumeroSala = itemView.findViewById(R.id.editTextNumeroSala);
+            txtAccesorios = itemView.findViewById(R.id.editTextAccesorios);
         }
 
         public void bind(Room room) {
             txtNumeroPersonas.setText(room.getNombreSala());
-            txtNumeroSala.setText(room.getNumberpeople());
+            txtNumeroSala.setText(room.getNumberPeople());
             txtAccesorios.setText(room.getAccesories().toString());
         }
     }

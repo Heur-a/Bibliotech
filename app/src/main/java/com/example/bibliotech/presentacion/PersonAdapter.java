@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bibliotech.R;
 import com.example.bibliotech.datos.User;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonViewHolder> {
@@ -41,14 +43,23 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
         private TextView txtName;
+        private TextView txtSurname;
+        private TextView txtEmail;
+        private TextView txtCategory;
 
         public PersonViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.txtName);
+            txtSurname = itemView.findViewById(R.id.txtSurname);
+            txtEmail = itemView.findViewById(R.id.txtCorreo);
+            txtCategory = itemView.findViewById(R.id.txtUserType);
         }
 
         public void bind(User user) {
             txtName.setText(user.getName());
+            txtEmail.setText(user.getEmail());
+            txtSurname.setText(user.getSurnames());
+            txtCategory.setText(user.getRole());
         }
     }
 }

@@ -60,6 +60,7 @@
         <activity android:name=".presentacion.NotisAjustesActivity" android:exported="true" android:screenOrientation="portrait"/>
         <activity android:name=".presentacion.AdminAnyadirActivity" android:exported="true" android:screenOrientation="portrait"/>
         <activity android:name=".presentacion.AcercaDeActivity" android:label="Acerca de ..." android:theme="@style/Theme.AppCompat.Light.Dialog" android:screenOrientation="portrait"/>
+        <activity android:name=".presentacion.AdminAnyadirSalasActivity" android:exported="true" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

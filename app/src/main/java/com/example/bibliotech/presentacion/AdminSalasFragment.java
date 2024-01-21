@@ -42,6 +42,7 @@ public class AdminSalasFragment extends Fragment {
             @Override
             public void onRoomsLoaded(Set<Room> roomList) {
                 salasList = new ArrayList<>(roomList);
+                salasAdapter = new SalasAdminAdapter(salasList);
                 recyclerView.setAdapter(salasAdapter);
             }
 
@@ -54,12 +55,9 @@ public class AdminSalasFragment extends Fragment {
         recyclerView.setAdapter(salasAdapter);
 
         // Configuración del botón para añadir salas
-        btnAddSala.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), AdminAnyadirSalasActivity.class);
-                startActivity(intent);
-            }
+        btnAddSala.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), AdminAnyadirSalasActivity.class);
+            startActivity(intent);
         });
 
         // addSala();
