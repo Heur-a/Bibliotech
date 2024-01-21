@@ -45,7 +45,7 @@ import com.google.firebase.storage.StorageReference;
             @Override
             public void onClick(View view) {
                 // Open the EditProfileActivity when the "notificaciones" ImageView is clicked
-                Intent intent = new Intent(perfilActivity.this, EditProfileActivity.class);
+                Intent intent = new Intent(perfilActivity.this, NotisAjustesActivity.class);
                 startActivity(intent);
             }
         });
@@ -55,7 +55,7 @@ import com.google.firebase.storage.StorageReference;
             @Override
             public void onClick(View view) {
                 // Open the EditProfileActivity when the "privacidad" ImageView is clicked
-                Intent intent = new Intent(perfilActivity.this, EditProfileActivity.class);
+                Intent intent = new Intent(perfilActivity.this, AjustesActivity.class);
                 startActivity(intent);
             }
         });
@@ -65,23 +65,16 @@ import com.google.firebase.storage.StorageReference;
             @Override
             public void onClick(View view) {
                 // Open the EditProfileActivity when the "idioma" ImageView is clicked
-                Intent intent = new Intent(perfilActivity.this, EditProfileActivity.class);
+                Intent intent = new Intent(perfilActivity.this, IdiomaAjustesActivity.class);
                 startActivity(intent);
             }
         });
-
-
-
-
 
         name =  findViewById(R.id.user_name);
         image = findViewById(R.id.img_user);
         id = findViewById(R.id.user_id);
 
         updateNames();
-
-
-
     }
 
      @Override

@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminPersonasFragment">
+    tools:context=".AdminSalasFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewSalas"
         android:layout_width="match_parent"
         android:layout_height="369dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="159dp" />
 
     <Button
-        android:id="@+id/btnAdd"
+        android:id="@+id/btnAddSala"
         style="@style/botones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:layout_marginTop="134dp"
         android:layout_marginEnd="226dp"
         android:layout_marginBottom="549dp"
-        android:text="Añadir Persona"
+        android:text="Añadir sala"
         app:cornerRadius="8dp" />
 
     <Button
@@ -42,7 +42,7 @@
         android:layout_marginTop="134dp"
         android:layout_marginEnd="38dp"
         android:layout_marginBottom="549dp"
-        android:text="Eliminar Persona"
+        android:text="Eliminar sala"
         app:cornerRadius="8dp" />
 
 </RelativeLayout>

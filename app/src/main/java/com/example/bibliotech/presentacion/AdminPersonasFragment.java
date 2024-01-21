@@ -43,7 +43,7 @@ public class AdminPersonasFragment extends Fragment {
         return rootView;
     }
 
-    private void addPerson() {
+   /* private void addPerson() {
         // Genera un nombre aleatorio para la nueva persona (puedes cambiar esto según tus necesidades)
         String randomName = "Persona " + (personList.size() + 1);
 
@@ -53,4 +53,6 @@ public class AdminPersonasFragment extends Fragment {
         // Notifica al adaptador sobre el cambio en los datos
         personAdapter.notifyDataSetChanged();
     }
+    */
+
 }

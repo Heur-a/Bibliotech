@@ -151,9 +151,9 @@ public class AdminMainActivity extends AppCompatActivity {
         public Fragment createFragment(int position) { //dependiendo de la posicion del tab se mueve a un fragmento
             switch (position) {
                 case 0:
-                    return new reservasviewnew();
+                    return new AdminPersonasFragment();
                 case 1:
-                    return new libros();
+                    return new AdminSalasFragment();
                 case 2:
                     return new home();
                 case 3:
