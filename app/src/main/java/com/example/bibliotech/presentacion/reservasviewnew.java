@@ -42,6 +42,7 @@ public class reservasviewnew extends Fragment {
 
     private List<reservaLibro> reservaLibros = new ArrayList<>();
     private List<reservaSala> reservaSalas = new ArrayList<>();
+    private List<String> reservaSalasId = new ArrayList<>();
 
     private ArrayList<StaticRvModel> libros = new ArrayList<>();
     private ArrayList<StaticRvModel> salas = new ArrayList<>();
@@ -135,7 +136,7 @@ public class reservasviewnew extends Fragment {
                     LocalDate localDate = reservaLibro.getFechaIni().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     libros.add(new StaticRvModel(book.getName(), book.getISBN(), formatearFecha(reservaLibro.getFechaFin()),
                             obtenerNombreMesAbreviado(localDate.getMonthValue() - 1), formatearNumero(localDate.getDayOfMonth()),
-                            Integer.toString(localDate.getYear()), false));
+                            Integer.toString(localDate.getYear()), false,null));
                     actualizarAdapter(libros);  // Actualizar el adapter después de agregar datos
                 }
 
@@ -168,7 +169,8 @@ public class reservasviewnew extends Fragment {
                             obtenerNombreMesAbreviado(localDate.getMonthValue() - 1),
                             formatearNumero(localDate.getDayOfMonth()),
                             Integer.toString(localDate.getYear()),
-                            false
+                            false,
+                            reservaSala.getObjectId()
                     ));
                 }
 
@@ -284,6 +286,7 @@ public class reservasviewnew extends Fragment {
         intent.putExtra("fechaReservames", selectedItem.getMes_res());
         intent.putExtra("fechaReservaano", Integer.toString(localDate.getYear()));
         intent.putExtra("number", room.getNumberPeople());
+        intent.putExtra("reservaId",selectedItem.getReservaId());
 
         startActivity(intent);
     }
@@ -334,7 +337,7 @@ public class reservasviewnew extends Fragment {
     }
 
     private void agregarEspaciador(ArrayList<StaticRvModel> lista, int pos) {
-        lista.add(pos, new StaticRvModel("Espaciador Invisible", "1234", "01/01/1970", "ENE", "01", "1970", true));
+        lista.add(pos, new StaticRvModel("Espaciador Invisible", "1234", "01/01/1970", "ENE", "01", "1970", true,null));
     }
 
     private String formatearFecha(Date fecha) {

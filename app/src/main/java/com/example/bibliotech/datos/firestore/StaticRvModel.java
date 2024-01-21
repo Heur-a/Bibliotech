@@ -1,12 +1,14 @@
 package com.example.bibliotech.datos.firestore;
 
+import androidx.annotation.Nullable;
+
 public class StaticRvModel {
 
     private String bk_name, dia_dev, mes_res, dia_res, año_res;
     private boolean invisible;
-    private String bookId;
+    private String bookId,reservaId;
 
-    public StaticRvModel(String bk_name,String bookId, String dia_dev, String mes_res, String dia_res, String año_res, boolean invisible) {
+    public StaticRvModel(String bk_name, String bookId, String dia_dev, String mes_res, String dia_res, String año_res, boolean invisible,  @Nullable String reservaId) {
         this.bk_name = bk_name;
         this.dia_dev = dia_dev;
         this.mes_res = mes_res;
@@ -14,6 +16,7 @@ public class StaticRvModel {
         this.año_res = año_res;
         this.bookId = bookId;
         this.invisible = invisible;
+        this.reservaId = reservaId;
     }
 
     public String getBk_name() {
@@ -41,5 +44,13 @@ public class StaticRvModel {
     }
     public String getBookId() {
         return bookId;
+    }
+
+    public String getReservaId() {
+        return reservaId;
+    }
+
+    public void setReservaId(String reservaId) {
+        this.reservaId = reservaId;
     }
 }

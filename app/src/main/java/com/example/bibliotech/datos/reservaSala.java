@@ -6,7 +6,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.bibliotech.datos.reserva;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -21,6 +20,7 @@ import java.util.List;
 public class reservaSala extends reserva {
 
     private String roomId;
+    private String objectId;
 
     public reservaSala(Date fechaIni, Date fechaFin, String userId, String roomId) {
         super(fechaIni, fechaFin, userId);
@@ -52,7 +52,7 @@ public class reservaSala extends reserva {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // Get a reference to the document you want to update
-        DocumentReference documentRef = db.collection("users").document(documentId).collection("reservaSala").document();
+        DocumentReference documentRef = db.collection("users").document(documentId).collection("reservaSala").document(objectId);
 
         // Use the set method to replace all data in the document with the new object
         documentRef.set(this)
@@ -70,6 +70,14 @@ public class reservaSala extends reserva {
                 });
     }
 
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
     public static void getReservaSala(String userid, ReservasSalasCallback callback) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference reservaCollectionRef = db.collection("users").document(userid).collection("reservaSala");
@@ -79,13 +87,16 @@ public class reservaSala extends reserva {
                     List<reservaSala> reservaList = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task) {
                         reservaSala reserva = document.toObject(reservaSala.class);
+                        reserva.objectId = document.getId();
                         reservaList.add(reserva);
+
                     }
                     callback.onReservasLoaded(reservaList);
                 })
                 .addOnFailureListener(e -> {
                     callback.onReservasError("Error: " + e.getMessage());
                 });
+
     }
 
     public interface ReservasSalasCallback {

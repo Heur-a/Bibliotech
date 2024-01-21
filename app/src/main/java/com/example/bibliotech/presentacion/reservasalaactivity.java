@@ -21,6 +21,7 @@ import com.example.bibliotech.datos.User;
 import com.example.bibliotech.datos.firestore.FireBaseActions;
 import com.example.bibliotech.MainActivity;
 import com.example.bibliotech.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -28,6 +29,8 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class reservasalaactivity extends AppCompatActivity {
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     ImageView img_qr;
     Button btn_volver;
     @Override
@@ -35,7 +38,6 @@ public class reservasalaactivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sala_page_reservasalas);
 
-        // ... (Tu código anterior)
 
         // Obteniendo datos de la intención
         User credentials = FireBaseActions.getUserAuth(this);
@@ -48,6 +50,7 @@ public class reservasalaactivity extends AppCompatActivity {
         String fechaReservames = getIntent().getStringExtra("fechaReservames");
         String fechaReservaano = getIntent().getStringExtra("fechaReservaano");
         String personas = getIntent().getStringExtra("number");
+        String idReserva = getIntent().getStringExtra("reservaId");
 
         // Muestra los datos en tus vistas
         TextView user = findViewById(R.id.username);
@@ -62,9 +65,11 @@ public class reservasalaactivity extends AppCompatActivity {
         // autor.setText(autors); // No proporcionas autors
          numpages.setText(personas); // No proporcionas paginas
 
+
+
         fechaReservaTextView.setText(fechaReservadia + "/" + fechaReservames + "/" + fechaReservaano);
         img_qr = findViewById(R.id.qr);
-        generateQR(String.valueOf(nombreLibroTextView));  // Debes proporcionar un valor para 'isbn'
+        generateQR(idReserva);  // Debes proporcionar un valor para 'isbn'
 
         btn_volver = findViewById(R.id.btn_volver);
         btn_volver.setOnClickListener(new View.OnClickListener() {
@@ -78,12 +83,12 @@ public class reservasalaactivity extends AppCompatActivity {
     }
 
 
-    private void generateQR(String isbn) {
+    private void generateQR(String textQr) {
 
         MultiFormatWriter writer = new MultiFormatWriter();
 
         try {
-            BitMatrix matrix = writer.encode(isbn, BarcodeFormat.QR_CODE, 400, 400);
+            BitMatrix matrix = writer.encode(textQr, BarcodeFormat.QR_CODE, 400, 400);
 
             // Cambiar el color del fondo del código QR (en este caso, blanco)
             int bgColor = Color.WHITE;

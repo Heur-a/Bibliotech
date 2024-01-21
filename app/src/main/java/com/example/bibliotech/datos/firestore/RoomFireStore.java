@@ -2,9 +2,14 @@ package com.example.bibliotech.datos.firestore;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.bibliotech.datos.Room;
 import com.example.bibliotech.datos.reservaSala;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -63,8 +68,25 @@ public class RoomFireStore {
                 });
     }
 
-    public void addReserva(reservaSala reserva, String salaID) {
-        rooms.document(salaID).collection("reservaSala").document().set(reserva);
+    public void addReserva(reservaSala reserva, String salaID, onReservaAdded callback) {
+        rooms.document(salaID).collection("reservaSala").add(reserva).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                String reservaId = documentReference.getId();
+                reserva.setObjectId(reservaId);
+                rooms.document(salaID).collection("reservaSala").document(reservaId).set(reserva).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        callback.onSuccesListener(reserva);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callback.onFailureListener(e);
+                    }
+                });
+            }
+        });
     }
 
     public void getReservaRooms(RoomReserveMap callback) {
@@ -122,6 +144,12 @@ public class RoomFireStore {
         void onRoomReserveMapLoaded(Map<Room, List<reservaSala>> roomsRsereva);
 
         void onRoomsReserveError(Exception e);
+    }
+
+    public interface onReservaAdded {
+        void onSuccesListener(reservaSala reservaSala);
+
+        void onFailureListener(Exception e);
     }
 
 

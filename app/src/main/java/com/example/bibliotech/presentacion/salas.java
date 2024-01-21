@@ -48,7 +48,7 @@ public class salas extends Fragment implements View.OnClickListener {
     private Map<Room,List<String[]>> roomOccupiedHoursString;
 
     private final LocalTime horaINI = LocalTime.of(8,0);
-    private final LocalTime horaFIN = LocalTime.of(20,0);
+    private final LocalTime horaFIN = LocalTime.of(22,0);
 
     private enum DATE_SETTING {
         FIRST_HOUR_SET(0),
@@ -118,20 +118,39 @@ public class salas extends Fragment implements View.OnClickListener {
         });
 
 
+        btnTimePicker2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedTime = adapterView.getItemAtPosition(i).toString();
+                String[] timeParts = selectedTime.split(":");
+                Toast.makeText(context, "HOLA", Toast.LENGTH_SHORT).show();
+
+                // Emmagatzemar la hora i els minuts com a enters
+                mHour2 = Integer.parseInt(timeParts[0]);
+                mMinute2 = Integer.parseInt(timeParts[1]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
         //BtnSearch
         btnSearch = view.findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(task -> {
-            boolean FLAG = true;
+           /* boolean FLAG = true;
             //MIRA SI SE HAN USADO TODOS LOS BOTONES
             for (boolean b : DATE_SET) {
                 if (!b) {
                     FLAG = false;
                     break;
                 }
-            }
-            if (FLAG) {
+            }*/
+            /*if (FLAG) {*/
                 anyadirReserva();
-            }
+//            }
 
         });
 
@@ -261,7 +280,19 @@ public class salas extends Fragment implements View.OnClickListener {
                 "H-010");
 
         // Afegeix la reserva utilitzant l'objecte RoomFireStore
-        ROOMDB.addReserva(RESERVA, "H-012");
+        ROOMDB.addReserva(RESERVA, "H-010", new RoomFireStore.onReservaAdded() {
+            @Override
+            public void onSuccesListener(reservaSala reservaSala) {
+                RESERVA.anyadirAUser(FireBaseActions.getUserId());
+            }
+
+            @Override
+            public void onFailureListener(Exception e) {
+                //NOTHING
+            }
+        });
+
+
     }
 
 
