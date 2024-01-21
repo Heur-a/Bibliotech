@@ -5,11 +5,15 @@ public class LecturaWiFi {
     private int nivelSenal; // Nivel de señal de la red WiFi
     private double posX; // Coordenada X
     private double posY; // Coordenada Y
+    private double distancia; // Distancia (agregada)
 
     // Constructor
     public LecturaWiFi(String mac, int nivelSenal) {
         this.mac = mac;
         this.nivelSenal = nivelSenal;
+    }
+    public LecturaWiFi() {
+        // Puedes inicializar campos aquí si es necesario
     }
 
     // Getters y setters
@@ -43,6 +47,9 @@ public class LecturaWiFi {
 
     public void setPosY(double posY) {
         this.posY = posY;
+    }
+    public double calcularDistancia(double x, double y) {
+        return Math.sqrt(Math.pow(x - posX, 2) + Math.pow(y - posY, 2));
     }
 
     @Override

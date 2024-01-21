@@ -40,5 +40,3 @@ public class LecturaPos {
         this.lecturasWifi = lecturasWifi;
     }
 }
-
-

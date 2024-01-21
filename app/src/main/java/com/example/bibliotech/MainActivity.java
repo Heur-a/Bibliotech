@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.bibliotech.datos.NotificationHelper;
 import com.example.bibliotech.maplogic.LecturaWiFi;
 import com.example.bibliotech.maplogic.PosicionManager;
 import com.example.bibliotech.maplogic.WifiScanner;
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPager2 viewPager = findViewById(R.id.viewpager);
         viewPager.setAdapter(new MiPagerAdapter(this));
         DrawerLayout drawableLayout = findViewById(R.id.drawable_layout);
+        mostrarNotificacion();
         //NavigationView navigationView = findViewById(R.id.nav_view);
         ImageButton menuButton = findViewById(R.id.btn_menu_desplegable);
         //Define header Views
@@ -82,11 +85,9 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageHeader = headerView.findViewById(R.id.imageHeader);
         TextView headerText = headerView.findViewById(R.id.headerText);
         TextView idText = headerView.findViewById(R.id.headerId);
-        posicionManager = new PosicionManager(this);
         // Crear una intención para abrir la aplicación cuando se haga clic en la notificación
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-
         // Configurar la notificación
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID")
                 .setSmallIcon(R.drawable.bajolamismaestrella)
@@ -177,7 +178,6 @@ public class MainActivity extends AppCompatActivity {
                     // Agrega más casos para otras pestañas si es necesario
                 }
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
                 // Cuando se deselecciona una pestaña
@@ -252,7 +252,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    private void mostrarNotificacion() {
+        NotificationHelper notificationHelper = new NotificationHelper(MainActivity.this);
+        notificationHelper.createNotificationChannel(); // Llamar a esto al inicio de tu aplicación o donde sea necesario
+        notificationHelper.showNotification("Contenido de la notificación");
+    }
     public void setSupportActionBar(Toolbar supportActionBar) {
         this.supportActionBar = supportActionBar;
     }
@@ -411,16 +415,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        iniciarActualizacionContinua();
+       // iniciarActualizacionContinua();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        detenerActualizacionContinua();
+       // detenerActualizacionContinua();
     }
 
-    private void iniciarActualizacionContinua() {
+    /*private void iniciarActualizacionContinua() {
             posicionManager.iniciarTriangulacionContinua();
     }
 
@@ -428,4 +432,4 @@ public class MainActivity extends AppCompatActivity {
         posicionManager.detenerTriangulacionContinua();
     }
 }
-
+*/}

@@ -72,6 +72,12 @@ dependencies {
     implementation("com.github.MikeOrtiz:TouchImageView:1.4.1")
     implementation ("com.firebaseui:firebase-ui-storage:7.2.0")
     implementation ("com.google.android.gms:play-services-tasks:17.2.0")
+    implementation ("com.google.firebase:firebase-appcheck:16.0.0-beta02")
+    implementation("com.google.firebase:firebase-analytics")
+    implementation ("org.apache.commons:commons-math3:3.6.1")
+    implementation("org.ejml:ejml-all:0.39")
+
+
 
 
 }
