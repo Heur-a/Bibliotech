@@ -81,8 +81,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        style="@style/iconoflecha"
         android:id="@+id/atras4"
+        style="@style/iconoflecha"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"

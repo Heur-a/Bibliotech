@@ -61,7 +61,7 @@ import com.google.firebase.storage.StorageReference;
         });
 
         Button idioma = findViewById(R.id.btn_prf_idioma);
-        privacidad.setOnClickListener(new View.OnClickListener() {
+        idioma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Open the EditProfileActivity when the "idioma" ImageView is clicked
