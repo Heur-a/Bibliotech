@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -30,11 +29,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
 
 public class EditProfileActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -54,8 +48,8 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.perfileditar); // Set the layout for this activity
         image = findViewById(R.id.imageViewProfile);
         name = findViewById(R.id.textViewNameProfile);
-        surnames = findViewById(R.id.textViewSurnames);
-        category = findViewById(R.id.textViewCategoryProfile);
+        surnames = findViewById(R.id.txtNumeroSala);
+        category = findViewById(R.id.txtAccesorios);
         email = findViewById(R.id.textViewEmailProfile);
         Button B = findViewById(R.id.guardar);
         updateNames();

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminSalasFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSalas"
+        android:layout_width="match_parent"
+        android:layout_height="369dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="310dp"
+        android:layout_marginBottom="52dp" />
+
+    <Button
+        android:id="@+id/btnAddSala"
+        style="@style/botones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="134dp"
+        android:layout_marginEnd="226dp"
+        android:layout_marginBottom="549dp"
+        android:text="Añadir sala"
+        app:cornerRadius="8dp" />
+
+    <Button
+        android:id="@+id/btnEliminar"
+        style="@style/botones"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="204dp"
+        android:layout_marginTop="134dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="549dp"
+        android:text="Eliminar sala"
+        app:cornerRadius="8dp" />
+
+</RelativeLayout>
