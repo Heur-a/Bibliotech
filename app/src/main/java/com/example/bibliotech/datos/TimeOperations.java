@@ -3,7 +3,6 @@ package com.example.bibliotech.datos;
 import android.icu.util.Calendar;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.bibliotech.R;
 
@@ -33,7 +32,7 @@ public class TimeOperations {
                 List<String[]> timeStringList = convertCalendarSetsToStringList(timePairs);
 
                 // Add the result to the map only if there is at least one valid time pair
-                    roomsTimeStringMap.put(room, timeStringList);
+                roomsTimeStringMap.put(room, timeStringList);
 
             }
         }
@@ -89,7 +88,7 @@ public class TimeOperations {
         LocalTime currentTime = LocalTime.parse(time);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        if(intervals.isEmpty() || intervals == null){
+        if (intervals.isEmpty() || intervals == null) {
             return false;
         }
 
@@ -98,8 +97,7 @@ public class TimeOperations {
             LocalTime intervalEndTime = LocalTime.parse(interval[1], formatter);
 
             if ((currentTime.isAfter(intervalStartTime) || currentTime.equals(intervalStartTime))
-                    && currentTime.isBefore(intervalEndTime))
-            {
+                    && currentTime.isBefore(intervalEndTime)) {
                 return true; // It is within the interval
             }
         }
@@ -113,15 +111,16 @@ public class TimeOperations {
         //Get occupied hours
         Map<Room, List<String[]>> hoursOccupiedRooms = convertToTimeString(hoursMap);
         if (!hoursOccupiedRooms.isEmpty()) {
-                hoursOccupiedRooms.forEach((room, strings) -> {
-                    List<String> hours = generateTimes(openingHour,exitHour,minuteInterval,strings);
-                    hoursAviableRooms.put(room,hours);
-                });
+            hoursOccupiedRooms.forEach((room, strings) -> {
+                List<String> hours = generateTimes(openingHour, exitHour, minuteInterval, strings);
+                hoursAviableRooms.put(room, hours);
+            });
         }
 
 
         return hoursAviableRooms;
     }
+
     // This method sets the spinner data based on the selected room name
     public static void setSpinnerDataForRoom(Map<Room, List<String>> roomDataMap, String selectedRoomName, Spinner spinner) {
         // Check if the roomDataMap is not null
@@ -138,7 +137,7 @@ public class TimeOperations {
                     // Check if the roomData is not null and not empty
                     if (roomData != null && !roomData.isEmpty()) {
                         // Create an ArrayAdapter using the roomData and set it to the spinner
-                        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(spinner.getContext(),R.layout.spinner_list, roomData);
+                        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(spinner.getContext(), R.layout.spinner_list, roomData);
                         spinnerAdapter.setDropDownViewResource(R.layout.spinner_list);
                         spinner.setAdapter(spinnerAdapter);
                         return; // Exit the loop once the room is found
@@ -178,38 +177,49 @@ public class TimeOperations {
     }
 
     // Generate available hours until the very first occupied hour or specified end time for the selected room
+    // Generate available hours until the very first occupied hour or specified end time for the selected room
     private static List<String> generateAvailableHours(LocalTime startTime, List<String[]> occupiedHoursList, int minuteInterval, LocalTime endTime) {
         List<String> availableHours = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        // Check if the list of occupied hours is null or empty
-        if (occupiedHoursList.isEmpty()) {
-            // Iterate over all times between the start and the specified end time with the specified minute increment
-            while (startTime.isBefore(endTime)) {
-                // Increment the current time with the specified minute increment
-                startTime = startTime.plusMinutes(minuteInterval);
-
+        // Comprova si la llista d'hores ocupades és nul·la o buida
+        if (occupiedHoursList == null || occupiedHoursList.isEmpty()) {
+            // Si és nul·la o buida, simplement genera totes les hores fins a l'hora final especificada
+            while (startTime.isBefore(endTime) || startTime.equals(endTime)) {
                 String currentFormattedTime = startTime.format(formatter);
-
-                // Add the current hour to the availableHours list
+                startTime = startTime.plusMinutes(minuteInterval);
                 availableHours.add(currentFormattedTime);
 
-
+                // Incrementa la hora actual amb l'increment de minuts especificat
 
             }
         } else {
-            // Iterate over all times between the start and the very first occupied hour with the specified minute increment
-            while (!occupiedHoursList.isEmpty() && startTime.isBefore(LocalTime.parse(occupiedHoursList.get(0)[0], formatter))) {
+            // Si hi ha hores ocupades, itera sobre totes les hores
+            while (startTime.isBefore(endTime) || startTime.equals(endTime)) {
+                boolean hourOccupied = false;
 
-                // Increment the current time with the specified minute increment
+                // Comprova si la hora actual està dins de qualsevol interval ocupat
+                for (String[] interval : occupiedHoursList) {
+                    LocalTime intervalStartTime = LocalTime.parse(interval[0], formatter);
+                    LocalTime intervalEndTime = LocalTime.parse(interval[1], formatter);
+
+                    if ((startTime.isAfter(intervalStartTime) || startTime.equals(intervalStartTime))
+                            && startTime.isBefore(intervalEndTime)) {
+                        // La hora actual està dins de l'interval ocupat
+                        hourOccupied = true;
+                    }
+                }
+
+                // Incrementa la hora actual amb l'increment de minuts especificat
                 startTime = startTime.plusMinutes(minuteInterval);
 
-
-                String currentFormattedTime = startTime.format(formatter);
-
-                // Add the current hour to the availableHours list
-                availableHours.add(currentFormattedTime);
-
+                // Si la hora actual no està dins de cap interval ocupat, l'afegim a la llista d'hores disponibles
+                if (!hourOccupied) {
+                    String currentFormattedTime = startTime.format(formatter);
+                    availableHours.add(currentFormattedTime);
+                } else {
+                    return availableHours;
+                }
 
 
             }
@@ -217,14 +227,15 @@ public class TimeOperations {
 
         return availableHours;
     }
-
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+

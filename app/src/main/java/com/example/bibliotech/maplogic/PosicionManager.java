@@ -418,8 +418,8 @@ public class PosicionManager {
     }
 
     private void mostrarToast(final String mensaje) {
-        new Handler(Looper.getMainLooper()).post(() ->
-                Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show());
+        //new Handler(Looper.getMainLooper()).post(() ->
+                //Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show());
     }
 
     private boolean huboCambioUbicacion(double nuevaPosX, double nuevaPosY) {

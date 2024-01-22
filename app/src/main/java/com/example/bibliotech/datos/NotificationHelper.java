@@ -31,10 +31,10 @@ public class NotificationHelper {
         }
     }
 
-    public void showNotification(String message) {
+    public void showNotification(String message,String title) {
         Notification.Builder builder = new Notification.Builder(context, "MiNotificacionChannel")
                 .setSmallIcon(R.drawable.logoappsintexto)
-                .setContentTitle("BiblioTech")
+                .setContentTitle(title)
                 .setContentText(message);
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

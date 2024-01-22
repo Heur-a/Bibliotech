@@ -2,7 +2,9 @@ package com.example.bibliotech.datos;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -48,27 +50,34 @@ public class reservaSala extends reserva {
                 "} " + super.toString();
     }
 
-    public void anyadirAUser(String documentId) {
+
+    public void anyadirAUser(String documentId, Context context) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Get a reference to the document you want to update
-        DocumentReference documentRef = db.collection("users").document(documentId).collection("reservaSala").document(objectId);
+        // Obtenir una referència al document que vols actualitzar
+        DocumentReference documentRef = db.collection("users").document(documentId).collection("reservaSala").document();
 
-        // Use the set method to replace all data in the document with the new object
+        // Obtenir l'ID de la sala
+        String salaId = this.getRoomId();
+
+        // Assignar l'objecte actual com a valor al document amb un identificador generat automàticament
         documentRef.set(this)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "Document updated successfully with the new object.");
-                    }
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(TAG, "Document updated successfully with the new object.");
+
+                    // Crear una instància de NotificationHelper i mostrar la notificació directament
+                    NotificationHelper notificationHelper = new NotificationHelper(context);
+                    notificationHelper.createNotificationChannel();
+                    String message = "La reserva para tu sala " + salaId + " se ha procesado con exito.";
+                    notificationHelper.showNotification( message,  "Nova reserva processada");
+                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error updating the document:", e);
-                    }
+                .addOnFailureListener(e -> {
+                    Log.w(TAG, "Error updating the document:", e);
                 });
     }
+
+
 
     public String getObjectId() {
         return objectId;
@@ -87,7 +96,6 @@ public class reservaSala extends reserva {
                     List<reservaSala> reservaList = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task) {
                         reservaSala reserva = document.toObject(reservaSala.class);
-                        reserva.objectId = document.getId();
                         reservaList.add(reserva);
 
                     }

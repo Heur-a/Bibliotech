@@ -1,11 +1,7 @@
 package com.example.bibliotech;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-import static com.example.bibliotech.datos.firestore.FireBaseActions.db;
-
 import android.Manifest;
 import android.app.Activity;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -20,12 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.bibliotech.datos.NotificationHelper;
-import com.example.bibliotech.maplogic.LecturaWiFi;
-import com.example.bibliotech.maplogic.PosicionManager;
-import com.example.bibliotech.maplogic.WifiScanner;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -43,6 +34,7 @@ import com.bumptech.glide.Glide;
 import com.example.bibliotech.datos.User;
 import com.example.bibliotech.datos.firestore.FireBaseActions;
 import com.example.bibliotech.datos.reservaLibro;
+import com.example.bibliotech.maplogic.PosicionManager;
 import com.example.bibliotech.presentacion.AcercaDeActivity;
 import com.example.bibliotech.presentacion.home;
 import com.example.bibliotech.presentacion.libros;
@@ -64,13 +56,38 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    HashMap<String, List<String>> topicList;
-
     private static final int SOLICITUD_PERMISO_WRITE_CALL = 0;
+    HashMap<String, List<String>> topicList;
     private boolean modoOscuro = false;
 
     private Toolbar supportActionBar;
     private PosicionManager posicionManager;
+
+    public static void updateInfo(ImageView pfp, TextView username, TextView id, Context Context) {
+        if (FireBaseActions.getCurrentUser() != null) {
+            User credentials = FireBaseActions.getUserAuth(Context);
+            // Load image from Firebase Storage using FirebaseImageLoader
+            FirebaseStorage.getInstance()
+                    .getReference().child("images/pfp/" + FireBaseActions.getUserId()).getDownloadUrl().addOnSuccessListener(task -> {
+                        Glide.with(Context)
+                                .load(task)
+                                .into(pfp);
+                    });
+            username.setText(credentials.username);
+            id.setText(credentials.id);
+        }
+    }
+
+    public static void solicitarPermisoLlamada(final String permiso, String justificacion, final int requestCode, final Activity actividad) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(actividad, permiso)) {
+            new AlertDialog.Builder(actividad)
+                    .setTitle("Solicitud de permiso")
+                    .setMessage(justificacion)
+                    .setPositiveButton("Ok", (dialog, whichButton) -> ActivityCompat.requestPermissions(actividad, new String[]{permiso}, requestCode)).show();
+        } else {
+            ActivityCompat.requestPermissions(actividad, new String[]{permiso}, requestCode);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         //NavigationView navigationView = findViewById(R.id.nav_view);
         ImageButton menuButton = findViewById(R.id.btn_menu_desplegable);
         //Define header Views
-        NavigationView Nav= findViewById(R.id.nav_view);
+        NavigationView Nav = findViewById(R.id.nav_view);
         View headerView = Nav.getHeaderView(0);
         ImageView imageHeader = headerView.findViewById(R.id.imageHeader);
         TextView headerText = headerView.findViewById(R.id.headerText);
@@ -107,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         //ponerDatosMockup();
         reservaLibro reservaLibro = new reservaLibro();
         List<reservaLibro> resrvlib = new ArrayList<>();
-        reservaLibro.getReservasBook(FireBaseActions.user.getUid(), new com.example.bibliotech.datos.reservaLibro.ReservasLibrosCallback() {
+        com.example.bibliotech.datos.reservaLibro.getReservasBook(FireBaseActions.getUserId(), new com.example.bibliotech.datos.reservaLibro.ReservasLibrosCallback() {
             @Override
             public void onReservasLoaded(List<com.example.bibliotech.datos.reservaLibro> reservaList) {
                 resrvlib.addAll(reservaList);
@@ -215,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
         });
         viewPager.setCurrentItem(2);
 
-        updateInfo(imageHeader,headerText,idText,this);
+        updateInfo(imageHeader, headerText, idText, this);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -255,41 +272,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
     }
 
     public void setSupportActionBar(Toolbar supportActionBar) {
         this.supportActionBar = supportActionBar;
-    }
-
-    public class MiPagerAdapter extends FragmentStateAdapter {
-        public MiPagerAdapter(FragmentActivity activity) {
-            super(activity);
-        }
-
-        @Override
-        public int getItemCount() {
-            return 5;
-        }
-
-        @Override
-        @NonNull
-        public Fragment createFragment(int position) {
-            switch (position) {
-                case 0:
-                    return new reservasviewnew();
-                case 1:
-                    return new libros();
-                case 2:
-                    return new home();
-                case 3:
-                    return new salas();
-                case 4:
-                    return new mapa();
-            }
-            return null;
-        }
     }
 
     public void cerrarSesion(View view) {
@@ -302,21 +288,6 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    public static void updateInfo (ImageView pfp, TextView username, TextView id, Context Context) {
-        if (FireBaseActions.getCurrentUser() != null) {
-            User credentials = FireBaseActions.getUserAuth(Context);
-            // Load image from Firebase Storage using FirebaseImageLoader
-            FirebaseStorage.getInstance()
-                    .getReference().child("images/pfp/" + FireBaseActions.getUserId()).getDownloadUrl().addOnSuccessListener(task -> {
-                        Glide.with(Context)
-                                .load(task)
-                                .into(pfp);
-                    });
-            username.setText(credentials.username);
-            id.setText(credentials.id);
-        }
-    }
-
     private void switchToProfilePage() {
         // Implement the logic to navigate to the profile page here
         // For example, you can start a new activity or replace the current fragment.
@@ -324,6 +295,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, perfilActivity.class);
         startActivity(intent);
     }
+
     private void switchAcercade() {
         // Implement the logic to navigate to the profile page here
         // For example, you can start a new activity or replace the current fragment.
@@ -387,15 +359,7 @@ public class MainActivity extends AppCompatActivity {
                     " administrar llamadas no puedo borrar llamadas del registro.", SOLICITUD_PERMISO_WRITE_CALL, this);
         }
     }
-    public static void solicitarPermisoLlamada(final String permiso, String justificacion, final int requestCode, final Activity actividad) {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(actividad, permiso)) {
-            new AlertDialog.Builder(actividad)
-                    .setTitle("Solicitud de permiso")
-                    .setMessage(justificacion)
-                    .setPositiveButton("Ok", (dialog, whichButton) -> ActivityCompat.requestPermissions(actividad, new String[]{permiso}, requestCode)).show(); } else {
-            ActivityCompat.requestPermissions(actividad, new String[]{permiso}, requestCode);
-        }
-    }
+
     // Método para alternar entre el modo oscuro y claro
     // Método para alternar entre el modo oscuro y claro
     private void alternarModoOscuro() {
@@ -417,13 +381,42 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-       // iniciarActualizacionContinua();
+        // iniciarActualizacionContinua();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-       // detenerActualizacionContinua();
+        // detenerActualizacionContinua();
+    }
+
+    public class MiPagerAdapter extends FragmentStateAdapter {
+        public MiPagerAdapter(FragmentActivity activity) {
+            super(activity);
+        }
+
+        @Override
+        public int getItemCount() {
+            return 5;
+        }
+
+        @Override
+        @NonNull
+        public Fragment createFragment(int position) {
+            switch (position) {
+                case 0:
+                    return new reservasviewnew();
+                case 1:
+                    return new libros();
+                case 2:
+                    return new home();
+                case 3:
+                    return new salas();
+                case 4:
+                    return new mapa();
+            }
+            return null;
+        }
     }
 
     /*private void iniciarActualizacionContinua() {
@@ -433,5 +426,7 @@ public class MainActivity extends AppCompatActivity {
     private void detenerActualizacionContinua() {
         posicionManager.detenerTriangulacionContinua();
     }
+}
+     */
 }
 

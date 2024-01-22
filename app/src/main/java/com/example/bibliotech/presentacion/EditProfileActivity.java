@@ -48,8 +48,8 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.perfileditar); // Set the layout for this activity
         image = findViewById(R.id.imageViewProfile);
         name = findViewById(R.id.textViewNameProfile);
-        surnames = findViewById(R.id.txtNumeroSala);
-        category = findViewById(R.id.txtAccesorios);
+        surnames = findViewById(R.id.textViewSurnames);
+        category = findViewById(R.id.textViewCategoryProfile);
         email = findViewById(R.id.textViewEmailProfile);
         Button B = findViewById(R.id.guardar);
         updateNames();

@@ -27,6 +27,7 @@ import com.example.bibliotech.datos.firestore.RoomFireStore;
 import com.example.bibliotech.datos.reservaSala;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -47,8 +48,13 @@ public class salas extends Fragment implements View.OnClickListener {
 
     private Map<Room,List<String[]>> roomOccupiedHoursString;
 
+
     private final LocalTime horaINI = LocalTime.of(8,0);
-    private final LocalTime horaFIN = LocalTime.of(22,0);
+    private final LocalTime horaFIN = LocalTime.of(20,0);
+    private  Set<Room> roomSet;
+    private String roomSelected = "H-010";
+
+
 
     private enum DATE_SETTING {
         FIRST_HOUR_SET(0),
@@ -86,7 +92,6 @@ public class salas extends Fragment implements View.OnClickListener {
 
         // Declara el Spinner y obtén el array de recursos
         Spinner mSpinner = view.findViewById(R.id.spinner_personas);
-        Spinner mSpinner2 = view.findViewById(R.id.spinner_plant);
 
         // Inicializa y configura los elementos de DatePicker
         btnDatePicker = view.findViewById(R.id.btn_date);
@@ -106,7 +111,7 @@ public class salas extends Fragment implements View.OnClickListener {
                 mHour = Integer.parseInt(timeParts[0]);
                 mMinute = Integer.parseInt(timeParts[1]);
 
-                TimeOperations.setSpinnerDataForAvailableHours(roomOccupiedHoursString,"H-010",mHour,mMinute,btnTimePicker2,30,horaFIN);
+                TimeOperations.setSpinnerDataForAvailableHours(roomOccupiedHoursString,roomSelected,mHour,mMinute,btnTimePicker2,30,horaFIN);
 
 
             }
@@ -123,7 +128,7 @@ public class salas extends Fragment implements View.OnClickListener {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedTime = adapterView.getItemAtPosition(i).toString();
                 String[] timeParts = selectedTime.split(":");
-                Toast.makeText(context, "HOLA", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "HOLA", Toast.LENGTH_SHORT).show();
 
                 // Emmagatzemar la hora i els minuts com a enters
                 mHour2 = Integer.parseInt(timeParts[0]);
@@ -134,6 +139,7 @@ public class salas extends Fragment implements View.OnClickListener {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
+
         });
 
 
@@ -171,22 +177,24 @@ public class salas extends Fragment implements View.OnClickListener {
 
         // Establece el adaptador en el Spinner
         mSpinner.setAdapter(mArrayAdapter);
-        mSpinner2.setAdapter(mArrayAdapter2);
 
 
-        //DEBUG
-        ROOMDB.getReservaRooms(new RoomFireStore.RoomReserveMap() {
+        ROOMDB.getRoomsSet(new RoomFireStore.SetRoomCallback() {
             @Override
-            public void onRoomReserveMapLoaded(Map<Room, List<reservaSala>> roomsRsereva) {
-                Log.d("RESERVA_MAP",roomsRsereva.toString());
+            public void onRoomsLoaded(Set<Room> roomList) {
+                List<String> nameRooms = new ArrayList<>();
+                for (Room room : roomList) {
+                    nameRooms.add(room.getNombreSala());
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(context,R.layout.spinner_list,nameRooms);
+                mSpinner.setAdapter(adapter);
             }
 
             @Override
-            public void onRoomsReserveError(Exception e) {
-                Log.d("RESERVA_MAP",e.getMessage());
+            public void onRoomsError(Exception e) {
+
             }
         });
-
         return view;
 
 
@@ -245,7 +253,7 @@ public class salas extends Fragment implements View.OnClickListener {
                                     Log.d("ROOMRESERVASALA", roomHours.toString());
                                     Log.d("XDDD", TimeOperations.generateAvailableTimes(roomHours,horaINI,horaFIN,30).toString());
                                     roomsAviableHours = TimeOperations.generateAvailableTimes(roomHours,horaINI,horaFIN,30);
-                                    TimeOperations.setSpinnerDataForRoom(roomsAviableHours,"H-010",btnTimePicker);
+                                    TimeOperations.setSpinnerDataForRoom(roomsAviableHours,roomSelected,btnTimePicker);
                                     roomOccupiedHoursString = TimeOperations.convertToTimeString(roomHours);
 
 
@@ -277,13 +285,13 @@ public class salas extends Fragment implements View.OnClickListener {
                 calendarDesde.getTime(),
                 calendarHasta.getTime(),
                 FireBaseActions.getUserId(),
-                "H-010");
+                roomSelected);
 
         // Afegeix la reserva utilitzant l'objecte RoomFireStore
-        ROOMDB.addReserva(RESERVA, "H-010", new RoomFireStore.onReservaAdded() {
+        ROOMDB.addReserva(RESERVA, roomSelected, new RoomFireStore.onReservaAdded() {
             @Override
             public void onSuccesListener(reservaSala reservaSala) {
-                RESERVA.anyadirAUser(FireBaseActions.getUserId());
+                RESERVA.anyadirAUser(FireBaseActions.getUserId(), getContext());
             }
 
             @Override

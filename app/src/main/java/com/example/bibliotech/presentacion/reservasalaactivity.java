@@ -1,5 +1,6 @@
 package com.example.bibliotech.presentacion;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -8,9 +9,11 @@ import android.graphics.ColorFilter;
 import android.graphics.ColorMatrix;
 import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -69,7 +72,13 @@ public class reservasalaactivity extends AppCompatActivity {
 
         fechaReservaTextView.setText(fechaReservadia + "/" + fechaReservames + "/" + fechaReservaano);
         img_qr = findViewById(R.id.qr);
-        generateQR(idReserva);  // Debes proporcionar un valor para 'isbn'
+        img_qr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFullScreenQR(idReserva);
+            }
+        });
+        generateQR(idReserva,img_qr);  // Debes proporcionar un valor para 'isbn'
 
         btn_volver = findViewById(R.id.btn_volver);
         btn_volver.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +92,7 @@ public class reservasalaactivity extends AppCompatActivity {
     }
 
 
-    private void generateQR(String textQr) {
+    private void generateQR(String textQr,ImageView img_qr) {
 
         MultiFormatWriter writer = new MultiFormatWriter();
 
@@ -121,4 +130,33 @@ public class reservasalaactivity extends AppCompatActivity {
         return resultBitmap;
     }
 
+    // Crea un Dialog sin usar un archivo de diseño XML
+    private void showFullScreenQR(String idReserva) {
+        // Crea un Dialog sin usar un archivo de diseño XML
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        // Configura el ImageView en el Dialog y genera el QR en pantalla completa
+        ImageView fullScreenQRImageView = new ImageView(this);
+        generateQR(idReserva,fullScreenQRImageView);
+
+        // Configura el fondo del Dialog como transparente
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        // Agrega un clic para cerrar el Dialog al tocar fuera del código QR
+        fullScreenQRImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        // Agrega el ImageView al Dialog
+        dialog.setContentView(fullScreenQRImageView);
+
+        // Muestra el Dialog
+        dialog.show();
+    }
 }
+
+

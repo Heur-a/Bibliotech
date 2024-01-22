@@ -111,8 +111,6 @@ public class RoomFireStore {
                                 }
 
 
-                            }).addOnFailureListener(task -> {
-                                callback.onRoomsReserveError(task);
                             });
 
                 }
